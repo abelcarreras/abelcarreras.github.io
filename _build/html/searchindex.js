@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["_site/index","index"],envversion:52,filenames:["_site/index.rst","index.rst"],objects:{},objnames:{},objtypes:{},terms:{index:[0,1],modul:[0,1],page:[0,1],search:[0,1]},titles:["Welcome to wiki\u2019s documentation!","Welcome to wiki\u2019s documentation!"],titleterms:{document:[0,1],indic:[0,1],tabl:[0,1],welcom:[0,1],wiki:[0,1]}})
