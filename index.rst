@@ -10,11 +10,11 @@ Welcome to wiki's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   atlas_qchem
 
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
