@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # wiki documentation build configuration file, created by
-# sphinx-quickstart on Thu Jan 24 17:32:58 2019.
+# sphinx-quickstart on Thu Jan 24 17:40:53 2019.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -30,8 +30,7 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc',
-    'sphinx.ext.mathjax',
+extensions = ['sphinx.ext.mathjax',
     'sphinx.ext.githubpages']
 
 # Add any paths that contain templates here, relative to this directory.
@@ -48,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'wiki'
-copyright = u'2019, Abel'
-author = u'Abel'
+copyright = u'2019, Abel Carreras'
+author = u'Abel Carreras'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -141,7 +140,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'wiki.tex', u'wiki Documentation',
-     u'Abel', 'manual'),
+     u'Abel Carreras', 'manual'),
 ]
 
 
