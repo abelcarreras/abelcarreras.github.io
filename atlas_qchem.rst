@@ -31,4 +31,35 @@ or::
 
     module qchem_group
 
-Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.
+*Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.*
+
+Run interactive qchem
+---------------------
+
+In order to run simple SHORT (< 1min) tests you may execute them directly in shell environment (once everything is loaded properly)::
+
+    qchem input_file.inp output_file.out
+
+For proper run long calculations you should use the queue system to submit batch calculations.
+For this purpose you should write a batch script.
+
+Batch job example
+-----------------
+
+All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:
+
+``#!/bin/bash
+
+#PBS -q parallel   #    “parallel" o “qchem” depending on the queue you have access
+#PBS -l ncpus=8  # number of CPI
+#PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
+#PBS -N qchem_calc  # job name
+#PBS -e error.log  # queue system error output file
+#PBS -o output.log  # queue system standard output file
+
+export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+
+module load qchem_group
+
+cd $PBS_O_WORKDIR   #  set workdir to submission directory 
+qchem -nt 8 test.inp  test.out`
