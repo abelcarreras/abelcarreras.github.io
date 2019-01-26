@@ -1,16 +1,18 @@
 How to use qchem in ATLAS cluster (DIPC)
 ========================================
 
-Requirements to acces to qchem
-------------------------------
+Before starting
+---------------
 
-**Account**
-- Have an atlas account (atlas.sw.ehu.es)
-- Be a member of dccqhem linux group
+**Requirements to acces to qchem**
+
+* Have an atlas account (atlas.sw.ehu.es)
+* Be a member of dccqhem linux group
 
 **Available qhem compilations**
-- qchem_trunk: Current master version of qchem (will be released in next stable version)
-- qchem_group: Current in development version of qchem (includes new features developed in the group) 
+
+* qchem_trunk: Current master version of qchem [openmp intel_compilers mkl version]
+* qchem_group: Current in development version of qchem (includes new features developed in the group) [openmp intel_compilers mkl version]
 
 Load custom modules
 -------------------
@@ -46,20 +48,20 @@ For this purpose you should write a batch script.
 Batch job example
 -----------------
 
-All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:
+All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example::
 
-``#!/bin/bash
+	#!/bin/bash
 
-#PBS -q parallel   #    “parallel" o “qchem” depending on the queue you have access
-#PBS -l ncpus=8  # number of CPI
-#PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
-#PBS -N qchem_calc  # job name
-#PBS -e error.log  # queue system error output file
-#PBS -o output.log  # queue system standard output file
+	#PBS -q parallel       #  “parallel" o “qchem” depending on the queue you have access to
+	#PBS -l ncpus=8        # number of CPI
+	#PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
+	#PBS -N qchem_calc     # job name
+	#PBS -e error.log      # queue system error output file
+	#PBS -o output.log     # queue system standard output file
 
-export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+	export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
 
-module load qchem_group
+	module load qchem_group
 
-cd $PBS_O_WORKDIR   #  set workdir to submission directory 
-qchem -nt 8 test.inp  test.out`
+	cd $PBS_O_WORKDIR     # set workdir to submission directory 
+	qchem -nt 8 inputfile.inp  outputfile.out

@@ -24,7 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to wiki’s documentation!" href="index.html" /> 
+    <link rel="next" title="How to use qchem in IQTC cluster (UB)" href="iqtc_qchem.html" />
+    <link rel="prev" title="Technical information and documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,7 +35,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="index.html" title="Welcome to wiki’s documentation!"
+          <a href="iqtc_qchem.html" title="How to use qchem in IQTC cluster (UB)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Technical information and documentation"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>
@@ -47,14 +51,18 @@
             
   <div class="section" id="how-to-use-qchem-in-atlas-cluster-dipc">
 <h1>How to use qchem in ATLAS cluster (DIPC)<a class="headerlink" href="#how-to-use-qchem-in-atlas-cluster-dipc" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="requirements-to-acces-to-qchem">
-<h2>Requirements to acces to qchem<a class="headerlink" href="#requirements-to-acces-to-qchem" title="Permalink to this headline">¶</a></h2>
-<p><strong>Account</strong>
-- Have an atlas account (atlas.sw.ehu.es)
-- Be a member of dccqhem linux group</p>
-<p><strong>Available qhem compilations</strong>
-- qchem_trunk: Current master version of qchem (will be released in next stable version)
-- qchem_group: Current in development version of qchem (includes new features developed in the group)</p>
+<div class="section" id="before-starting">
+<h2>Before starting<a class="headerlink" href="#before-starting" title="Permalink to this headline">¶</a></h2>
+<p><strong>Requirements to acces to qchem</strong></p>
+<ul class="simple">
+<li>Have an atlas account (atlas.sw.ehu.es)</li>
+<li>Be a member of dccqhem linux group</li>
+</ul>
+<p><strong>Available qhem compilations</strong></p>
+<ul class="simple">
+<li>qchem_trunk: Current master version of qchem [openmp intel_compilers mkl version]</li>
+<li>qchem_group: Current in development version of qchem (includes new features developed in the group) [openmp intel_compilers mkl version]</li>
+</ul>
 </div>
 <div class="section" id="load-custom-modules">
 <h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
@@ -72,7 +80,37 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_group</span>
 </pre></div>
 </div>
-<p>Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.</p>
+<p><em>Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.</em></p>
+</div>
+<div class="section" id="run-interactive-qchem">
+<h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Permalink to this headline">¶</a></h2>
+<p>In order to run simple SHORT (&lt; 1min) tests you may execute them directly in shell environment (once everything is loaded properly):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">qchem</span> <span class="n">input_file</span><span class="o">.</span><span class="n">inp</span> <span class="n">output_file</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>For proper run long calculations you should use the queue system to submit batch calculations.
+For this purpose you should write a batch script.</p>
+</div>
+<div class="section" id="batch-job-example">
+<h2>Batch job example<a class="headerlink" href="#batch-job-example" title="Permalink to this headline">¶</a></h2>
+<p>All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
+
+#PBS -q parallel       #  “parallel&quot; o “qchem” depending on the queue you have access to
+#PBS -l ncpus=8        # number of CPI
+#PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
+#PBS -N qchem_calc     # job name
+#PBS -e error.log      # queue system error output file
+#PBS -o output.log     # queue system standard output file
+
+export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+
+module load qchem_group
+
+cd $PBS_O_WORKDIR     # set workdir to submission directory
+qchem -nt 8 inputfile.inp  outputfile.out
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -84,7 +122,10 @@
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to wiki’s documentation!</a></p>
+                        title="previous chapter">Technical information and documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="iqtc_qchem.html"
+                        title="next chapter">How to use qchem in IQTC cluster (UB)</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -106,7 +147,10 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="index.html" title="Welcome to wiki’s documentation!"
+          <a href="iqtc_qchem.html" title="How to use qchem in IQTC cluster (UB)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Technical information and documentation"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>

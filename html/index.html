@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to wiki’s documentation! &#8212; wiki  documentation</title>
+    <title>Technical information and documentation &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How to use qchem in ATLAS cluster (DIPC)" href="atlas_qchem.html" /> 
+    <link rel="next" title="SVN working notes" href="svn_qchem.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,7 +34,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="atlas_qchem.html" title="How to use qchem in ATLAS cluster (DIPC)"
+          <a href="svn_qchem.html" title="SVN working notes"
              accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">wiki  documentation</a> &#187;</li> 
       </ul>
@@ -45,14 +45,33 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-wiki-s-documentation">
-<h1>Welcome to wiki’s documentation!<a class="headerlink" href="#welcome-to-wiki-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="technical-information-and-documentation">
+<h1>Technical information and documentation<a class="headerlink" href="#technical-information-and-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="svn_qchem.html">SVN working notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="svn_qchem.html#merging-users-dcc-group">Merging users &lt;- dcc_group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="svn_qchem.html#id1">Merging users -&gt; dcc_group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="svn_qchem.html#merging-group-trunk">Merging group -&gt; trunk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="svn_qchem.html#svn-scheme">SVN scheme</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compilation_qchem.html">Qchem compilation notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="atlas_qchem.html">How to use qchem in ATLAS cluster (DIPC)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="atlas_qchem.html#requirements-to-acces-to-qchem">Requirements to acces to qchem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas_qchem.html#before-starting">Before starting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="atlas_qchem.html#load-custom-modules">Load custom modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas_qchem.html#run-interactive-qchem">Run interactive qchem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas_qchem.html#batch-job-example">Batch job example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="iqtc_qchem.html">How to use qchem in IQTC cluster (UB)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="iqtc_qchem.html#preliminar-information">Preliminar information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iqtc_qchem.html#load-custom-modules">Load custom modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iqtc_qchem.html#define-hostfile-mpi-parallel-version-only">Define hostfile (MPI parallel version only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iqtc_qchem.html#run-interactive-qchem">Run interactive qchem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iqtc_qchem.html#batch-job-example-serial">Batch job example serial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iqtc_qchem.html#batch-job-example-parallel-mpi">Batch job example parallel MPI</a></li>
 </ul>
 </li>
 </ul>
@@ -73,8 +92,8 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Next topic</h4>
-  <p class="topless"><a href="atlas_qchem.html"
-                        title="next chapter">How to use qchem in ATLAS cluster (DIPC)</a></p>
+  <p class="topless"><a href="svn_qchem.html"
+                        title="next chapter">SVN working notes</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -96,7 +115,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="atlas_qchem.html" title="How to use qchem in ATLAS cluster (DIPC)"
+          <a href="svn_qchem.html" title="SVN working notes"
              >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">wiki  documentation</a> &#187;</li> 
       </ul>

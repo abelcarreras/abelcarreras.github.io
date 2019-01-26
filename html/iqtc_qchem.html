@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>How to use qchem in IQTC cluster (UB) &#8212; wiki  documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="How to use qchem in ATLAS cluster (DIPC)" href="atlas_qchem.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="atlas_qchem.html" title="How to use qchem in ATLAS cluster (DIPC)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-use-qchem-in-iqtc-cluster-ub">
+<h1>How to use qchem in IQTC cluster (UB)<a class="headerlink" href="#how-to-use-qchem-in-iqtc-cluster-ub" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preliminar-information">
+<h2>Preliminar information<a class="headerlink" href="#preliminar-information" title="Permalink to this headline">¶</a></h2>
+<p><strong>Requirements to acces to qchem</strong></p>
+<ul class="simple">
+<li>Have an iqtc account (portal.qt.ub.edu)</li>
+<li>Be a member of g8 group (Prof. Pere Alemany’s group)</li>
+</ul>
+<p><strong>Available qhem compilations</strong></p>
+<ul class="simple">
+<li>qchem_group: Current in development version of qchem (includes new features developed in the group) [serial intel_compilers mkl compilation]</li>
+<li>qchem_mpi: parallel MPI compilation of qchem_group [mpi intel mkl version]</li>
+</ul>
+<p><em>All qchem compilations are compilated in iqtc04 cluster. It is not guaranteed to work properly on other clusters.</em></p>
+</div>
+<div class="section" id="load-custom-modules">
+<h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
+<p>o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+</pre></div>
+</div>
+<p>Once this is done, you should be able to see the custom modules (qchem_trunk &amp; qchem_group) executing the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
+</pre></div>
+</div>
+<p>To use qchem, just load the corresponding module as usual:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_group</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_mpi</span>
+</pre></div>
+</div>
+<p><em>Note: *$QCSCRATCH</em> environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.*</p>
+</div>
+<div class="section" id="define-hostfile-mpi-parallel-version-only">
+<h2>Define hostfile (MPI parallel version only)<a class="headerlink" href="#define-hostfile-mpi-parallel-version-only" title="Permalink to this headline">¶</a></h2>
+<p>In order to run MPI version of qchem the location of hostfile must be defined. The complete path (including the filename) should be defined in the environment variable <strong>$QCMACHINEFILE</strong></p>
+<p>Under queue system environemnt (SGE) this file is generated automatically and placed in a temporal directory under the node /scratch directory. This directory is written in <strong>$TMPDIR</strong> environtment variable.
+Therefore, in batch calcultions, a convenient way is to define <strong>$QCMACHINEFILE</strong> as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>export QCMACHINEFILE=$TMPDIR/machines
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-interactive-qchem">
+<h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Permalink to this headline">¶</a></h2>
+<p>SGE queue system allows to run calculation interactivelly using special queues designed for this purpose.
+To enter to them use the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">qrsh</span> <span class="o">-</span><span class="n">q</span> <span class="n">interactive04</span><span class="o">.</span><span class="n">q</span>
+</pre></div>
+</div>
+<p>where  interactive04.q is the interactive queue in iqt04 cluster. Other similar queues are available for iqtc01 and iqtc02: interactive01.q and interactive02.q. Keep in mind that when working with interactive queues MPI hostfile must be created manually. In simple case use this file may only containg one line:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">localhost</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="batch-job-example-serial">
+<h2>Batch job example serial<a class="headerlink" href="#batch-job-example-serial" title="Permalink to this headline">¶</a></h2>
+<p>All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
+#$ -S /bin/bash
+#$ -N test_serial
+#$ -q iqtc04.q
+#$ -pe smp 1
+
+. /etc/profile
+export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
+module load qchem_group
+
+export QCSCRATCH=$TMPDIR
+
+qchem inputfile.inp outputfile.out
+</pre></div>
+</div>
+</div>
+<div class="section" id="batch-job-example-parallel-mpi">
+<h2>Batch job example parallel MPI<a class="headerlink" href="#batch-job-example-parallel-mpi" title="Permalink to this headline">¶</a></h2>
+<p>All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
+#$ -S /bin/bash
+#$ -N test_mpi
+#$ -q iqtc04.q
+#$ -pe mpi* 8
+
+
+. /etc/profile
+export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
+module load qchem_mpi
+
+export QCSCRATCH=$TMPDIR
+export QCMACHINEFILE=$TMPDIR/machines
+
+qchem -np 8 inputfile.inp outputfile.out
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="atlas_qchem.html"
+                        title="previous chapter">How to use qchem in ATLAS cluster (DIPC)</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="atlas_qchem.html" title="How to use qchem in ATLAS cluster (DIPC)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Abel Carreras.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>
