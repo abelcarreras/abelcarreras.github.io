@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to use qchem in IQTC cluster (UB)" href="iqtc_qchem.html" />
-    <link rel="prev" title="Technical information and documentation" href="index.html" /> 
+    <link rel="prev" title="Qchem compilation notes" href="compilation_qchem.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,7 +38,7 @@
           <a href="iqtc_qchem.html" title="How to use qchem in IQTC cluster (UB)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Technical information and documentation"
+          <a href="compilation_qchem.html" title="Qchem compilation notes"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>
@@ -51,8 +51,8 @@
             
   <div class="section" id="how-to-use-qchem-in-atlas-cluster-dipc">
 <h1>How to use qchem in ATLAS cluster (DIPC)<a class="headerlink" href="#how-to-use-qchem-in-atlas-cluster-dipc" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="before-starting">
-<h2>Before starting<a class="headerlink" href="#before-starting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="preliminar-information">
+<h2>Preliminar information<a class="headerlink" href="#preliminar-information" title="Permalink to this headline">¶</a></h2>
 <p><strong>Requirements to acces to qchem</strong></p>
 <ul class="simple">
 <li>Have an atlas account (atlas.sw.ehu.es)</li>
@@ -67,7 +67,9 @@
 <div class="section" id="load-custom-modules">
 <h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
 <p>o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:</p>
-<p>export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+</pre></div>
+</div>
 <p>Once this is done, you should be able to see the custom modules (qchem_trunk &amp; qchem_group) executing the command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
 </pre></div>
@@ -121,8 +123,8 @@ qchem -nt 8 inputfile.inp  outputfile.out
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Technical information and documentation</a></p>
+  <p class="topless"><a href="compilation_qchem.html"
+                        title="previous chapter">Qchem compilation notes</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="iqtc_qchem.html"
                         title="next chapter">How to use qchem in IQTC cluster (UB)</a></p>
@@ -150,7 +152,7 @@ qchem -nt 8 inputfile.inp  outputfile.out
           <a href="iqtc_qchem.html" title="How to use qchem in IQTC cluster (UB)"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Technical information and documentation"
+          <a href="compilation_qchem.html" title="Qchem compilation notes"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>

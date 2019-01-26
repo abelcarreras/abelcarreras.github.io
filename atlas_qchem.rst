@@ -1,8 +1,8 @@
 How to use qchem in ATLAS cluster (DIPC)
 ========================================
 
-Before starting
----------------
+Preliminar information
+----------------------
 
 **Requirements to acces to qchem**
 
@@ -17,9 +17,9 @@ Before starting
 Load custom modules
 -------------------
 
-o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows: 
+o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:: 
 
-export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
 
 Once this is done, you should be able to see the custom modules (qchem_trunk & qchem_group) executing the command::
 
