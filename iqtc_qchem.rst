@@ -20,9 +20,9 @@ Preliminar information
 Load custom modules
 -------------------
 
-o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:: 
+o acces to qchem you should be able to load custom modules located in /home/g8abel/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:: 
 
-    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+    export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
 
 Once this is done, you should be able to see the custom modules (qchem_trunk & qchem_group) executing the command::
 
@@ -68,16 +68,19 @@ All commands discussed previously can be gathered in a simple script to run in b
 
 	#!/bin/bash
 	#$ -S /bin/bash
-	#$ -N test_serial
-	#$ -q iqtc04.q
-	#$ -pe smp 1
+	#$ -N test_serial  # job name
+	#$ -q iqtc04.q     # custer where to run (iqtc04 recommended)
+	#$ -pe smp 1       # define the parallel environment (single node) and number of cores
 
+    # load module qchem
 	. /etc/profile
 	export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
 	module load qchem_group
 
+	# define envirotment qchem
 	export QCSCRATCH=$TMPDIR
 
+	# run qchem
 	qchem inputfile.inp outputfile.out
 
 Batch job example parallel MPI
@@ -87,16 +90,19 @@ All commands discussed previously can be gathered in a simple script to run in b
 
 	#!/bin/bash
 	#$ -S /bin/bash
-	#$ -N test_mpi
-	#$ -q iqtc04.q
-	#$ -pe mpi* 8
+	#$ -N test_mpi    # job name
+	#$ -q iqtc04.q    # custer where to run (iqtc04 recommended)
+	#$ -pe mpi* 8     # define enviroment to MPI and number of processors
 
 
+    # load module qchem
 	. /etc/profile
 	export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
 	module load qchem_mpi
 
+	# define envirotment qchem
 	export QCSCRATCH=$TMPDIR
 	export QCMACHINEFILE=$TMPDIR/machines
 
+	# run qchem (-np indicates the number of processors. You may want to use the same as in "-pe")
 	qchem -np 8 inputfile.inp outputfile.out

@@ -14,6 +14,7 @@ Technical information and documentation
    compilation_qchem
    atlas_qchem
    iqtc_qchem
+   marenostrum_qchem
 
 
 Indices and tables
@@ -21,3 +22,4 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`search`
+

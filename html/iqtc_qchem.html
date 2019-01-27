@@ -63,8 +63,8 @@
 </div>
 <div class="section" id="load-custom-modules">
 <h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
-<p>o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+<p>o acces to qchem you should be able to load custom modules located in /home/g8abel/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
 </pre></div>
 </div>
 <p>Once this is done, you should be able to see the custom modules (qchem_trunk &amp; qchem_group) executing the command:</p>
@@ -105,40 +105,46 @@ To enter to them use the command:</p>
 <div class="section" id="batch-job-example-serial">
 <h2>Batch job example serial<a class="headerlink" href="#batch-job-example-serial" title="Permalink to this headline">¶</a></h2>
 <p>All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
-#$ -S /bin/bash
-#$ -N test_serial
-#$ -q iqtc04.q
-#$ -pe smp 1
+<div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
+    #$ -S /bin/bash
+    #$ -N test_serial  # job name
+    #$ -q iqtc04.q     # custer where to run (iqtc04 recommended)
+    #$ -pe smp 1       # define the parallel environment (single node) and number of cores
 
-. /etc/profile
-export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
-module load qchem_group
+# load module qchem
+    . /etc/profile
+    export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
+    module load qchem_group
 
-export QCSCRATCH=$TMPDIR
+    # define envirotment qchem
+    export QCSCRATCH=$TMPDIR
 
-qchem inputfile.inp outputfile.out
+    # run qchem
+    qchem inputfile.inp outputfile.out
 </pre></div>
 </div>
 </div>
 <div class="section" id="batch-job-example-parallel-mpi">
 <h2>Batch job example parallel MPI<a class="headerlink" href="#batch-job-example-parallel-mpi" title="Permalink to this headline">¶</a></h2>
 <p>All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
-#$ -S /bin/bash
-#$ -N test_mpi
-#$ -q iqtc04.q
-#$ -pe mpi* 8
+<div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
+    #$ -S /bin/bash
+    #$ -N test_mpi    # job name
+    #$ -q iqtc04.q    # custer where to run (iqtc04 recommended)
+    #$ -pe mpi* 8     # define enviroment to MPI and number of processors
 
 
-. /etc/profile
-export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
-module load qchem_mpi
+# load module qchem
+    . /etc/profile
+    export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
+    module load qchem_mpi
 
-export QCSCRATCH=$TMPDIR
-export QCMACHINEFILE=$TMPDIR/machines
+    # define envirotment qchem
+    export QCSCRATCH=$TMPDIR
+    export QCMACHINEFILE=$TMPDIR/machines
 
-qchem -np 8 inputfile.inp outputfile.out
+    # run qchem (-np indicates the number of processors. You may want to use the same as in &quot;-pe&quot;)
+    qchem -np 8 inputfile.inp outputfile.out
 </pre></div>
 </div>
 </div>

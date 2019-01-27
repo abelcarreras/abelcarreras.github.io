@@ -9,8 +9,7 @@ to::
 
 	set(MKL_VERSION "11.0")
 
-
-To compile MPI version in IQTC it is necessary to modify file /bin/qchem to force activation of  **-np** flag::
+To compile MPI version in IQTC it is necessary to modify file /bin/qchem to force activation of **-np** flag::
 
     set WITH_MPI = 1  
 

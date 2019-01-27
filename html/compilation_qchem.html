@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to use qchem in ATLAS cluster (DIPC)" href="atlas_qchem.html" />
-    <link rel="prev" title="Technical information and documentation" href="index.html" /> 
+    <link rel="prev" title="SVN working notes" href="svn_qchem.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,7 +38,7 @@
           <a href="atlas_qchem.html" title="How to use qchem in ATLAS cluster (DIPC)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Technical information and documentation"
+          <a href="svn_qchem.html" title="SVN working notes"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>
@@ -59,14 +59,11 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">MKL_VERSION</span> <span class="s2">&quot;11.0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>To compile MPI version in IQTC it is necessary to modify file /bin/qchem to force activation of</dt>
-<dd><p class="first"><strong>-np</strong> flag:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">WITH_MPI</span> <span class="o">=</span> <span class="mi">1</span>
+<p>To compile MPI version in IQTC it is necessary to modify file /bin/qchem to force activation of
+<strong>-np</strong> flag:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">WITH_MPI</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-</dd>
-</dl>
 <p>Also it is necessary to modify /bin/parallel.csh file to manually define the environment variable $QCMACHINEFILE to properly set “machines” file location by commenting the following lines:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>if ( $?QCGMAKE ) then
    set QCMACHINEFILE=$QCBIN/machines
@@ -84,8 +81,8 @@ fi
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Technical information and documentation</a></p>
+  <p class="topless"><a href="svn_qchem.html"
+                        title="previous chapter">SVN working notes</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="atlas_qchem.html"
                         title="next chapter">How to use qchem in ATLAS cluster (DIPC)</a></p>
@@ -113,7 +110,7 @@ fi
           <a href="atlas_qchem.html" title="How to use qchem in ATLAS cluster (DIPC)"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Technical information and documentation"
+          <a href="svn_qchem.html" title="SVN working notes"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>
