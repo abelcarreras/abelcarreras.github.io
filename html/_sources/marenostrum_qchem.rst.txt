@@ -26,11 +26,7 @@ Once this is done, you should be able to see the custom modules (qchem_trunk & q
 
 To use qchem, just load the corresponding module as usual::
 
-    module qchem_group
-
-or::
-
-    module qchem_mpi
+    module qchem_group_mpi
 
 *Note: $MODULEPATH environment variable definition can be defined in user's ~/.bashrc configuration file so
 it becomes defined for all calculation by default.*
