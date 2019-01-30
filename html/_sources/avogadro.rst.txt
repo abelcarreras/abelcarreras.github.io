@@ -18,8 +18,8 @@ This version can be downloaded from GitHub (spin_density branch) at:
 
 https://github.com/abelcarreras/avogadro/tree/spin_density
 
-General intructions
--------------------
+General instructions
+--------------------
 
 Donwload and compile. You may need to install the following libraries:
 
@@ -42,4 +42,5 @@ Before running avogadro, open a terminal and type:
 5. brew install open-babel
 
 Once the installation is finished you should be able to run avogadro normally.
+
 

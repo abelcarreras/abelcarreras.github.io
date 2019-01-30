@@ -43,3 +43,4 @@ Before running avogadro, open a terminal and type:
 
 Once the installation is finished you should be able to run avogadro normally.
 
+
