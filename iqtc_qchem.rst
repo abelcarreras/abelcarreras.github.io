@@ -64,7 +64,7 @@ where  interactive04.q is the interactive queue in iqt04 cluster. Other similar 
 Batch job example serial
 ------------------------
 
-All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example::
+All commands described previously can be gathered in a simple script to run in batch. This is a simple example::
 
 	#!/bin/bash
 	#$ -S /bin/bash
@@ -86,7 +86,7 @@ All commands discussed previously can be gathered in a simple script to run in b
 Batch job example parallel MPI
 ------------------------------
 
-All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example::
+All commands described previously can be gathered in a simple script to run in batch. This is a simple example::
 
 	#!/bin/bash
 	#$ -S /bin/bash

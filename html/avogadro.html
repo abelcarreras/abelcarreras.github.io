@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Custom version of Avogadro visualization software &#8212; wiki  documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="custom-version-of-avogadro-visualization-software">
+<h1>Custom version of Avogadro visualization software<a class="headerlink" href="#custom-version-of-avogadro-visualization-software" title="Permalink to this headline">¶</a></h1>
+<p>This is a fork from the original repository at gitHub: <a class="reference external" href="https://github.com/cryos/avogadro">https://github.com/cryos/avogadro</a> that adds some
+extra characteristics to read data from fchk files generated with qchem using the RAS-CI method.</p>
+<div class="section" id="characteristics">
+<h2>Characteristics<a class="headerlink" href="#characteristics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Natural orbitals</li>
+<li>Spin density</li>
+<li>Fractional occupnacy density (FOD)</li>
+</ul>
+</div>
+<div class="section" id="repository">
+<h2>Repository<a class="headerlink" href="#repository" title="Permalink to this headline">¶</a></h2>
+<p>This version can be downloaded from GitHub (spin_density branch) at:</p>
+<p><a class="reference external" href="https://github.com/abelcarreras/avogadro/tree/spin_density">https://github.com/abelcarreras/avogadro/tree/spin_density</a></p>
+</div>
+<div class="section" id="general-intructions">
+<h2>General intructions<a class="headerlink" href="#general-intructions" title="Permalink to this headline">¶</a></h2>
+<p>Donwload and compile. You may need to install the following libraries:</p>
+<ul class="simple">
+<li>QT4</li>
+<li>open-babel</li>
+</ul>
+</div>
+<div class="section" id="special-mac-instructions">
+<h2>Special mac instructions<a class="headerlink" href="#special-mac-instructions" title="Permalink to this headline">¶</a></h2>
+<p>An already compiled version of Avogadro for mac is avalable under request.
+To run this version you still need to install the requiered libraries.
+A simple way to do it is using brew (<a class="reference external" href="https://brew.sh">https://brew.sh</a>):</p>
+<p>Before running avogadro, open a terminal and type:</p>
+<ol class="arabic simple">
+<li>/usr/bin/ruby -e “$(curl -fsSL <a class="reference external" href="https://raw.githubusercontent.com/Homebrew/install/master/install">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”</li>
+<li>brew tap cartr/qt4</li>
+<li>brew tap-pin cartr/qt4</li>
+<li>brew install qt&#64;4</li>
+<li>brew install open-babel</li>
+</ol>
+<p>Once the installation is finished you should be able to run avogadro normally.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Abel Carreras.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

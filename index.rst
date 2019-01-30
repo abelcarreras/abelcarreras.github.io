@@ -15,6 +15,7 @@ Technical information and documentation
    atlas_qchem
    iqtc_qchem
    marenostrum_qchem
+   avogadro
 
 
 Indices and tables
