@@ -16,7 +16,9 @@ Technical information and documentation
    iqtc_qchem
    marenostrum_qchem
    avogadro
+   rasci
    math
+
 
 
 Indices and tables
