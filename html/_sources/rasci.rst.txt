@@ -1,6 +1,6 @@
 RAS-CI implementation scheme
 ----------------------------
-Fortran function only
+Fortran functions only
 
 .. image :: images/rasci_scheme.pdf
     :align: center
