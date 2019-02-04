@@ -4,24 +4,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>How to use qchem in IQTC cluster (UB) &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to use qchem in Mare Nostrum (BSC)" href="marenostrum_qchem.html" />
     <link rel="prev" title="How to use qchem in ATLAS cluster (DIPC)" href="atlas_qchem.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -62,19 +68,19 @@
 <div class="section" id="load-custom-modules">
 <h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
 <p>o acces to qchem you should be able to load custom modules located in /home/g8abel/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
+<div class="highlight-default"><div class="highlight"><pre><span></span>export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
 </pre></div>
 </div>
 <p>Once this is done, you should be able to see the custom modules (qchem_trunk &amp; qchem_group) executing the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
 </pre></div>
 </div>
 <p>To use qchem, just load the corresponding module as usual:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_group</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_group</span>
 </pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_mpi</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_mpi</span>
 </pre></div>
 </div>
 <p><em>Note: *$QCSCRATCH</em> environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.*</p>
@@ -84,7 +90,7 @@
 <p>In order to run MPI version of qchem the location of hostfile must be defined. The complete path (including the filename) should be defined in the environment variable <strong>$QCMACHINEFILE</strong></p>
 <p>Under queue system environemnt (SGE) this file is generated automatically and placed in a temporal directory under the node /scratch directory. This directory is written in <strong>$TMPDIR</strong> environtment variable.
 Therefore, in batch calcultions, a convenient way is to define <strong>$QCMACHINEFILE</strong> as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export QCMACHINEFILE=$TMPDIR/machines
+<div class="highlight-default"><div class="highlight"><pre><span></span>export QCMACHINEFILE=$TMPDIR/machines
 </pre></div>
 </div>
 </div>
@@ -92,18 +98,18 @@ Therefore, in batch calcultions, a convenient way is to define <strong>$QCMACHIN
 <h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Permalink to this headline">¶</a></h2>
 <p>SGE queue system allows to run calculation interactivelly using special queues designed for this purpose.
 To enter to them use the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qrsh</span> <span class="o">-</span><span class="n">q</span> <span class="n">interactive04</span><span class="o">.</span><span class="n">q</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">qrsh</span> <span class="o">-</span><span class="n">q</span> <span class="n">interactive04</span><span class="o">.</span><span class="n">q</span>
 </pre></div>
 </div>
 <p>where  interactive04.q is the interactive queue in iqt04 cluster. Other similar queues are available for iqtc01 and iqtc02: interactive01.q and interactive02.q. Keep in mind that when working with interactive queues MPI hostfile must be created manually. In simple case use this file may only containg one line:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">localhost</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">localhost</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="batch-job-example-serial">
 <h2>Batch job example serial<a class="headerlink" href="#batch-job-example-serial" title="Permalink to this headline">¶</a></h2>
 <p>All commands described previously can be gathered in a simple script to run in batch. This is a simple example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    #!/bin/bash
+<div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
     #$ -S /bin/bash
     #$ -N test_serial  # job name
     #$ -q iqtc04.q     # custer where to run (iqtc04 recommended)
@@ -125,7 +131,7 @@ To enter to them use the command:</p>
 <div class="section" id="batch-job-example-parallel-mpi">
 <h2>Batch job example parallel MPI<a class="headerlink" href="#batch-job-example-parallel-mpi" title="Permalink to this headline">¶</a></h2>
 <p>All commands described previously can be gathered in a simple script to run in batch. This is a simple example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    #!/bin/bash
+<div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
     #$ -S /bin/bash
     #$ -N test_mpi    # job name
     #$ -q iqtc04.q    # custer where to run (iqtc04 recommended)
@@ -162,12 +168,12 @@ To enter to them use the command:</p>
                         title="next chapter">How to use qchem in Mare Nostrum (BSC)</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
-    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -191,7 +197,7 @@ To enter to them use the command:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/71b2bb0.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

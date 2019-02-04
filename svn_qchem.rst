@@ -1,10 +1,14 @@
 SVN working notes
 ==================
 
-Merging users <- dcc_group
+Merging dcc_group -> users
 --------------------------
 
-Changes in dcc_group branch can be merged to user branches in usual way::
+Before merging make sure that all your work is commited to the server::
+
+    svn commit -m "status before merge"   (or using CLion)
+
+Then, changes in dcc_group branch can be merged to user branches in usual way::
 
     svn merge ^/branches/dcc_group    (or using CLion)
 
