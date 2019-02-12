@@ -95,17 +95,36 @@
 </ol>
 <p>After this procedure dcc_group can be updated and modified and the changes can be merged into user branches as usual.</p>
 </div>
-<div class="section" id="merging-group-trunk">
-<h2>Merging group -&gt; trunk<a class="headerlink" href="#merging-group-trunk" title="Permalink to this headline">¶</a></h2>
-<p>Merging from dcc_group to trunk branches should be done carefully using the queue system</p>
-<ol class="arabic">
-<li><p class="first">Make sure that qcc_group branch contains all the changes from trunk:</p>
+<div class="section" id="merge-trunk-dcc-group">
+<h2>Merge trunk -&gt; dcc_group<a class="headerlink" href="#merge-trunk-dcc-group" title="Permalink to this headline">¶</a></h2>
+<p>To merg from trunk to group make sure that you are in dcc_group branch, then execute:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">merge</span> <span class="o">--</span><span class="n">accept</span><span class="o">=</span><span class="n">postpone</span> <span class="o">^/</span><span class="n">trunk</span>
 </pre></div>
 </div>
-</li>
-<li><p class="first">Use Qchem queue systems (check qchem dev wiki) to merge dcc_group into trunk</p>
-</li>
+<p>Sometimes after a big merge some connection issues may apear:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">svn</span><span class="p">:</span> <span class="n">E120106</span><span class="p">:</span> <span class="n">ra_serf</span><span class="p">:</span> <span class="n">The</span> <span class="n">server</span> <span class="n">sent</span> <span class="n">a</span> <span class="n">trunkated</span> <span class="n">HTTP</span> <span class="n">response</span> <span class="n">body</span>
+</pre></div>
+</div>
+<p>To fix it just cleanup and try again merge:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">cleanup</span>
+<span class="n">svn</span> <span class="n">up</span>
+</pre></div>
+</div>
+<p>Make sure to resolve all conflix that may apear:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">resolve</span>
+</pre></div>
+</div>
+<p>You can check that everything is Ok by:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">status</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="merging-dcc-group-trunk">
+<h2>Merging dcc_group -&gt; trunk<a class="headerlink" href="#merging-dcc-group-trunk" title="Permalink to this headline">¶</a></h2>
+<p>Merging from dcc_group to trunk branches should be done carefully using the queue system</p>
+<ol class="arabic simple">
+<li>Make sure that qcc_group branch contains all the changes from trunk (see Merge trunk -&gt; dcc_group section)</li>
+<li>Use Qchem queue systems (check qchem dev wiki) to merge dcc_group into trunk</li>
 </ol>
 <p>After merge from dcc_group branch to trunk using the queue system, dcc_group branch will be deleted automatically. dcc_group should be recreated from trunk:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">copy</span> <span class="o">^/</span><span class="n">trunk</span>  <span class="o">^/</span><span class="n">branches</span><span class="o">/</span><span class="n">dcc_group</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;recreate dcc_group branch&quot;</span>

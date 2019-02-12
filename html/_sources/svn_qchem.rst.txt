@@ -40,18 +40,39 @@ Changes from user branches to dcc_group, should be done using the following proc
 
 After this procedure dcc_group can be updated and modified and the changes can be merged into user branches as usual.
 
-
-Merging group -> trunk
-----------------------
-
-Merging from dcc_group to trunk branches should be done carefully using the queue system
-
-1. Make sure that qcc_group branch contains all the changes from trunk::
+Merge trunk -> dcc_group
+------------------------
+To merg from trunk to group make sure that you are in dcc_group branch, then execute::
 
     svn merge --accept=postpone ^/trunk 
 
-2. Use Qchem queue systems (check qchem dev wiki) to merge dcc_group into trunk
+Sometimes after a big merge some connection issues may apear::
 
+    svn: E120106: ra_serf: The server sent a trunkated HTTP response body
+
+To fix it just cleanup and try again merge::
+
+    svn cleanup
+    svn up
+
+Make sure to resolve all conflix that may apear::
+
+    svn resolve
+
+
+You can check that everything is Ok by::
+
+    svn status
+
+
+Merging dcc_group -> trunk
+--------------------------
+
+Merging from dcc_group to trunk branches should be done carefully using the queue system
+
+1. Make sure that qcc_group branch contains all the changes from trunk (see Merge trunk -> dcc_group section)
+
+2. Use Qchem queue systems (check qchem dev wiki) to merge dcc_group into trunk
 
 After merge from dcc_group branch to trunk using the queue system, dcc_group branch will be deleted automatically. dcc_group should be recreated from trunk::
 

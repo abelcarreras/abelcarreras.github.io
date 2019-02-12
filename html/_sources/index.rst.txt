@@ -18,7 +18,7 @@ Technical information and documentation
    avogadro
    rasci
    math
-
+   qchem_internals
 
 
 Indices and tables
