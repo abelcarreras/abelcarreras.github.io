@@ -25,6 +25,16 @@ Donwload and compile. You may need to install the following libraries:
 
 * QT4 
 * open-babel
+* Zlib
+* build-essentials
+
+Ubuntu instructions
+-------------------
+
+Using ubuntu all libraries may be installed via Ubuntu repository::
+    
+    apt-get install build-essentials zlib1g libopenbabel-dev 
+    apt-get install qt4-default qt4-dev-tools libqt4-dev
 
 Special mac instructions
 ------------------------
