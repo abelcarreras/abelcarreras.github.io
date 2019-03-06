@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>RAS-CI implementation scheme &#8212; wiki  documentation</title>
+    <title>On development features &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -49,10 +49,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="ras-ci-implementation-scheme">
-<h1>RAS-CI implementation scheme<a class="headerlink" href="#ras-ci-implementation-scheme" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="on-development-features">
+<h1>On development features<a class="headerlink" href="#on-development-features" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ras-ci-implementation-scheme">
+<h2>RAS-CI implementation scheme<a class="headerlink" href="#ras-ci-implementation-scheme" title="Permalink to this headline">¶</a></h2>
 <p>Fortran functions only</p>
 <img alt="_images/rasci_scheme.pdf" class="align-center" src="_images/rasci_scheme.pdf" />
+</div>
+<div class="section" id="fragment-localization">
+<h2>Fragment localization<a class="headerlink" href="#fragment-localization" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><em>ras_nfrag</em>: Number of fragments</li>
+<li><em>ras_nfrag_atoms</em>: Number of atoms in each fragment (atoms should be correlative in input file)</li>
+<li><em>ras_frag_st</em>: localization algorithm to use (0: Boys,  1: Sequential [<a class="reference external" href="https://aip.scitation.org/doi/10.1063/1.4904292">https://aip.scitation.org/doi/10.1063/1.4904292</a>])</li>
+<li><em>ras_frag_sets</em>: Define orbitals to localize (default: localize all)</li>
+</ul>
+<p>example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>ras_nfrag        4 !NFrag   ! # of fragments
+ras_nfrag_atoms  [34,32,34,32]! # atoms in each fragment
+RAS_FRAG_ST      1        ! 0: Boys   1: Sequential
+ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
+</pre></div>
+</div>
+</div>
 </div>
 
 
