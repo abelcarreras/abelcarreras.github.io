@@ -23,7 +23,7 @@ example::
 	ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
 
 Spin polarization
-------------------
+-----------------
 Perform spin polarization treatment for srDFT using the method described in: Coulsonm C. A. Fisher, I. Notes on the molecular Orbital Tratment of the Hydrogen Molecule. Philos. Mag. 1949, 40, 386-393. 
 
 * *ras_srdft_spinpol*: Activate spin polarization (False: Deactivate(default), True: Activate)
