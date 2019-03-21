@@ -21,7 +21,7 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 * Loop Roots
 	* read jB
 	* Loop i1 = 1,M
-		* IF(Hole and (N:math:`\leq`(M-1)))
+		* IF(Hole and (N :math:`\leq` (M-1)))
 			* Loop MNAHa=M1N: LM1N
 				* Fis: <Act|F|Hole>
 				* build: LAHa(MNAHa), SgnAHa, doLAHa=true
