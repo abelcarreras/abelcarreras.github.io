@@ -21,9 +21,18 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 * Loop Roots
 	* read jB
 	* Loop i1 = 1,M
-		* IF(Hole and (N.LE.(M-1))): Fis; LM1N: SgnAHa, LAHa, doLAHa=true
-		* IF(Part): Fas; LM1N1: SgnAPa, LAPa, doLAPa=true
+		* IF(Hole and (N.LE.(M-1))): Fis; 
+			* Loop LM1N
+				* Fis: <Act|F|Hole>
+				* build: SgnAHa, LAHa, doLAHa=true
+		* IF(Part)
+			* Loop LM1N1
+				* Fas: <Act|F|Part> 
+				* build: SgnAPa, LAPa, doLAPa=true
 	* Loop i2 = 1,i1
+		* define: iFock, iXvv, iXoo1, iXoo2
+		* IF(Hole and (N.LE.(M-1)))
+			* RAS_FormXah: LAHb, SgnAHb, do
 
 Fragment localization
 ---------------------
