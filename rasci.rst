@@ -24,16 +24,34 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 		* IF(Hole and (N.LE.(M-1)))
 			* Loop LM1N
 				* Fis: <Act|F|Hole>
-				* build: SgnAHa, LAHa, doLAHa=true
+				* build: LAHa(MNAHa), SgnAHa, doLAHa=true
 		* IF(Part)
 			* Loop LM1N1
 				* Fas: <Act|F|Part> 
-				* build: SgnAPa, LAPa, doLAPa=true
+				* build: LAPa(MNAPa), SgnAPa, doLAPa=true
 	* Loop i2 = 1,i1
 		* define: iFock, iXvv, iXoo1, iXoo2
 		* IF(Hole and (N.LE.(M-1)))
-			* RAS_FormXah: LAHb, SgnAHb, doLAHb=true
+			* RAS_FormXah: LAHb(MNAHb), SgnAHb, doLAHb=true
 			* Loop LAHa
+				* Loop LAHb
+					* <HoleA|V|HoleB> (iXoo1)
+					* IF(i1:math:`\diff`i2) <HoleA|V|HoleB> (iXoo2)
+		* IF(Part)
+			* RAS_FormXap: LAPb(MNAPb), SgnAPb, doLAPb=true
+			* Loop MNAPa: LAPa
+				* Loop MNAPb: LAPb
+					* <PartA|V|PartB> (iXvv)
+					* IF(i1:math:`\diff`i2) <PartA|V|PartB> (iXvv)
+				* IF(doLAHb)
+					* Loop MNAHb: LAHb
+						* <PartA|V|HoleB>
+		* IF(i1:math:`\diff`i2
+			* IF(doLAHa and doLAPb)
+				* Loop MNAHa: LAHa
+					* Loop MNAPb: LAPb
+						* <PartA|V|HoleB>
+			
 
 Fragment localization
 ---------------------
