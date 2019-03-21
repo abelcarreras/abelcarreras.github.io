@@ -25,6 +25,18 @@ read the docs for for information:
 http://www.sphinx-doc.org/es/stable/ext/math.html
 
 
+Include files
+-------------
+
+To include the content of *file1*.rst into *file0*.rst you can add the following
+line in *file0*.rst:
+
+".. include:: file1.rst"
+
+
+
+
+
 Cites
 -----
 
