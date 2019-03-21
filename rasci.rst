@@ -9,7 +9,7 @@ Fortran functions only
     :align: center
 
 RAS-CI Contraction scheme  :math:`(N_{\alpha}=N_{\beta})`
-----------------------------
+---------------------------------------------------------
 Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 
 * USE Reduced_Lists
@@ -55,10 +55,10 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 				* Loop M2N1: LM2N1
 					* :math:`F_{ss'}` = <Act|F|Act><Act|Act>
 					* IF(Hole) 
-						* :math:`F_{ss'}` = <Act|F|Act><Hole|Hole> 
-						* (ss'|ij) = <Hole|V|Hole><Act|V|Act>
+						* :math:`F_{ss'}` = <Act|F|Act><Hole|Hole>
+						* (ss' | ij) = <Hole|V|Hole><Act|V|Act>
 					* IF(Part)
-						* (ss'|ab) = <Part|V|Part><Act|V|Act>
+						* (ss' | ab) = <Part|V|Part><Act|V|Act>
 						* :math:`F_{ss'}` = <Act|F|Act><Part|Part>
 						* IF(Hole)
 							* (ps|hs') = <Hole|V|Part><Act|Act>

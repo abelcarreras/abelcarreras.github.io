@@ -4,30 +4,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>On development features &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to write in reStructuredText" href="math.html" />
     <link rel="prev" title="Custom version of Avogadro visualization software" href="avogadro.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -56,6 +50,181 @@
 <p>Fortran functions only</p>
 <img alt="_images/rasci_scheme.pdf" class="align-center" src="_images/rasci_scheme.pdf" />
 </div>
+<div class="section" id="ras-ci-contraction-scheme-n-alpha-n-beta">
+<h2>RAS-CI Contraction scheme  <span class="math notranslate nohighlight">\((N_{\alpha}=N_{\beta})\)</span><a class="headerlink" href="#ras-ci-contraction-scheme-n-alpha-n-beta" title="Permalink to this headline">¶</a></h2>
+<p>Scheme for the <em>RAS_Contrac(V,ItrRAS,M,N)</em> routine:</p>
+<ul class="simple">
+<li>USE Reduced_Lists</li>
+<li>USE Addressing</li>
+<li>Retrieve Fock, integrals</li>
+<li>Set parameters and dimensions</li>
+<li>Allocate amplitude vectors (jB) and responses (jR)</li>
+<li><dl class="first docutils">
+<dt>Loop Roots</dt><dd><ul>
+<li>read jB</li>
+<li><dl class="first docutils">
+<dt>Loop i1 = 1,M</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>IF(Hole and (N <span class="math notranslate nohighlight">\(\leq\)</span> (M-1)))</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop MNAHa=M1N: LM1N</dt><dd><ul>
+<li>Fis: &lt;Act|F|Hole&gt;</li>
+<li>build: LAHa(MNAHa), SgnAHa, doLAHa=true</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop MNAPa=M1N1: LM1N1</dt><dd><ul>
+<li>Fas: &lt;Act|F|Part&gt;</li>
+<li>build: LAPa(MNAPa), SgnAPa, doLAPa=true</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Loop i2 = 1,i1</dt><dd><ul>
+<li>define: iFock, iXvv, iXoo1, iXoo2</li>
+<li><dl class="first docutils">
+<dt>IF(Hole and (N <span class="math notranslate nohighlight">\(\leq\)</span> (M-1)))</dt><dd><ul>
+<li>RAS_FormXah: LAHb(MNAHb), SgnAHb, doLAHb=true</li>
+<li><dl class="first docutils">
+<dt>Loop LAHa</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LAHb</dt><dd><ul>
+<li>&lt;HoleA|V|HoleB&gt; (iXoo1)</li>
+<li>IF(i1 <span class="math notranslate nohighlight">\(\neq\)</span> i2) &lt;HoleA|V|HoleB&gt; (iXoo2)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part)</dt><dd><ul>
+<li>RAS_FormXap: LAPb(MNAPb), SgnAPb, doLAPb=true</li>
+<li><dl class="first docutils">
+<dt>Loop MNAPa: LAPa</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop MNAPb: LAPb</dt><dd><ul>
+<li>&lt;PartA|V|PartB&gt; (iXvv)</li>
+<li>IF(i1 <span class="math notranslate nohighlight">\(\neq\)</span> i2) &lt;PartA|V|PartB&gt; (iXvv)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(doLAHb)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop MNAHb: LAHb</dt><dd><ul>
+<li>&lt;PartA|V|HoleB&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(i1 <span class="math notranslate nohighlight">\(\neq\)</span> i2)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>IF(doLAHa &amp; doLAPb)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop MNAHa: LAHa</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop MNAPb: LAPb</dt><dd><ul>
+<li>(sp|s’h) = &lt;Part|V|Act&gt;&lt;Act|V|Hole&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF((M-2) <span class="math notranslate nohighlight">\(\geq\)</span> (N-1))</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop M2N1: LM2N1</dt><dd><ul>
+<li><span class="math notranslate nohighlight">\(F_{ss'}\)</span> = &lt;Act|F|Act&gt;&lt;Act|Act&gt;</li>
+<li><dl class="first docutils">
+<dt>IF(Hole)</dt><dd><ul>
+<li><span class="math notranslate nohighlight">\(F_{ss'}\)</span> = &lt;Act|F|Act&gt;&lt;Hole|Hole&gt;</li>
+<li>(ss’ | ij) = &lt;Hole|V|Hole&gt;&lt;Act|V|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part)</dt><dd><ul>
+<li>(ss’ | ab) = &lt;Part|V|Part&gt;&lt;Act|V|Act&gt;</li>
+<li><span class="math notranslate nohighlight">\(F_{ss'}\)</span> = &lt;Act|F|Act&gt;&lt;Part|Part&gt;</li>
+<li><dl class="first docutils">
+<dt>IF(Hole)</dt><dd><ul>
+<li>(ps|hs’) = &lt;Hole|V|Part&gt;&lt;Act|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 <div class="section" id="fragment-localization">
 <h2>Fragment localization<a class="headerlink" href="#fragment-localization" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -65,7 +234,7 @@
 <li><em>ras_frag_sets</em>: Define orbitals to localize (default: localize all)</li>
 </ul>
 <p>example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>ras_nfrag        4 !NFrag   ! # of fragments
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ras_nfrag        4 !NFrag   ! # of fragments
 ras_nfrag_atoms  [34,32,34,32]! # atoms in each fragment
 RAS_FRAG_ST      1        ! 0: Boys   1: Sequential
 ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
@@ -95,12 +264,12 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
                         title="next chapter">How to write in reStructuredText</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -124,7 +293,7 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/d0477fb.
     </div>
   </body>
 </html>
