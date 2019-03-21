@@ -8,7 +8,7 @@ Fortran functions only
 .. image :: images/rasci_scheme.pdf
     :align: center
 
-RAS-CI Contraction scheme :math:`(N_{\alpha}=N_{\beta})`
+RAS-CI Contraction scheme  :math:`(N_{\alpha}=N_{\beta})`
 ----------------------------
 Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 
