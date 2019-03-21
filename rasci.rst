@@ -8,6 +8,19 @@ Fortran functions only
 .. image :: images/rasci_scheme.pdf
     :align: center
 
+RAS-CI Contraction scheme
+----------------------------
+Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
+
+* USE Reduced_Lists
+* USE Addressing
+* Retrieve Fock, integrals
+* Set parameters and dimensions
+* Allocate amplitude vectors (jB) and responses (jR)
+
+* Loop Roots
+	* read jB
+
 Fragment localization
 ---------------------
 * *ras_nfrag*: Number of fragments
