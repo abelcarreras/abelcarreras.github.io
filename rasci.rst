@@ -50,7 +50,7 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 			* IF(doLAHa & doLAPb)
 				* Loop MNAHa: LAHa
 					* Loop MNAPb: LAPb
-						* <PartA|V|HoleB>
+						* (sp|s'h) = <Part|V|Act><Act|V|Hole>
 			* IF((M-2) :math:`\geq` (N-1))
 				* Loop M2N1: LM2N1
 					* :math:`F_{ss'}` = <Act|F|Act><Act|Act>
