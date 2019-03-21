@@ -20,6 +20,10 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 
 * Loop Roots
 	* read jB
+	* Loop i1 = 1,M
+		* IF(Hole and (N.LE.(M-1))): Fis; LM1N: SgnAHa, LAHa, doLAHa=true
+		* IF(Part): Fas; LM1N1: SgnAPa, LAPa, doLAPa=true
+	* Loop i2 = 1,i1
 
 Fragment localization
 ---------------------
