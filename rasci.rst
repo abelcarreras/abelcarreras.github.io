@@ -8,7 +8,7 @@ Fortran functions only
 .. image :: images/rasci_scheme.pdf
     :align: center
 
-RAS-CI Contraction scheme
+RAS-CI Contraction scheme ($N_{\alpha}=N_{\beta}$)
 ----------------------------
 Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 
@@ -21,7 +21,7 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 * Loop Roots
 	* read jB
 	* Loop i1 = 1,M
-		* IF(Hole and (N.LE.(M-1))): Fis; 
+		* IF(Hole and (N.LE.(M-1)))
 			* Loop LM1N
 				* Fis: <Act|F|Hole>
 				* build: SgnAHa, LAHa, doLAHa=true
@@ -32,7 +32,8 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 	* Loop i2 = 1,i1
 		* define: iFock, iXvv, iXoo1, iXoo2
 		* IF(Hole and (N.LE.(M-1)))
-			* RAS_FormXah: LAHb, SgnAHb, do
+			* RAS_FormXah: LAHb, SgnAHb, doLAHb=true
+			* Loop LAHa
 
 Fragment localization
 ---------------------
