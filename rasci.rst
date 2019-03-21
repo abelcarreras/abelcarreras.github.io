@@ -22,11 +22,11 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 	* read jB
 	* Loop i1 = 1,M
 		* IF(Hole and (N:math:`\leq`(M-1)))
-			* Loop LM1N
+			* Loop MNAHa=M1N: LM1N
 				* Fis: <Act|F|Hole>
 				* build: LAHa(MNAHa), SgnAHa, doLAHa=true
 		* IF(Part)
-			* Loop LM1N1
+			* Loop MNAPa=M1N1: LM1N1
 				* Fas: <Act|F|Part> 
 				* build: LAPa(MNAPa), SgnAPa, doLAPa=true
 	* Loop i2 = 1,i1
