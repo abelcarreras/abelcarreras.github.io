@@ -46,7 +46,7 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 				* IF(doLAHb)
 					* Loop MNAHb: LAHb
 						* <PartA|V|HoleB>
-		* IF(i1:math:`\diff`i2
+		* IF(i1:math:`\diff`i2)
 			* IF(doLAHa and doLAPb)
 				* Loop MNAHa: LAHa
 					* Loop MNAPb: LAPb
