@@ -31,27 +31,27 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 				* build: LAPa(MNAPa), SgnAPa, doLAPa=true
 	* Loop i2 = 1,i1
 		* define: iFock, iXvv, iXoo1, iXoo2
-		* IF(Hole and (N:math:`\leq`(M-1)))
+		* IF(Hole and (N :math:`\leq` (M-1)))
 			* RAS_FormXah: LAHb(MNAHb), SgnAHb, doLAHb=true
 			* Loop LAHa
 				* Loop LAHb
 					* <HoleA|V|HoleB> (iXoo1)
-					* IF(i1:math:`\neq`i2) <HoleA|V|HoleB> (iXoo2)
+					* IF(i1 :math:`\neq` i2) <HoleA|V|HoleB> (iXoo2)
 		* IF(Part)
 			* RAS_FormXap: LAPb(MNAPb), SgnAPb, doLAPb=true
 			* Loop MNAPa: LAPa
 				* Loop MNAPb: LAPb
 					* <PartA|V|PartB> (iXvv)
-					* IF(i1:math:`\neq`i2) <PartA|V|PartB> (iXvv)
+					* IF(i1 :math:`\neq` i2) <PartA|V|PartB> (iXvv)
 				* IF(doLAHb)
 					* Loop MNAHb: LAHb
 						* <PartA|V|HoleB>
-		* IF(i1:math:`\neq`i2)
+		* IF(i1 :math:`\neq` i2)
 			* IF(doLAHa and doLAPb)
 				* Loop MNAHa: LAHa
 					* Loop MNAPb: LAPb
 						* <PartA|V|HoleB>
-			* IF((M-2):math:`\geq`(N-1))
+			* IF((M-2) :math:`\geq` (N-1))
 				* Loop M2N1: LM2N1
 					* :math:`F_{ss'}` = <Act|F|Act><Act|Act>
 					* IF(Hole) 
