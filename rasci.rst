@@ -58,10 +58,10 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
 						* :math:`F_{ss'}` = <Act|F|Act><Hole|Hole> 
 						* (ss'|ij) = <Hole|V|Hole><Act|V|Act>
 					* IF(Part)
-						* :math:`F_{ss'}` = <Act|F|Act><Part|Part>
 						* (ss'|ab) = <Part|V|Part><Act|V|Act>
+						* :math:`F_{ss'}` = <Act|F|Act><Part|Part>
 						* IF(Hole)
-							* (ps|hs') = <Hole|V|Part><Act|V|Act>
+							* (ps|hs') = <Hole|V|Part><Act|Act>
 
 Fragment localization
 ---------------------
