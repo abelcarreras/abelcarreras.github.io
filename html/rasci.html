@@ -540,14 +540,212 @@
 </dd>
 </dl>
 </li>
-<li><p class="first">ELSEIF( <span class="math notranslate nohighlight">\(I_{ijkl}\)</span> = 11 &amp; M <span class="math notranslate nohighlight">\(\geq\)</span> 4)</p>
+<li><dl class="first docutils">
+<dt>ELSEIF( <span class="math notranslate nohighlight">\(I_{ijkl}\)</span> = 11 &amp; M <span class="math notranslate nohighlight">\(\geq\)</span> 4)</dt><dd><ul class="simple">
+<li><dl class="first docutils">
+<dt>IF(N <span class="math notranslate nohighlight">\(\geq\)</span> 2 &amp; (M-4) <span class="math notranslate nohighlight">\(\geq\)</span> (N-2))</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM4N2</dt><dd><ul>
+<li>(ss|ss) = &lt;Act|V|Act&gt; &lt;Act|Act&gt; (2 times)</li>
+<li><dl class="first docutils">
+<dt>IF(Hole)</dt><dd><ul>
+<li>(ss|ss) = &lt;Act|V|Act&gt; &lt;Hole|Hole&gt; (2 times)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part)</dt><dd><ul>
+<li>(ss|ss) = &lt;Act|V|Act&gt; &lt;Part|Part&gt; (2 times)</li>
+</ul>
+</dd>
+</dl>
 </li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<p><strong>CONTINUE</strong></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part &amp; N  <span class="math notranslate nohighlight">\(\geq\)</span> 3 &amp; (M-4) <span class="math notranslate nohighlight">\(\geq\)</span> (N-3))</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM4N3</dt><dd><ul>
+<li>(ss|ss) = &lt;Part|V|Part&gt; &lt;Act|Act&gt; (2 times)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Free Lb, LHb, LPb</p>
+</li>
+<li><p class="first">END i4, i3</p>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Hole .OR. Part)</dt><dd><ul class="simple">
+<li><dl class="first docutils">
+<dt>Loop i3 = 1,M</dt><dd><ul>
+<li>IF(N <span class="math notranslate nohighlight">\(\le\)</span> 1) cycle i3</li>
+<li><dl class="first docutils">
+<dt>Loop La(MNa)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>IF(Hole &amp; (M-1) <span class="math notranslate nohighlight">\(\geq\)</span> N)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM1N</dt><dd><ul>
+<li>(ss|si) = &lt;Act|V|Hole&gt; &lt;Act|V|Act&gt;</li>
+<li><dl class="first docutils">
+<dt>IF( <span class="math notranslate nohighlight">\(I_{ijkl}\geq\)</span> 9)</dt><dd><ul>
+<li>(ss|si) = &lt;Act|V|Hole&gt; &lt;Act|V|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM1N1</dt><dd><ul>
+<li>(ss|sa) = &lt;Act|V|Part&gt; &lt;Act|V|Act&gt;</li>
+<li><dl class="first docutils">
+<dt>IF( <span class="math notranslate nohighlight">\(I_{ijkl}\geq\)</span> 9)</dt><dd><ul>
+<li>(ss|sa) = &lt;Act|V|Part&gt; &lt;Act|V|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>NMin = 1; IF(NO Hole) NMin = 2</li>
+<li><dl class="first docutils">
+<dt>IF(N <span class="math notranslate nohighlight">\(\le\)</span> NMin .OR. <span class="math notranslate nohighlight">\(I_{ijkl}\)</span> = 5)</dt><dd><ul>
+<li>cycle i3</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ELSEIF( <span class="math notranslate nohighlight">\(I_{ijkl}\)</span> = 6,9,10)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>IF(Hole &amp; (M-2) <span class="math notranslate nohighlight">\(\geq\)</span> (N-1))</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM2N1</dt><dd><ul>
+<li>(ss|si) = &lt;Act|V|Hole&gt; &lt;Act|V|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part &amp; N <span class="math notranslate nohighlight">\(\geq\)</span> 2)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM2N2</dt><dd><ul>
+<li>(ss|sa) = &lt;Act|V|Part&gt; &lt;Act|V|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ELSEIF( <span class="math notranslate nohighlight">\(I_{ijkl}\)</span> = 11 &amp; M <span class="math notranslate nohighlight">\(\geq\)</span> 3)</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>IF(Hole &amp; (M-3) <span class="math notranslate nohighlight">\(\geq\)</span> (N-1))</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM3N1</dt><dd><ul>
+<li>(ss|si) = &lt;Act|V|Hole&gt; &lt;Act|V|Act&gt; (2 times)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part &amp; N <span class="math notranslate nohighlight">\(\geq\)</span> 2 &amp; (M-3) <span class="math notranslate nohighlight">\(\geq\)</span> (N-2))</dt><dd><ul>
+<li><dl class="first docutils">
+<dt>Loop LM3N2</dt><dd><ul>
+<li>(ss|sa) = &lt;Act|V|Part&gt; &lt;Act|V|Act&gt; (2 times)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">END i3, i2, i1</p>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Part)</dt><dd><ul class="simple">
+<li>Fab = &lt;Part|F|Part&gt; &lt;Act|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>IF(Hole)</dt><dd><ul class="simple">
+<li>Fij = &lt;Hole|F|Hole&gt; &lt;Act|Act&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Write response vector to disk</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">End Roots</p>
+</li>
+</ul>
 </div>
 <div class="section" id="fragment-localization">
 <h2>Fragment localization<a class="headerlink" href="#fragment-localization" title="Permalink to this headline">¶</a></h2>
@@ -617,7 +815,7 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/7b848bf.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/a7e05c6.
     </div>
   </body>
 </html>

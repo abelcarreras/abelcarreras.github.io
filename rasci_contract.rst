@@ -135,5 +135,55 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
             * Loop LM3N3
                 * (ss|ss) = <Part|V|Part> <Act|Act>
     * ELSEIF( :math:`I_{ijkl}` = 11 & M :math:`\geq` 4)
+        * IF(N :math:`\geq` 2 & (M-4) :math:`\geq` (N-2))
+            * Loop LM4N2
+                * (ss|ss) = <Act|V|Act> <Act|Act> (2 times)
+                * IF(Hole)
+                    * (ss|ss) = <Act|V|Act> <Hole|Hole> (2 times)
+                * IF(Part)
+                    * (ss|ss) = <Act|V|Act> <Part|Part> (2 times)
+        * IF(Part & N  :math:`\geq` 3 & (M-4) :math:`\geq` (N-3))
+            * Loop LM4N3
+                * (ss|ss) = <Part|V|Part> <Act|Act> (2 times)
+    * Free Lb, LHb, LPb
+    * END i4, i3
+    * IF(Hole .OR. Part)
+        * Loop i3 = 1,M
+            * IF(N :math:`\le` 1) cycle i3
+            * Loop La(MNa)
+                * IF(Hole & (M-1) :math:`\geq` N)
+                    * Loop LM1N
+                        * (ss|si) = <Act|V|Hole> <Act|V|Act>
+                        * IF( :math:`I_{ijkl}\geq` 9)
+                            *  (ss|si) = <Act|V|Hole> <Act|V|Act>
+                * IF(Part)
+                    * Loop LM1N1
+                        * (ss|sa) = <Act|V|Part> <Act|V|Act>
+                        * IF( :math:`I_{ijkl}\geq` 9)
+                            * (ss|sa) = <Act|V|Part> <Act|V|Act>
+            * NMin = 1; IF(NO Hole) NMin = 2
+            * IF(N :math:`\le` NMin .OR. :math:`I_{ijkl}` = 5)
+                * cycle i3
+            * ELSEIF( :math:`I_{ijkl}` = 6,9,10)
+                * IF(Hole & (M-2) :math:`\geq` (N-1))
+                    * Loop LM2N1
+                        * (ss|si) = <Act|V|Hole> <Act|V|Act>
+                * IF(Part & N :math:`\geq` 2)
+                    * Loop LM2N2
+                        * (ss|sa) = <Act|V|Part> <Act|V|Act>
+            * ELSEIF( :math:`I_{ijkl}` = 11 & M :math:`\geq` 3)
+                * IF(Hole & (M-3) :math:`\geq` (N-1))
+                   * Loop LM3N1
+                        * (ss|si) = <Act|V|Hole> <Act|V|Act> (2 times)
+                * IF(Part & N :math:`\geq` 2 & (M-3) :math:`\geq` (N-2))
+                    * Loop LM3N2
+                        * (ss|sa) = <Act|V|Part> <Act|V|Act> (2 times)
+    * END i3, i2, i1
+    * IF(Part)
+        * Fab = <Part|F|Part> <Act|Act>
+    * IF(Hole)
+        * Fij = <Hole|F|Hole> <Act|Act>
 
-**CONTINUE**
+    * Write response vector to disk
+* End Roots
+
