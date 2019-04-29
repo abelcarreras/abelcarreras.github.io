@@ -83,8 +83,10 @@ All commands described previously can be gathered in a simple script to run in b
 	# run qchem
 	qchem inputfile.inp outputfile.out
 
-Batch job example parallel MPI
-------------------------------
+Batch job example parallel MPI (multiple nodes) [pe MPI]
+--------------------------------------------------------
+This is used to use multiple nodes in a single qchem MPI calculation. Use it ony if you plan to
+use more processors than available in a single node (12 in IQTC04).
 
 All commands described previously can be gathered in a simple script to run in batch. This is a simple example::
 
@@ -103,6 +105,42 @@ All commands described previously can be gathered in a simple script to run in b
 	# define envirotment qchem
 	export QCSCRATCH=$TMPDIR
 	export QCMACHINEFILE=$TMPDIR/machines
+
+	# run qchem (-np indicates the number of processors. You may want to use the same as in "-pe")
+	qchem -np 8 inputfile.inp outputfile.out
+
+
+
+Batch job example parallel MPI (single node) [pe SMP]
+-----------------------------------------------------
+For less than 12 processors calculations (in IQTC04), it is strongly suggested to use SMP parallel environment.
+In SMP still qchem_mpi module can be used but it requires to setup the "machines" file manually.
+To do this just create a plain text file named $machines$ containing only one line::
+
+    localhost
+
+This file should be placed in a directory accessible from the calculation nodes (e.g. the same directory
+that contains your input files). The you should modify $export QCMACHINEFILE$ line to specify the proper
+path to your machines file. This file can be reused for all your calculations, it is not necessary to
+create a new "machines" file for each calculation.
+
+Submit script example::
+
+	#!/bin/bash
+	#$ -S /bin/bash
+	#$ -N test_mpi    # job name
+	#$ -q iqtc04.q    # custer where to run (iqtc04 recommended)
+	#$ -pe smp 8     # define enviroment to MPI and number of processors
+
+
+    # load module qchem
+	. /etc/profile
+	export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
+	module load qchem_mpi
+
+	# define envirotment qchem
+	export QCSCRATCH=$TMPDIR
+	export QCMACHINEFILE=machine_file_directory/machines
 
 	# run qchem (-np indicates the number of processors. You may want to use the same as in "-pe")
 	qchem -np 8 inputfile.inp outputfile.out
