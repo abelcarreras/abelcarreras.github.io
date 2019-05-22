@@ -33,7 +33,7 @@ or::
 
     module qchem_group
 
-*Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.*
+*Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.*
 
 Run interactive qchem
 ---------------------
