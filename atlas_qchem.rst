@@ -7,7 +7,7 @@ Preliminar information
 **Requirements to acces to qchem**
 
 * Have an atlas account (atlas.sw.ehu.es)
-* Be a member of dccqhem linux group
+* Be a member of dccqchem linux group
 
 **Available qhem compilations**
 
