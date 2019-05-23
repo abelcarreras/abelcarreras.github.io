@@ -65,3 +65,84 @@ All commands discussed previously can be gathered in a simple script to run in b
 
 	cd $PBS_O_WORKDIR     # set workdir to submission directory 
 	qchem -nt 8 inputfile.inp  outputfile.out
+
+Batch job example 2
+-------------------
+
+This is a more elaborated example showing how to retrieve additional data from qchem using **"-save"** flag
+in the qchem call. Also how to use previous qchem data (ex. converged electronic structure data) in new
+calculation (requires additional keywords in qchem input, check qchem manual for more info.) ::
+
+    #!/bin/bash
+
+    #PBS -q qchem
+    #PBS -l ncpus=4
+    #PBS -l mem=4000mb
+    #PBS -l cput=800:00:00  # CPU time (Walltime / Ncores)
+    #PBS -N test
+    #PBS -e error.log
+    #PBS -o output.log
+
+    NProc=4       # Should be tha same as "-l ncpus="
+    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+
+    #------------------------------------#
+    # QChem and job variables
+    #------------------------------------#
+    module load qchem_group   # load qchem module
+    export QCSCRATCH=.        # set scratch folder for qchem
+
+    #------------------------------------#
+    # Job set up
+    #------------------------------------#
+    folder=                 # path to the input file
+    name=                   # input file without .in extension
+    writetype=0             # 1: save additional data / 0: Do not save additional data
+    readtype=0              # 1: read data from previous calculation / 0: Do not read additional data
+    savename=name.in.save   # Path to the directory that contains previous calculation data (relative to workdir)
+    cleansrc=1              # Cleanup scratch dir after calculation
+
+    #------------------------------------#
+    # Set read and write folders
+    #------------------------------------#
+    cd $folder
+
+    mkdir -p $QCSCRATCH/qchem$$
+    if [ $readtype = 1 ]; then
+      cp $savename/* $QCSCRATCH/qchem$$/.
+      if [ $writetype = 1 ]; then
+         cd $folder
+         rm -r $savename
+      fi
+    fi
+
+    #------------------------------------#
+    # Run QChem
+    #------------------------------------#
+    if [ $writetype = 1 -o $readtype = 1 ]; then
+     qchem -save -nt $NProc $name.in $name.out qchem$$
+
+    else
+     qchem -nt $NProc $name.in $name.out
+    fi
+
+    #------------------------------------#
+    # Select what you want to save (comment/uncomment)
+    #------------------------------------#
+    if [ $writetype = 1 ]; then
+       mkdir $QCSCRATCH/$savename
+       mv $QCSCRATCH/qchem$$/53.0  $QCSCRATCH/$savename/.    # MO coeff
+       mv $QCSCRATCH/qchem$$/58.0  $QCSCRATCH/$savename/.    # Fock
+       mv $QCSCRATCH/qchem$$/99.0  $QCSCRATCH/$savename/.    # MO energies
+       # mv $QCSCRATCH/qchem$$/NTOs  $QCSCRATCH/$savename/.  # NTOs files
+       # mv $QCSCRATCH/qchem$$/plots $QCSCRATCH/$savename/.  # plot files
+       # mv $QCSCRATCH/qchem$$/*     $QCSCRATCH/$savename/.  # Everything
+       # mv $QCSCRATCH/$savename $folder/.
+    fi
+
+    #------------------------------------#
+    # Clean up
+    #------------------------------------#
+    if [$cleansrc = 1 ]; then
+       rm -r $QCSCRATCH/qchem$$
+    fi
