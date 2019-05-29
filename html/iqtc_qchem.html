@@ -60,10 +60,9 @@
 </ul>
 <p><strong>Available qhem compilations</strong></p>
 <ul class="simple">
-<li>qchem_group: Current in development version of qchem (includes new features developed in the group) [serial intel_compilers mkl compilation]</li>
-<li>qchem_mpi: parallel MPI compilation of qchem_group [mpi intel mkl version]</li>
+<li>qchem_group: Development version of qchem [openmp gcc mkl] [iqtc08]</li>
+<li>qchem_mpi: Development version of qchem [mpi intel mkl] [on iqtc04]</li>
 </ul>
-<p><em>All qchem compilations are compilated in iqtc04 cluster. It is not guaranteed to work properly on other clusters.</em></p>
 </div>
 <div class="section" id="load-custom-modules">
 <h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
@@ -106,14 +105,20 @@ To enter to them use the command:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="batch-job-example-serial">
-<h2>Batch job example serial<a class="headerlink" href="#batch-job-example-serial" title="Permalink to this headline">¶</a></h2>
-<p>All commands described previously can be gathered in a simple script to run in batch. This is a simple example:</p>
+<div class="section" id="run-interactive-qchem-in-batch-queue">
+<h2>Run interactive qchem in batch queue<a class="headerlink" href="#run-interactive-qchem-in-batch-queue" title="Permalink to this headline">¶</a></h2>
+<p>All commands described previously can be gathered in a simple script to run in batch.
+In the following section you can find some example scripts for both qchem compilations
+available in IQTC.</p>
+</div>
+<div class="section" id="batch-job-example-parallel-openmp-single-node-pe-smp">
+<h2>Batch job example parallel OpenMP (single node) [pe SMP]<a class="headerlink" href="#batch-job-example-parallel-openmp-single-node-pe-smp" title="Permalink to this headline">¶</a></h2>
+<p>This is the recommended version for single node calculations. This version should be run in IQTC08. Example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
     #$ -S /bin/bash
     #$ -N test_serial  # job name
-    #$ -q iqtc04.q     # custer where to run (iqtc04 recommended)
-    #$ -pe smp 1       # define the parallel environment (single node) and number of cores
+    #$ -q iqtc08.q     # custer where to run (iqtc08 only)
+    #$ -pe smp 8       # define the parallel environment and number of cores
 
 # load module qchem
     . /etc/profile
@@ -124,15 +129,16 @@ To enter to them use the command:</p>
     export QCSCRATCH=$TMPDIR
 
     # run qchem
-    qchem inputfile.inp outputfile.out
+    qchem -nt 8 inputfile.inp outputfile.out
 </pre></div>
 </div>
 </div>
 <div class="section" id="batch-job-example-parallel-mpi-multiple-nodes-pe-mpi">
 <h2>Batch job example parallel MPI (multiple nodes) [pe MPI]<a class="headerlink" href="#batch-job-example-parallel-mpi-multiple-nodes-pe-mpi" title="Permalink to this headline">¶</a></h2>
-<p>This is used to use multiple nodes in a single qchem MPI calculation. Use it ony if you plan to
-use more processors than available in a single node (12 in IQTC04).</p>
-<p>All commands described previously can be gathered in a simple script to run in batch. This is a simple example:</p>
+<p>This version is used to run on multiple nodes. Use it ony if you plan to
+use more processors than available in a single node (&gt;12 in IQTC04).
+This version is compiled in IQTC04 and should work best in this cluster.
+Here a simple example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
     #$ -S /bin/bash
     #$ -N test_mpi    # job name
@@ -156,22 +162,23 @@ use more processors than available in a single node (12 in IQTC04).</p>
 </div>
 <div class="section" id="batch-job-example-parallel-mpi-single-node-pe-smp">
 <h2>Batch job example parallel MPI (single node) [pe SMP]<a class="headerlink" href="#batch-job-example-parallel-mpi-single-node-pe-smp" title="Permalink to this headline">¶</a></h2>
-<p>For less than 12 processors calculations (in IQTC04), it is strongly suggested to use SMP parallel environment.
-In SMP still qchem_mpi module can be used but it requires to setup the “machines” file manually.
-To do this just create a plain text file named $machines$ containing only one line:</p>
+<p>For less than 12 processors calculations (in IQTC04), it is strongly recommended to use openMP version.
+Still some features of qchem may run faster in MPI compilation. For this you still can run qchem_mpi
+version in SMP environment but this requires to setup a “machines” file manually.
+To do this, just create a plain text file named $machines$ containing only one line:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">localhost</span>
 </pre></div>
 </div>
 <p>This file should be placed in a directory accessible from the calculation nodes (e.g. the same directory
-that contains your input files). The you should modify $export QCMACHINEFILE$ line to specify the proper
+that contains your input files). Then you should modify $export QCMACHINEFILE$ line to specify the proper
 path to your machines file. This file can be reused for all your calculations, it is not necessary to
-create a new “machines” file for each calculation.</p>
+create a new “machines” file for each one.</p>
 <p>Submit script example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
     #$ -S /bin/bash
     #$ -N test_mpi    # job name
     #$ -q iqtc04.q    # custer where to run (iqtc04 recommended)
-    #$ -pe smp 8     # define enviroment to MPI and number of processors
+    #$ -pe smp 8      # define environment to SMP and number of processors
 
 
 # load module qchem
