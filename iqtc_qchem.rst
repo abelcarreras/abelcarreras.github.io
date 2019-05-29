@@ -69,13 +69,13 @@ Batch job example parallel OpenMP (single node) [pe SMP]
 This is the recommended version for single node calculations. This version should be run in IQTC08. Example::
 
 	#!/bin/bash
+	#$ -N test_openmp  # job name
 	#$ -S /bin/bash
-	#$ -N test_serial  # job name
 	#$ -q iqtc08.q     # custer where to run (iqtc08 only)
 	#$ -pe smp 8       # define the parallel environment and number of cores
 
     # load module qchem
-	. /etc/profile
+	source /etc/profile
 	export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
 	module load qchem_group
 
