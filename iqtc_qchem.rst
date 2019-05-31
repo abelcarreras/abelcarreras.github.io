@@ -12,7 +12,7 @@ Preliminar information
 **Available qhem compilations**
 
 * qchem_group: Development version of qchem [openmp gcc mkl] [iqtc08]
-* qchem_mpi: Development version of qchem [mpi intel mkl] [on iqtc04]
+* qchem_mpi:   Development version of qchem [mpi intel mkl]  [iqtc04]
 
 Load custom modules
 -------------------
@@ -64,8 +64,8 @@ In the following section you can find some example scripts for both qchem compil
 available in IQTC.
 
 
-Batch job example parallel OpenMP (single node) [pe SMP]
-----------------------------------------------------------
+Batch job example parallel OpenMP (single node) [pe SMP] IQTC08
+---------------------------------------------------------------
 This is the recommended version for single node calculations. This version should be run in IQTC08. Example::
 
 	#!/bin/bash
@@ -85,8 +85,8 @@ This is the recommended version for single node calculations. This version shoul
 	# run qchem
 	qchem -nt 8 inputfile.inp outputfile.out
 
-Batch job example parallel MPI (multiple nodes) [pe MPI]
---------------------------------------------------------
+Batch job example parallel MPI (multiple nodes) [pe MPI] IQTC04
+---------------------------------------------------------------
 This version is used to run on multiple nodes. Use it ony if you plan to
 use more processors than available in a single node (>12 in IQTC04).
 This version is compiled in IQTC04 and should work best in this cluster.
@@ -113,12 +113,12 @@ Here a simple example::
 
 
 
-Batch job example parallel MPI (single node) [pe SMP]
------------------------------------------------------
-For less than 12 processors calculations (in IQTC04), it is strongly recommended to use openMP version.
-Still some features of qchem may run faster in MPI compilation. For this you still can run qchem_mpi
-version in SMP environment but this requires to setup a "machines" file manually.
-To do this, just create a plain text file named $machines$ containing only one line::
+Batch job example parallel MPI (single node) [pe SMP] IQTC04
+------------------------------------------------------------
+For calculations using less than the number of processors available in one node it is strongly
+recommended to use the OpenMP version. Still some features of qchem may run faster in MPI compilation.
+For this you still can run qchem_mpi version in SMP environment but this requires to setup a "machines"
+file manually. To do this, just create a plain text file named $machines$ containing only one line::
 
     localhost
 
