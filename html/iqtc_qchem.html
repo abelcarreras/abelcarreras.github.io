@@ -61,7 +61,7 @@
 <p><strong>Available qhem compilations</strong></p>
 <ul class="simple">
 <li>qchem_group: Development version of qchem [openmp gcc mkl] [iqtc08]</li>
-<li>qchem_mpi: Development version of qchem [mpi intel mkl] [on iqtc04]</li>
+<li>qchem_mpi:   Development version of qchem [mpi intel mkl]  [iqtc04]</li>
 </ul>
 </div>
 <div class="section" id="load-custom-modules">
@@ -111,8 +111,8 @@ To enter to them use the command:</p>
 In the following section you can find some example scripts for both qchem compilations
 available in IQTC.</p>
 </div>
-<div class="section" id="batch-job-example-parallel-openmp-single-node-pe-smp">
-<h2>Batch job example parallel OpenMP (single node) [pe SMP]<a class="headerlink" href="#batch-job-example-parallel-openmp-single-node-pe-smp" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="batch-job-example-parallel-openmp-single-node-pe-smp-iqtc08">
+<h2>Batch job example parallel OpenMP (single node) [pe SMP] IQTC08<a class="headerlink" href="#batch-job-example-parallel-openmp-single-node-pe-smp-iqtc08" title="Permalink to this headline">¶</a></h2>
 <p>This is the recommended version for single node calculations. This version should be run in IQTC08. Example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
     #$ -N test_openmp  # job name
@@ -133,8 +133,8 @@ available in IQTC.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="batch-job-example-parallel-mpi-multiple-nodes-pe-mpi">
-<h2>Batch job example parallel MPI (multiple nodes) [pe MPI]<a class="headerlink" href="#batch-job-example-parallel-mpi-multiple-nodes-pe-mpi" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="batch-job-example-parallel-mpi-multiple-nodes-pe-mpi-iqtc04">
+<h2>Batch job example parallel MPI (multiple nodes) [pe MPI] IQTC04<a class="headerlink" href="#batch-job-example-parallel-mpi-multiple-nodes-pe-mpi-iqtc04" title="Permalink to this headline">¶</a></h2>
 <p>This version is used to run on multiple nodes. Use it ony if you plan to
 use more processors than available in a single node (&gt;12 in IQTC04).
 This version is compiled in IQTC04 and should work best in this cluster.
@@ -160,12 +160,12 @@ Here a simple example:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="batch-job-example-parallel-mpi-single-node-pe-smp">
-<h2>Batch job example parallel MPI (single node) [pe SMP]<a class="headerlink" href="#batch-job-example-parallel-mpi-single-node-pe-smp" title="Permalink to this headline">¶</a></h2>
-<p>For less than 12 processors calculations (in IQTC04), it is strongly recommended to use openMP version.
-Still some features of qchem may run faster in MPI compilation. For this you still can run qchem_mpi
-version in SMP environment but this requires to setup a “machines” file manually.
-To do this, just create a plain text file named $machines$ containing only one line:</p>
+<div class="section" id="batch-job-example-parallel-mpi-single-node-pe-smp-iqtc04">
+<h2>Batch job example parallel MPI (single node) [pe SMP] IQTC04<a class="headerlink" href="#batch-job-example-parallel-mpi-single-node-pe-smp-iqtc04" title="Permalink to this headline">¶</a></h2>
+<p>For calculations using less than the number of processors available in one node it is strongly
+recommended to use the OpenMP version. Still some features of qchem may run faster in MPI compilation.
+For this you still can run qchem_mpi version in SMP environment but this requires to setup a “machines”
+file manually. To do this, just create a plain text file named $machines$ containing only one line:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">localhost</span>
 </pre></div>
 </div>
