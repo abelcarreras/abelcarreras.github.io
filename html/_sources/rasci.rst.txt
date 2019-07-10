@@ -13,8 +13,11 @@ Fortran functions only
 .. include:: rasci_contract.rst
 
 .. image :: images/rasci_contract_even.pdf
+    :target: ../images/rasci_contract_even.pdf
+
 
 .. image :: images/rasci_contract_odd.pdf
+    :target: ../images/rasci_contract_odd.pdf
 
 Fragment localization
 ---------------------
