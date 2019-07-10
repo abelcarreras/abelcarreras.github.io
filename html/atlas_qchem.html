@@ -4,24 +4,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>How to use qchem in ATLAS cluster (DIPC) &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to use qchem in IQTC cluster (UB)" href="iqtc_qchem.html" />
     <link rel="prev" title="Qchem compilation notes" href="compilation_qchem.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -50,7 +56,7 @@
 <p><strong>Requirements to acces to qchem</strong></p>
 <ul class="simple">
 <li>Have an atlas account (atlas.sw.ehu.es)</li>
-<li>Be a member of dccqhem linux group</li>
+<li>Be a member of dccqchem linux group</li>
 </ul>
 <p><strong>Available qhem compilations</strong></p>
 <ul class="simple">
@@ -61,27 +67,27 @@
 <div class="section" id="load-custom-modules">
 <h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
 <p>o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+<div class="highlight-default"><div class="highlight"><pre><span></span>export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
 </pre></div>
 </div>
 <p>Once this is done, you should be able to see the custom modules (qchem_trunk &amp; qchem_group) executing the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
 </pre></div>
 </div>
 <p>To use qchem, just load the corresponding module as usual:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_trunk</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_trunk</span>
 </pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_group</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_group</span>
 </pre></div>
 </div>
-<p><em>Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.</em></p>
+<p><em>Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.</em></p>
 </div>
 <div class="section" id="run-interactive-qchem">
 <h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Permalink to this headline">¶</a></h2>
 <p>In order to run simple SHORT (&lt; 1min) tests you may execute them directly in shell environment (once everything is loaded properly):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qchem</span> <span class="n">input_file</span><span class="o">.</span><span class="n">inp</span> <span class="n">output_file</span><span class="o">.</span><span class="n">out</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">qchem</span> <span class="n">input_file</span><span class="o">.</span><span class="n">inp</span> <span class="n">output_file</span><span class="o">.</span><span class="n">out</span>
 </pre></div>
 </div>
 <p>For proper run long calculations you should use the queue system to submit batch calculations.
@@ -90,7 +96,7 @@ For this purpose you should write a batch script.</p>
 <div class="section" id="batch-job-example">
 <h2>Batch job example<a class="headerlink" href="#batch-job-example" title="Permalink to this headline">¶</a></h2>
 <p>All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
 
 #PBS -q parallel       #  “parallel&quot; o “qchem” depending on the queue you have access to
 #PBS -l ncpus=8        # number of CPI
@@ -105,6 +111,87 @@ module load qchem_group
 
 cd $PBS_O_WORKDIR     # set workdir to submission directory
 qchem -nt 8 inputfile.inp  outputfile.out
+</pre></div>
+</div>
+</div>
+<div class="section" id="batch-job-example-2">
+<h2>Batch job example 2<a class="headerlink" href="#batch-job-example-2" title="Permalink to this headline">¶</a></h2>
+<p>This is a more elaborated example showing how to retrieve additional data from qchem using <strong>“-save”</strong> flag
+in the qchem call. Also how to use previous qchem data (ex. converged electronic structure data) in new
+calculation (requires additional keywords in qchem input, check qchem manual for more info.)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
+
+#PBS -q qchem
+#PBS -l ncpus=4
+#PBS -l mem=4000mb
+#PBS -l cput=800:00:00  # CPU time (Walltime / Ncores)
+#PBS -N test
+#PBS -e error.log
+#PBS -o output.log
+
+NProc=4       # Should be tha same as &quot;-l ncpus=&quot;
+export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+
+#------------------------------------#
+# QChem and job variables
+#------------------------------------#
+module load qchem_group   # load qchem module
+export QCSCRATCH=.        # set scratch folder for qchem
+
+#------------------------------------#
+# Job set up
+#------------------------------------#
+folder=                 # path to the input file
+name=                   # input file without .in extension
+writetype=0             # 1: save additional data / 0: Do not save additional data
+readtype=0              # 1: read data from previous calculation / 0: Do not read additional data
+savename=name.in.save   # Path to the directory that contains previous calculation data (relative to workdir)
+cleansrc=1              # Cleanup scratch dir after calculation
+
+#------------------------------------#
+# Set read and write folders
+#------------------------------------#
+cd $folder
+
+mkdir -p $QCSCRATCH/qchem$$
+if [ $readtype = 1 ]; then
+  cp $savename/* $QCSCRATCH/qchem$$/.
+  if [ $writetype = 1 ]; then
+     cd $folder
+     rm -r $savename
+  fi
+fi
+
+#------------------------------------#
+# Run QChem
+#------------------------------------#
+if [ $writetype = 1 -o $readtype = 1 ]; then
+ qchem -save -nt $NProc $name.in $name.out qchem$$
+
+else
+ qchem -nt $NProc $name.in $name.out
+fi
+
+#------------------------------------#
+# Select what you want to save (comment/uncomment)
+#------------------------------------#
+if [ $writetype = 1 ]; then
+   mkdir $QCSCRATCH/$savename
+   mv $QCSCRATCH/qchem$$/53.0  $QCSCRATCH/$savename/.    # MO coeff
+   mv $QCSCRATCH/qchem$$/58.0  $QCSCRATCH/$savename/.    # Fock
+   mv $QCSCRATCH/qchem$$/99.0  $QCSCRATCH/$savename/.    # MO energies
+   # mv $QCSCRATCH/qchem$$/NTOs  $QCSCRATCH/$savename/.  # NTOs files
+   # mv $QCSCRATCH/qchem$$/plots $QCSCRATCH/$savename/.  # plot files
+   # mv $QCSCRATCH/qchem$$/*     $QCSCRATCH/$savename/.  # Everything
+   # mv $QCSCRATCH/$savename $folder/.
+fi
+
+#------------------------------------#
+# Clean up
+#------------------------------------#
+if [$cleansrc = 1 ]; then
+   rm -r $QCSCRATCH/qchem$$
+fi
 </pre></div>
 </div>
 </div>
@@ -124,12 +211,12 @@ qchem -nt 8 inputfile.inp  outputfile.out
                         title="next chapter">How to use qchem in IQTC cluster (UB)</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
-    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -153,7 +240,7 @@ qchem -nt 8 inputfile.inp  outputfile.out
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/2068878.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

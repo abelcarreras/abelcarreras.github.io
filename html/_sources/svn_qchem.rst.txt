@@ -92,4 +92,4 @@ SVN scheme
 
 .. image :: images/svn_scheme.pdf
     :align: center
-
+    :target: ../images/svn_scheme.pdf

@@ -7,6 +7,8 @@ Fortran functions only
 
 .. image :: images/rasci_scheme.pdf
     :align: center
+    :target: ../images/rasci_scheme.pdf
+
 
 .. include:: rasci_contract.rst
 

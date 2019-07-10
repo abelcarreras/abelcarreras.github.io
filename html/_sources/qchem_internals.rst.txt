@@ -26,9 +26,9 @@ The way to initalize a variable is by writting a line as::
 
 where 0 is the initial value(integer).
 
-To use REM variables as real, the variable should be define as $10^n$ times the 
-itended value, wheren is the maximum number of decimal places of accepted real.
-This is defined  function **RemDoubleToValue** placed in file::
+To use REM variables as real, the variable should be define as :math:`10^n` times the
+intended value, where *n* is the maximum number of decimal places of accepted real.
+This is defined in **RemDoubleToValue** function placed in file::
    
    qparser/read_rem.C
 
@@ -41,7 +41,7 @@ which should be edited to add the variable definition like::
    }
 
 Then, within your code, in order to recover the intended real number the REM variable
-should be divided by $10^n$::
+should be divided by :math:`10^n` ::
 
    myrealvariable = rem_read(NAME_OF_VARIABLE) / 10000
 
