@@ -9,6 +9,7 @@ Fortran functions only
     :align: center
 
 .. include:: rasci_contract.rst
+.. image :: images/rasci_contract_even.pdf
 
 Fragment localization
 ---------------------

@@ -594,7 +594,7 @@
 <dt>IF(Hole .OR. Part)</dt><dd><ul class="simple">
 <li><dl class="first docutils">
 <dt>Loop i3 = 1,M</dt><dd><ul>
-<li>IF(N <span class="math notranslate nohighlight">\(\le\)</span> 1) cycle i3</li>
+<li>IF(N &lt; 1) cycle i3</li>
 <li><dl class="first docutils">
 <dt>Loop La(MNa)</dt><dd><ul>
 <li><dl class="first docutils">
@@ -643,7 +643,7 @@
 </li>
 <li>NMin = 1; IF(NO Hole) NMin = 2</li>
 <li><dl class="first docutils">
-<dt>IF(N <span class="math notranslate nohighlight">\(\le\)</span> NMin .OR. <span class="math notranslate nohighlight">\(I_{ijkl}\)</span> = 5)</dt><dd><ul>
+<dt>IF(N &lt; NMin .OR. <span class="math notranslate nohighlight">\(I_{ijkl}\)</span> = 5)</dt><dd><ul>
 <li>cycle i3</li>
 </ul>
 </dd>
@@ -815,7 +815,7 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/a7e05c6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/2d8cb81.
     </div>
   </body>
 </html>

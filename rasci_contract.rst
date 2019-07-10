@@ -149,7 +149,7 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
     * END i4, i3
     * IF(Hole .OR. Part)
         * Loop i3 = 1,M
-            * IF(N :math:`\le` 1) cycle i3
+            * IF(N < 1) cycle i3
             * Loop La(MNa)
                 * IF(Hole & (M-1) :math:`\geq` N)
                     * Loop LM1N
@@ -162,7 +162,7 @@ Scheme for the *RAS_Contrac(V,ItrRAS,M,N)* routine:
                         * IF( :math:`I_{ijkl}\geq` 9)
                             * (ss|sa) = <Act|V|Part> <Act|V|Act>
             * NMin = 1; IF(NO Hole) NMin = 2
-            * IF(N :math:`\le` NMin .OR. :math:`I_{ijkl}` = 5)
+            * IF(N < NMin .OR. :math:`I_{ijkl}` = 5)
                 * cycle i3
             * ELSEIF( :math:`I_{ijkl}` = 6,9,10)
                 * IF(Hole & (M-2) :math:`\geq` (N-1))
