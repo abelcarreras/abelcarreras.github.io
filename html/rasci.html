@@ -4,24 +4,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>On development features &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to write in reStructuredText" href="math.html" />
     <link rel="prev" title="Custom version of Avogadro visualization software" href="avogadro.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -64,7 +70,7 @@
 <li><em>ras_frag_sets</em>: Define orbitals to localize (default: localize all)</li>
 </ul>
 <p>example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ras_nfrag        4 !NFrag   ! # of fragments
+<div class="highlight-default"><div class="highlight"><pre><span></span>ras_nfrag        4 !NFrag   ! # of fragments
 ras_nfrag_atoms  [34,32,34,32]! # atoms in each fragment
 RAS_FRAG_ST      1        ! 0: Boys   1: Sequential
 ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
@@ -77,6 +83,76 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
 <ul class="simple">
 <li><em>ras_srdft_spinpol</em>: Activate spin polarization (False: Deactivate(default), True: Activate)</li>
 </ul>
+</div>
+<div class="section" id="sequential-diabatization">
+<h2>Sequential Diabatization<a class="headerlink" href="#sequential-diabatization" title="Permalink to this headline">¶</a></h2>
+<p>To activate the  diabatization analysis of excited states in ras-ci method it is necessary to define
+a section block and 3 <strong>REM</strong> keywords in the qchem input. The section block defines the excited states
+number to be included in the diabatization (by increasing order). This is equivalent to the one used
+in <strong>TDDFT diabatization method</strong> (<em>check qchem manual for further information</em>).</p>
+<p>This block can be placed at the end of the usual input (after the <strong>$END</strong> of the <strong>$REM</strong> section) and
+has an structure like this</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$localized_diabatization
+adiabatic states
+n1 n2 n3 n4 n5 n6
+$end
+</pre></div>
+</div>
+<p>where <em>n1, n2, n3,</em> etc.. are the excited state number (sorted by increasing energy) to be used as
+reference. Once defined the states to be used in the diabatization it is necessary to request
+a diabatization calculation using the keyword</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cis_diabath_decompose</span> <span class="n">N</span>
+</pre></div>
+</div>
+<p>where <em>N</em> is the number of sequential steps in the diabatization process (if <em>N=true</em>, this is equivalent to 1).
+A sequential step is complete diabatization process using a particular set of states and a particular
+diabatization method. In usual diabatization calculations this is just 1, but in the current implementation
+it is possible to link sequential diabatization steps using a different number of states and method to obtain
+more sophisticated results.</p>
+<p>Then it is necessary to define the diabatization method and the excited states to use (with respect to the
+reference states). To do this we have to define the keyword</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ras_diab_seq_data</span>    <span class="p">[</span><span class="n">n1_1</span><span class="p">,</span><span class="n">n2_1</span><span class="p">,</span><span class="n">n3_1</span><span class="p">,</span><span class="n">meth_1</span><span class="p">,</span><span class="n">data_1</span><span class="p">,</span><span class="n">n1_2</span><span class="p">,</span><span class="n">n2_2</span><span class="p">,</span><span class="n">meth_2</span><span class="p">,</span><span class="n">data_2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where <em>n1_1, n2_1, n3_1</em> are the state numbers to be used in the 1st step of the diabatization. These
+step number are taken respect to the reference states defined in $localized_diabatization section
+(so the 1st reference state is 1, 2nd reference state is 2, etc..). <em>meth_1</em> indicates the diabatization
+method to be used in the 1st step, this method is defined by an integer number where</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1</span>  <span class="o">-&gt;</span> <span class="n">ED</span> <span class="n">method</span>   <span class="p">(</span><span class="n">data</span> <span class="n">ignored</span><span class="p">)</span>
+<span class="mi">2</span>  <span class="o">-&gt;</span> <span class="n">Boys</span> <span class="n">method</span> <span class="p">(</span><span class="n">data</span> <span class="n">ignored</span><span class="p">)</span>
+<span class="mi">3</span>  <span class="o">-&gt;</span> <span class="n">DQ</span> <span class="n">method</span>   <span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">float</span> <span class="n">between</span> <span class="mf">0.0</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">fraction</span> <span class="n">of</span> <span class="n">quadrupole</span><span class="o">/</span><span class="n">dipole</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>finally, <em>data_1</em> indicates the additional parameters for the method. Currently only <strong>DQ</strong> makes use of this
+parameter, but <em>data</em> value must be defined for all methods (even if it is ignored in the diabatization method).</p>
+<p>this structure is repeated for each diabatization step requested. In the above example <em>n1_2,n2_2,meth_2,data_2</em>
+are the parameters of the second diabatization step.
+In order to keep track of which states/data correspond to each diabatization step it is necessary to define
+another keyword that contains the list of number of states for each diabatization step</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ras_diab_seq_list</span>    <span class="p">[</span><span class="n">sn1</span> <span class="p">,</span><span class="n">sn2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where <em>sn1</em> and <em>sn2</em> are number of states to use in each diabatization state (not counting for method and data,
+just number of diabatic states)</p>
+<p>After each diabatization step the resulting diabatic states are reordered by increasing energy, and this
+order will be the one used to select the states for the next diabatization step.</p>
+<p>This is an example of diabatization input:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$rem
+ras_diab_seq_list    [7,4]
+ras_diab_seq_data    [1,2,3,4,5,6,7,2,0.0,4,5,6,7,3,1.0]
+$end
+
+$localized_diabatization
+adiabatic states
+2 3 4 5 6 7 8
+$end
+</pre></div>
+</div>
+<p>In this example 2 diabatization steps are performed, the first one uses all 7 diabatic states defined
+in the <strong>$localized_diabatization</strong> block (1-7) using <em>method</em> <strong>2</strong> (Boys) and <em>data</em> <strong>0.0</strong> (which
+is ignored for this method). The second step uses the 4 highest energy diabatic states (4-7) obtained
+from the previous step and performs a diabatization using <em>method</em> <strong>3</strong> (DQ) with a <em>parameter</em> <strong>1.0</strong>
+(100% quadrupole).</p>
 </div>
 </div>
 
@@ -94,12 +170,12 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
                         title="next chapter">How to write in reStructuredText</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
-    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -123,7 +199,7 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.0+/96959cc.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>
