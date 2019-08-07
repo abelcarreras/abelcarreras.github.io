@@ -56,7 +56,14 @@ has an structure like this ::
     $end
 
 where *n1, n2, n3,* etc.. are the excited state number (sorted by increasing energy) to be used as
-reference. Once defined the states to be used in the diabatization it is necessary to request
+reference. Also the use of this block requires a keyword to indicate the number of adiabatic states
+defined ::
+
+    sts_multi_nroots N_ad
+
+where *N_ad* are the number of adibatic states defined in **$localized_diabatization** block.
+
+Once the states to be used in the diabatization analysis are defined it is necessary to request
 a diabatization calculation using the keyword ::
 
     cis_diabath_decompose N
@@ -104,6 +111,7 @@ This is an example of diabatization input::
    $rem
    ras_diab_seq_list    [7,4]
    ras_diab_seq_data    [1,2,3,4,5,6,7,2,0.0,4,5,6,7,3,1.0]
+   sts_multi_nroots  7
    $end
 
    $localized_diabatization
