@@ -9,10 +9,10 @@ Preliminar information
 * Have an atlas account (atlas.sw.ehu.es)
 * Be a member of dccqchem linux group
 
-**Available qhem compilations**
+**Available qchem compilations**
 
-* qchem_trunk: Current master version of qchem [openmp intel_compilers mkl version]
-* qchem_group: Current in development version of qchem (includes new features developed in the group) [openmp intel_compilers mkl version]
+* qchem_trunk: Current master version of qchem [openmp intel_compilers mkl boost]
+* qchem_group: Current in development version of qchem (includes new features developed in the group) [openmp intel_compilers mkl boost]
 
 Load custom modules
 -------------------

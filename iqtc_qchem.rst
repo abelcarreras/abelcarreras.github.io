@@ -9,10 +9,10 @@ Preliminar information
 * Have an iqtc account (portal.qt.ub.edu)
 * Be a member of g8 group (Prof. Pere Alemany's group)
 
-**Available qhem compilations**
+**Available qchem compilations**
 
-* qchem_group: Development version of qchem [openmp gcc mkl] [iqtc08]
-* qchem_mpi:   Development version of qchem [mpi intel mkl]  [iqtc04]
+* qchem_group: Development version of qchem [openmp gcc mkl] (iqtc08 only)
+* qchem_mpi:   Development version of qchem [mpi intel mkl]  (iqtc04 only)
 
 Load custom modules
 -------------------

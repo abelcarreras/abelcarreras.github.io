@@ -99,7 +99,13 @@ $end
 </pre></div>
 </div>
 <p>where <em>n1, n2, n3,</em> etc.. are the excited state number (sorted by increasing energy) to be used as
-reference. Once defined the states to be used in the diabatization it is necessary to request
+reference. Also the use of this block requires a keyword to indicate the number of adiabatic states
+defined</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sts_multi_nroots</span> <span class="n">N_ad</span>
+</pre></div>
+</div>
+<p>where <em>N_ad</em> are the number of adibatic states defined in <strong>$localized_diabatization</strong> block.</p>
+<p>Once the states to be used in the diabatization analysis are defined it is necessary to request
 a diabatization calculation using the keyword</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cis_diabath_decompose</span> <span class="n">N</span>
 </pre></div>
@@ -140,6 +146,7 @@ order will be the one used to select the states for the next diabatization step.
 <div class="highlight-default"><div class="highlight"><pre><span></span>$rem
 ras_diab_seq_list    [7,4]
 ras_diab_seq_data    [1,2,3,4,5,6,7,2,0.0,4,5,6,7,3,1.0]
+sts_multi_nroots  7
 $end
 
 $localized_diabatization
