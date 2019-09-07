@@ -17,7 +17,7 @@ Preliminar information
 Load custom modules
 -------------------
 
-o acces to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:: 
+The access to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows::
 
     export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
 
