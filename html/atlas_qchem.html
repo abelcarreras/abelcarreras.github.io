@@ -96,21 +96,22 @@ For this purpose you should write a batch script.</p>
 <div class="section" id="batch-job-example">
 <h2>Batch job example<a class="headerlink" href="#batch-job-example" title="Permalink to this headline">¶</a></h2>
 <p>All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
+<div class="highlight-default"><div class="highlight"><pre><span></span>    #!/bin/bash
 
-#PBS -q parallel       #  “parallel&quot; o “qchem” depending on the queue you have access to
-#PBS -l ncpus=8        # number of CPI
-#PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
-#PBS -N qchem_calc     # job name
-#PBS -e error.log      # queue system error output file
-#PBS -o output.log     # queue system standard output file
+    #PBS -q parallel       #  “parallel&quot; o “qchem” depending on the queue you have access to
+    #PBS -l ncpus=8        # number of CPI
+#PBS -l mem=4000mb     # maximum RAM assigned to calcuation
+    #PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
+    #PBS -N qchem_calc     # job name
+    #PBS -e error.log      # queue system error output file
+    #PBS -o output.log     # queue system standard output file
 
-export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
 
-module load qchem_group
+    module load qchem_group
 
-cd $PBS_O_WORKDIR     # set workdir to submission directory
-qchem -nt 8 inputfile.inp  outputfile.out
+    cd $PBS_O_WORKDIR     # set workdir to submission directory
+    qchem -nt 8 inputfile.inp  outputfile.out
 </pre></div>
 </div>
 </div>
@@ -124,7 +125,7 @@ calculation (requires additional keywords in qchem input, check qchem manual for
 #PBS -q qchem
 #PBS -l ncpus=4
 #PBS -l mem=4000mb
-#PBS -l cput=800:00:00  # CPU time (Walltime / Ncores)
+#PBS -l cput=800:00:00
 #PBS -N test
 #PBS -e error.log
 #PBS -o output.log

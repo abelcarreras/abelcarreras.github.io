@@ -6,10 +6,9 @@ To compile Q-Chem in atlas using intel compilers the following modules are neces
     module load CMake/3.9.1-intel-2017a
     module load Boost/.1.64.0-intel-2017a
 
-For MKL ::
+To use MKL library the following line should be executed in order to load the proper environment ::
 
     source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
-
 
 To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from::
 
@@ -54,7 +53,6 @@ Example script
 
     module load CMake/3.9.1-intel-2017a
     module load Boost/.1.64.0-intel-2017a
-
 
     source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
 

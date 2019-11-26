@@ -54,6 +54,7 @@ All commands discussed previously can be gathered in a simple script to run in b
 
 	#PBS -q parallel       #  “parallel" o “qchem” depending on the queue you have access to
 	#PBS -l ncpus=8        # number of CPI
+    #PBS -l mem=4000mb     # maximum RAM assigned to calcuation
 	#PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
 	#PBS -N qchem_calc     # job name
 	#PBS -e error.log      # queue system error output file
@@ -78,7 +79,7 @@ calculation (requires additional keywords in qchem input, check qchem manual for
     #PBS -q qchem
     #PBS -l ncpus=4
     #PBS -l mem=4000mb
-    #PBS -l cput=800:00:00  # CPU time (Walltime / Ncores)
+    #PBS -l cput=800:00:00
     #PBS -N test
     #PBS -e error.log
     #PBS -o output.log

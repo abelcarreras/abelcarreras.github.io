@@ -84,7 +84,7 @@ step number are taken respect to the reference states defined in $localized_diab
 (so the 1st reference state is 1, 2nd reference state is 2, etc..). *meth_1* indicates the diabatization
 method to be used in the 1st step, this method is defined by an integer number where ::
 
-   1  -> ED method   (data ignored)
+   1  -> ER method   (data ignored)
    2  -> Boys method (data ignored)
    3  -> DQ method   (data: float between 0.0-1.0, fraction of quadrupole/dipole)
 
