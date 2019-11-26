@@ -1,7 +1,17 @@
 Qchem compilation notes
 =======================
 
-To compile qchem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from::
+To compile Q-Chem in atlas using intel compilers the following modules are necessary: ::
+
+    module load CMake/3.9.1-intel-2017a
+    module load Boost/.1.64.0-intel-2017a
+
+For MKL ::
+
+    source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
+
+
+To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from::
 
 	set(MKL_VERSION “10.1")
 
@@ -20,3 +30,41 @@ Also it is necessary to modify /bin/parallel.csh file to manually define the env
 	else
 	   set QCMACHINEFILE=$QC/bin/mpi/machines
 	fi
+
+
+Note: The RAM memory by default is to low to compile Q-Chem, at least 16GB should be explicity
+reserved!!
+
+Example script
+--------------
+::
+
+    #!/bin/bash
+    #cores=8
+    #wallt=5
+    #cput=$(($cores * $wallt))
+
+    #PBS -q parallel
+    #PBS -l ncpus=8
+    #PBS -l cput=120:00:00
+    #PBS -l mem=16gb
+    #PBS -N comp_qchem
+    #PBS -e error.log
+    #PBS -o output.log
+
+    module load CMake/3.9.1-intel-2017a
+    module load Boost/.1.64.0-intel-2017a
+
+
+    source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
+
+    export QC=/scratch/abel/SOFTWARE/qchem/
+
+    cd $QC
+    ./configure intel mkl openmp > ../configure_g.log
+
+
+    cd $QC/build
+    make -j 8 > compile.log 2> compile.err
+    make install > install.log
+
