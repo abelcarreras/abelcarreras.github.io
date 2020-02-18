@@ -4,13 +4,17 @@ SVN working notes
 Merging dcc_group -> users
 --------------------------
 
-Before merging make sure that all your work is commited to the server::
+Before merging make sure that all your work is commited to the server.
+Also make sure that all the changes in qchem_group are already merged in qchem_user.
+Any conflict that may appear is better handled from the qchem_usr branch ::
 
     svn commit -m "status before merge"   (or using CLion)
 
 Then, changes in dcc_group branch can be merged to user branches in usual way::
 
     svn merge ^/branches/dcc_group    (or using CLion)
+
+If any issues appear during this process check troubleshooting section.
 
 Merging users -> dcc_group
 --------------------------
@@ -86,6 +90,21 @@ User branches should merge changes from recreated dcc_group!!! If troubles appea
 
     svn resolve —accept=working  file_in_conflict
 
+
+
+Troubleshooting
+---------------
+
+Deleting or renaming a file or directory in the repository should be handled carefully. Use SVN commands for this.
+When working with CLion, you can use the graphical interface to browse through the SVN menus to find the delete/rename option.
+
+Deleting a renaming files in your local copy may result in "tree conflicts" during the merge process
+(even after committing). To solve these conflicts make sure that your local copy contains all the changes
+that you want to keep and type (from the command line from your work directory)::
+
+    svn resolve --accept working -R .
+
+Then proceed to commit the changes and update.
 
 SVN scheme
 ----------

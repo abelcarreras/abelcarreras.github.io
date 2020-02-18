@@ -31,8 +31,8 @@ Also it is necessary to modify /bin/parallel.csh file to manually define the env
 	fi
 
 
-Note: The RAM memory by default is to low to compile Q-Chem, at least 16GB should be explicity
-reserved!!
+Note: The amount of RAM memory by default in ATLAS queue system is insufficient to compile Q-Chem, at least 16GB should be explicitly
+specified!!
 
 Example script
 --------------
