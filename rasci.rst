@@ -124,3 +124,54 @@ in the **$localized_diabatization** block (1-7) using *method* **2** (Boys) and 
 is ignored for this method). The second step uses the 4 highest energy diabatic states (4-7) obtained
 from the previous step and performs a diabatization using *method* **3** (DQ) with a *parameter* **1.0**
 (100% quadrupole).
+
+Notes about diabatization in TDDFT method
+-----------------------------------------
+
+Due to a possible bug in Q-Chem a change of behavior appeared in Qchem v5.x
+respect to Mulliken analysis of diabatic states. Now in addition to *cis_ampl_anal* the keyword::
+
+    NAMD_NSURFACES 0
+
+is required to analyze the diabatc states. If not set, the adiabatic states are analyzed instead.
+
+Example for ethene dimer::
+
+    $molecule
+    0 1
+    C     0.0000000   0.0000000   0.6660120
+    C     0.0000000   0.0000000   -0.6660120
+    H     0.0000000   0.9228100   1.2279200
+    H     0.0000000   -0.9228100  1.2279200
+    H     0.0000000   -0.9228100  -1.2279200
+    H     0.0000000   0.9228100   -1.2279200
+    C     4.2000000   0.0000000   0.6660120
+    C     4.2000000   0.0000000   -0.6660120
+    H     4.2000000   0.9228100   1.2279200
+    H     4.2000000   -0.9228100  1.2279200
+    H     4.2000000   -0.9228100  -1.2279200
+    H     4.2000000   0.9228100   -1.2279200
+    $end
+
+    $rem
+    JOBTYPE      sp
+    EXCHANGE     hf
+    cis_n_roots  8
+    cis_singlets true
+    cis_triplets false
+    RPA          false
+    BASIS        6-31G
+    cis_ampl_anal  true
+    mem_static   900
+    !Diabat
+    NAMD_NSURFACES 0
+    loc_cis_ov_separate    false
+    er_cis_numstate        4
+    cis_diabath_decompose  true
+    $end
+
+    $localized_diabatization
+    On the next line, list which excited adiabatic states we want to mix.
+    1 2 7 8
+    $end
+
