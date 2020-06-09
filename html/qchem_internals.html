@@ -1,32 +1,24 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Development Q-Chem &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="How to write in reStructuredText" href="math.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -52,7 +44,7 @@
 <p>REM variables are, in principle, integer only variables. However some
 tricks can be done to use them as real.</p>
 <p>New REM variables should be defined in file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">/</span><span class="n">rem</span><span class="o">.</span><span class="n">list</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">/</span><span class="n">rem</span><span class="o">.</span><span class="n">list</span>
 </pre></div>
 </div>
 <p>this file contains the list of all REM variables used in q-chem. Make sure your new
@@ -60,22 +52,22 @@ variable does not already exist. Each variable is associated to a number, the ra
 of numbers available for each user must be reserved in the upper section of the same
 file. Make sure to not use more variables than the number of reserved numbers.</p>
 <p>Each defined variable should be initializated in file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">libgen</span><span class="o">/</span><span class="n">rem_default</span><span class="o">.</span><span class="n">C</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libgen</span><span class="o">/</span><span class="n">rem_default</span><span class="o">.</span><span class="n">C</span>
 </pre></div>
 </div>
 <p>The way to initalize a variable is by writting a line as:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rem_write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">NAME_OF_VARIABLE</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rem_write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">NAME_OF_VARIABLE</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>where 0 is the initial value(integer).</p>
-<p>To use REM variables as real, the variable should be define as <span class="math">\(10^n\)</span> times the
+<p>To use REM variables as real, the variable should be define as <span class="math notranslate nohighlight">\(10^n\)</span> times the
 intended value, where <em>n</em> is the maximum number of decimal places of accepted real.
 This is defined in <strong>RemDoubleToValue</strong> function placed in file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">qparser</span><span class="o">/</span><span class="n">read_rem</span><span class="o">.</span><span class="n">C</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qparser</span><span class="o">/</span><span class="n">read_rem</span><span class="o">.</span><span class="n">C</span>
 </pre></div>
 </div>
 <p>which should be edited to add the variable definition like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">Loc</span> <span class="o">==</span> <span class="n">NAME_OF_VARIABLE</span><span class="p">){</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">Loc</span> <span class="o">==</span> <span class="n">NAME_OF_VARIABLE</span><span class="p">){</span>
   <span class="n">double</span> <span class="n">dVal</span> <span class="o">=</span> <span class="n">TL</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">GetDouble</span><span class="p">();</span>
   <span class="n">Val</span> <span class="o">=</span> <span class="n">INTEGER</span><span class="p">(</span><span class="n">dVal</span><span class="o">*</span><span class="mi">10000</span><span class="p">);</span>
   <span class="n">OK</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -83,9 +75,88 @@ This is defined in <strong>RemDoubleToValue</strong> function placed in file:</p
 </pre></div>
 </div>
 <p>Then, within your code, in order to recover the intended real number the REM variable
-should be divided by <span class="math">\(10^n\)</span></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myrealvariable</span> <span class="o">=</span> <span class="n">rem_read</span><span class="p">(</span><span class="n">NAME_OF_VARIABLE</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10000</span>
+should be divided by <span class="math notranslate nohighlight">\(10^n\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myrealvariable</span> <span class="o">=</span> <span class="n">rem_read</span><span class="p">(</span><span class="n">NAME_OF_VARIABLE</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10000</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="manage-scratch-files">
+<h2>Manage scratch files<a class="headerlink" href="#manage-scratch-files" title="Permalink to this headline">¶</a></h2>
+<p><strong>FileMan</strong> function manages the scratch data stored in files. They are useful to store large
+arrays in one section of the code to be used in another part.</p>
+<p>Before using a file it has to be defined in <em>include/fileman.h</em>. This file contains a list of
+all files defined along Q-Chem where each one is associated to a number. This number has to be
+unique and is more or less taken in a first come first served basis. In order to organize this file
+a little, developers usually reserve some range of numbers for themselves by writing a short
+comment.</p>
+<div class="section" id="opening-file">
+<h3>Opening file<a class="headerlink" href="#opening-file" title="Permalink to this headline">¶</a></h3>
+<p>To read/store data the file first should be opened</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open to write data</span>
+<span class="n">FileMan</span><span class="p">(</span><span class="n">FM_OPEN_W</span><span class="p">,</span> <span class="n">FILE_NAME</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1"># Open to read data</span>
+<span class="n">FileMan</span><span class="p">(</span><span class="n">FM_OPEN_R</span><span class="p">,</span> <span class="n">FILE_NAME</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>where <strong>FM_OPEN_R</strong>/<strong>FM_OPEN_W</strong> labels indicate the type. These labels are already defined in Q-Chem
+and are available everywhere. <strong>FILE_NAME</strong> is the name of the file defined in <em>fileman.h</em> file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is interesting to be noted that all these labels are just variables that contain integer numbers
+defined in the internals of Q-Chem. Its probably done this way for interoperability C/Fortran.</p>
+</div>
+</div>
+<div class="section" id="writing-data">
+<h3>Writing data<a class="headerlink" href="#writing-data" title="Permalink to this headline">¶</a></h3>
+<p>To store data in the file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">data</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="n">FileMan</span><span class="p">(</span><span class="n">FM_WRITE</span><span class="p">,</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="n">FM_DP</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">FM_BEG</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>where <strong>FM_WRITE</strong> labels indicates that the data will be written, <strong>FM_DP</strong> label indicates the data type
+(double), <strong>FM_BEG</strong> indicates that the data will be stored from the beginning of the file and <strong>data</strong> is
+the array of data to be stored.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that <em>data</em> argument should be passed to <em>FileMan</em> as a memory address.</p>
+</div>
+</div>
+<div class="section" id="reading-data">
+<h3>Reading data<a class="headerlink" href="#reading-data" title="Permalink to this headline">¶</a></h3>
+<p>To determine the length of the array</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">N</span><span class="p">;</span>
+<span class="n">FileMan</span><span class="p">(</span><span class="n">FM_GET_LEN</span><span class="p">,</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="n">FM_INT</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>where <strong>FM_GET_LEN</strong> indicates that the length will be retrieved, <strong>FM_INT</strong> indicates the data type
+(integer in this case) and <strong>N</strong> is the variable that will contain the array length.</p>
+<p>To read the data form file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">data</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="n">FileMan</span><span class="p">(</span><span class="n">FM_READ</span><span class="p">,</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="n">FM_DP</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">FM_BEG</span><span class="p">,</span><span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>where <strong>FM_READ</strong> indicated reading mode, and <strong>N</strong> is the length of the array.</p>
+</div>
+<div class="section" id="closing-file">
+<h3>Closing file<a class="headerlink" href="#closing-file" title="Permalink to this headline">¶</a></h3>
+<p>Once the data is read/written the file should be close by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FileMan</span><span class="p">(</span><span class="n">FM_CLOSE</span><span class="p">,</span> <span class="n">FILE_NAME</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="final-notes">
+<h3>Final notes<a class="headerlink" href="#final-notes" title="Permalink to this headline">¶</a></h3>
+<p>When working with armadillo objects (matrices &amp; vectors) the raw data can be accessed
+by the methods <em>.begin()</em> &amp; <em>.memptr</em>. This exposes the memory address which allows
+to use FileMan directly on these arrays. The difference between this methods is that <em>.memptr</em>
+is read only, so it is safer than <em>.begin()</em> if the data have only to be read from the array</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arma</span><span class="p">::</span><span class="n">Col</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span> <span class="n">data_array</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+
+<span class="n">FileMan</span><span class="p">(</span><span class="n">FM_WRITE</span><span class="p">,</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="n">FM_DP</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">FM_BEG</span><span class="p">,</span><span class="n">data_array</span><span class="o">.</span><span class="n">begin</span><span class="p">());</span>
+<span class="n">FileMan</span><span class="p">(</span><span class="n">FM_READ</span><span class="p">,</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="n">FM_DP</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">FM_BEG</span><span class="p">,</span><span class="n">data_array</span><span class="o">.</span><span class="n">memptr</span><span class="p">);</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -100,15 +171,15 @@ should be divided by <span class="math">\(10^n\)</span></p>
   <p class="topless"><a href="math.html"
                         title="previous chapter">How to write in reStructuredText</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -127,7 +198,7 @@ should be divided by <span class="math">\(10^n\)</span></p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.4.
     </div>
   </body>
 </html>

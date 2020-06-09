@@ -1,33 +1,25 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Custom version of Avogadro visualization software &#8212; wiki  documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="On development features" href="rasci.html" />
-    <link rel="prev" title="How to use qchem in Mare Nostrum (BSC)" href="marenostrum_qchem.html" /> 
-  </head>
-  <body>
+    <link rel="prev" title="How to use qchem in Mare Nostrum (BSC) [Currently not available!]" href="marenostrum_qchem.html" /> 
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -38,7 +30,7 @@
           <a href="rasci.html" title="On development features"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="marenostrum_qchem.html" title="How to use qchem in Mare Nostrum (BSC)"
+          <a href="marenostrum_qchem.html" title="How to use qchem in Mare Nostrum (BSC) [Currently not available!]"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>
@@ -56,9 +48,9 @@ extra characteristics to read data from fchk files generated with qchem using th
 <div class="section" id="characteristics">
 <h2>Characteristics<a class="headerlink" href="#characteristics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Natural orbitals</li>
-<li>Spin density</li>
-<li>Fractional occupnacy density (FOD)</li>
+<li><p>Natural orbitals</p></li>
+<li><p>Spin density</p></li>
+<li><p>Fractional occupnacy density (FOD)</p></li>
 </ul>
 </div>
 <div class="section" id="repository">
@@ -70,16 +62,16 @@ extra characteristics to read data from fchk files generated with qchem using th
 <h2>General instructions<a class="headerlink" href="#general-instructions" title="Permalink to this headline">¶</a></h2>
 <p>Donwload and compile. You may need to install the following libraries:</p>
 <ul class="simple">
-<li>QT4</li>
-<li>open-babel</li>
-<li>Zlib</li>
-<li>build-essentials</li>
+<li><p>QT4</p></li>
+<li><p>open-babel</p></li>
+<li><p>Zlib</p></li>
+<li><p>build-essentials</p></li>
 </ul>
 </div>
 <div class="section" id="ubuntu-instructions">
 <h2>Ubuntu instructions<a class="headerlink" href="#ubuntu-instructions" title="Permalink to this headline">¶</a></h2>
 <p>Using ubuntu all libraries may be installed via Ubuntu repository:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essentials</span> <span class="n">zlib1g</span> <span class="n">libopenbabel</span><span class="o">-</span><span class="n">dev</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essentials</span> <span class="n">zlib1g</span> <span class="n">libopenbabel</span><span class="o">-</span><span class="n">dev</span>
 <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">qt4</span><span class="o">-</span><span class="n">default</span> <span class="n">qt4</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">tools</span> <span class="n">libqt4</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
 </div>
@@ -91,11 +83,11 @@ To run this version you still need to install the requiered libraries.
 A simple way to do it is using brew (<a class="reference external" href="https://brew.sh">https://brew.sh</a>):</p>
 <p>Before running avogadro, open a terminal and type:</p>
 <ol class="arabic simple">
-<li>/usr/bin/ruby -e “$(curl -fsSL <a class="reference external" href="https://raw.githubusercontent.com/Homebrew/install/master/install">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”</li>
-<li>brew tap cartr/qt4</li>
-<li>brew tap-pin cartr/qt4</li>
-<li>brew install qt&#64;4</li>
-<li>brew install open-babel</li>
+<li><p>/usr/bin/ruby -e “$(curl -fsSL <a class="reference external" href="https://raw.githubusercontent.com/Homebrew/install/master/install">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”</p></li>
+<li><p>brew tap cartr/qt4</p></li>
+<li><p>brew tap-pin cartr/qt4</p></li>
+<li><p>brew install qt&#64;4</p></li>
+<li><p>brew install open-babel</p></li>
 </ol>
 <p>Once the installation is finished you should be able to run avogadro normally.</p>
 </div>
@@ -109,20 +101,20 @@ A simple way to do it is using brew (<a class="reference external" href="https:/
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="marenostrum_qchem.html"
-                        title="previous chapter">How to use qchem in Mare Nostrum (BSC)</a></p>
+                        title="previous chapter">How to use qchem in Mare Nostrum (BSC) [Currently not available!]</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="rasci.html"
                         title="next chapter">On development features</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -137,14 +129,14 @@ A simple way to do it is using brew (<a class="reference external" href="https:/
           <a href="rasci.html" title="On development features"
              >next</a> |</li>
         <li class="right" >
-          <a href="marenostrum_qchem.html" title="How to use qchem in Mare Nostrum (BSC)"
+          <a href="marenostrum_qchem.html" title="How to use qchem in Mare Nostrum (BSC) [Currently not available!]"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.4.
     </div>
   </body>
 </html>
