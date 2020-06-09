@@ -159,6 +159,31 @@ is read only, so it is safer than <em>.begin()</em> if the data have only to be 
 </div>
 </div>
 </div>
+<div class="section" id="adding-new-dft-functionals">
+<h2>Adding new DFT functionals<a class="headerlink" href="#adding-new-dft-functionals" title="Permalink to this headline">¶</a></h2>
+<p>The files containing the main functions of the functional are placed in either:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">libfunc</span><span class="o">*</span> <span class="ow">or</span> <span class="o">*</span><span class="n">libdft</span><span class="o">/</span><span class="n">libfunc</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>To be callable everywhere these functions should be included in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="o">/</span><span class="n">extref</span><span class="o">.</span><span class="n">list</span>
+</pre></div>
+</div>
+<p>The C functions prototypes are written in the header</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libdft</span><span class="o">/</span><span class="n">libdft</span><span class="o">.</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>The definition of components of the functional (evaluations, derivatives, 2nd deribatives)
+are writen here</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libdft</span><span class="o">/</span><span class="n">evalxc</span><span class="o">.</span><span class="n">C</span>
+</pre></div>
+</div>
+<p>The connection with the Q-Chem input interface is defined here</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libdft</span><span class="o">/</span><span class="n">Functionals</span><span class="o">.</span><span class="n">C</span>
+<span class="n">libdft</span><span class="o">/</span><span class="n">dftcodes</span><span class="o">.</span><span class="n">C</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

@@ -132,3 +132,29 @@ is read only, so it is safer than *.begin()* if the data have only to be read fr
     FileMan(FM_WRITE,FILE_NAME,FM_DP,N,0,FM_BEG,data_array.begin());
     FileMan(FM_READ,FILE_NAME,FM_DP,N,0,FM_BEG,data_array.memptr);
 
+
+
+Adding new DFT functionals
+--------------------------
+
+The files containing the main functions of the functional are placed in either::
+
+    *libfunc* or *libdft/libfunc*
+
+To be callable everywhere these functions should be included in ::
+
+    include/extref.list
+
+The C functions prototypes are written in the header ::
+
+    libdft/libdft.h
+
+The definition of components of the functional (evaluations, derivatives, 2nd deribatives)
+are writen here ::
+
+    libdft/evalxc.C
+
+The connection with the Q-Chem input interface is defined here ::
+
+    libdft/Functionals.C
+    libdft/dftcodes.C
