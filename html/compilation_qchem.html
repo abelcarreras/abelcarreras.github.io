@@ -60,8 +60,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">MKL_VERSION</span> <span class="s2">&quot;11.0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>also in the recent versions of Q-Chem there is a problem in <em>libham/libham/CMakeLists.txt</em> file using <em>old</em> intel compiler (2017).
-This can be solved by changing:</p>
+<p>also in the recent version of Q-Chem there is a problem in <em>libham/libham/CMakeLists.txt</em> file using an <em>old version</em> of intel compiler (2017).
+This can be solved (<a class="reference external" href="https://gitlab.kitware.com/cmake/cmake/-/issues/17829">https://gitlab.kitware.com/cmake/cmake/-/issues/17829</a>) by changing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cxx_generalized_initializers</span>
 </pre></div>
 </div>

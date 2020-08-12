@@ -18,8 +18,8 @@ to::
 
 	set(MKL_VERSION "11.0")
 
-also in the recent versions of Q-Chem there is a problem in *libham/libham/CMakeLists.txt* file using *old* intel compiler (2017).
-This can be solved by changing::
+also in the recent version of Q-Chem there is a problem in *libham/libham/CMakeLists.txt* file using an *old version* of intel compiler (2017).
+This can be solved (https://gitlab.kitware.com/cmake/cmake/-/issues/17829) by changing::
 
     cxx_generalized_initializers
 
