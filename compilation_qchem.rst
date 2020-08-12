@@ -18,6 +18,15 @@ to::
 
 	set(MKL_VERSION "11.0")
 
+also in the recent versions of Q-Chem there is a problem in *libham/libham/CMakeLists.txt* file using *old* intel compiler (2017).
+This can be solved by changing::
+
+    cxx_generalized_initializers
+
+by::
+
+    cxx_std_14
+
 To compile MPI version in IQTC it is necessary to modify file /bin/qchem to force activation of **-np** flag::
 
     set WITH_MPI = 1  
