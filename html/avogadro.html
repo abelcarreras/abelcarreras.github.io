@@ -65,7 +65,7 @@ extra characteristics to read data from fchk files generated with qchem using th
 <p>Donwload and compile. You may need to install the following libraries:</p>
 <ul class="simple">
 <li><p>QT4</p></li>
-<li><p>open-babel</p></li>
+<li><p>open-babel (+2.3.x)</p></li>
 <li><p>Zlib</p></li>
 <li><p>build-essentials</p></li>
 </ul>
@@ -89,9 +89,22 @@ A simple way to do it is using brew (<a class="reference external" href="https:/
 <li><p>brew tap cartr/qt4</p></li>
 <li><p>brew tap-pin cartr/qt4</p></li>
 <li><p>brew install qt&#64;4</p></li>
-<li><p>brew install open-babel</p></li>
+<li><p><strike> brew install open-babel </strike></p></li>
 </ol>
-<p>Once the installation is finished you should be able to run avogadro normally.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Now OpenBabel +2.3.x library should be compiled from source (<a class="reference external" href="https://github.com/openbabel/openbabel">https://github.com/openbabel/openbabel</a>)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On macOS 10.15+ (Catalina+) openGL became semi-unsupported and present some issues.
+To solve them, <em>info.plist</em> file placed in Avogadro.app/Contents/ should be changed
+as follows (<a class="reference external" href="https://github.com/ioquake/ioq3/issues/422#issuecomment-541193050">https://github.com/ioquake/ioq3/issues/422#issuecomment-541193050</a>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSHighResolutionCapable</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">false</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 

@@ -1,3 +1,12 @@
+.. |ss| raw:: html
+
+    <strike>
+
+.. |se| raw:: html
+
+    </strike>
+
+
 Custom version of Avogadro visualization software
 =================================================
 
@@ -24,7 +33,7 @@ General instructions
 Donwload and compile. You may need to install the following libraries:
 
 * QT4 
-* open-babel
+* open-babel (+2.3.x)
 * Zlib
 * build-essentials
 
@@ -49,8 +58,16 @@ Before running avogadro, open a terminal and type:
 2. brew tap cartr/qt4
 3. brew tap-pin cartr/qt4
 4. brew install qt@4
-5. brew install open-babel
+5. |ss| brew install open-babel |se|
 
-Once the installation is finished you should be able to run avogadro normally.
+.. note::
+    Now OpenBabel +2.3.x library should be compiled from source (https://github.com/openbabel/openbabel)
 
+.. note::
+    On macOS 10.15+ (Catalina+) openGL became semi-unsupported and present some issues.
+    To solve them, *info.plist* file placed in Avogadro.app/Contents/ should be changed
+    as follows (https://github.com/ioquake/ioq3/issues/422#issuecomment-541193050) ::
+
+    <key>NSHighResolutionCapable</key>
+    <false/>
 
