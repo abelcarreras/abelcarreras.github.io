@@ -27,7 +27,7 @@ To use MKL library the following line should be executed in order to load the pr
 
 To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from ::
 
-	set(MKL_VERSION “10.1")
+    set(MKL_VERSION “10.1")
 
 to::
 
