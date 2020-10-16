@@ -15,13 +15,15 @@ To compile Q-Chem in atlas using intel compilers the following modules are neces
     module load iccifort/2019.5.281
     module load CMake/3.15.3-GCCcore-8.3.0
 
-    source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
-    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 
 To use MKL library the following line should be executed in order to load the proper environment ::
 
+    # ATLAS - FDR
     source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
+
+    # ATLAS - EDR
+    source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
 
 To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from::
 

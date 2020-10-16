@@ -46,24 +46,25 @@
   <div class="section" id="qchem-compilation-notes">
 <h1>Qchem compilation notes<a class="headerlink" href="#qchem-compilation-notes" title="Permalink to this headline">¶</a></h1>
 <p>To compile Q-Chem in atlas using intel compilers the following modules are necessary:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># ATLAS - FDR
-module load CMake/3.9.1-intel-2017a
-module load Boost/.1.64.0-intel-2017a
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ATLAS - FDR</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">CMake</span><span class="o">/</span><span class="mf">3.9</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">intel</span><span class="o">-</span><span class="mi">2017</span><span class="n">a</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Boost</span><span class="o">/.</span><span class="mf">1.64</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">intel</span><span class="o">-</span><span class="mi">2017</span><span class="n">a</span>
 
-source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
+<span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">easybuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.3</span><span class="o">.</span><span class="mi">1611</span><span class="o">/</span><span class="n">Haswell</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2017.3</span><span class="o">.</span><span class="mi">196</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2017</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
 
-# ATLAS - EDR
-module load Boost/1.71.0-iimpi-2019b
-module load imkl/2019.5.281-iimpi-2019b
-module load iccifort/2019.5.281
-module load CMake/3.15.3-GCCcore-8.3.0
-
-source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
-export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+<span class="c1"># ATLAS - EDR</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Boost</span><span class="o">/</span><span class="mf">1.71</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">imkl</span><span class="o">/</span><span class="mf">2019.5</span><span class="o">.</span><span class="mi">281</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">iccifort</span><span class="o">/</span><span class="mf">2019.5</span><span class="o">.</span><span class="mi">281</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">CMake</span><span class="o">/</span><span class="mf">3.15</span><span class="o">.</span><span class="mi">3</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">8.3</span><span class="o">.</span><span class="mi">0</span>
 </pre></div>
 </div>
 <p>To use MKL library the following line should be executed in order to load the proper environment</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">easybuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.3</span><span class="o">.</span><span class="mi">1611</span><span class="o">/</span><span class="n">Haswell</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2017.3</span><span class="o">.</span><span class="mi">196</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2017</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ATLAS - FDR</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">easybuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.3</span><span class="o">.</span><span class="mi">1611</span><span class="o">/</span><span class="n">Haswell</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2017.3</span><span class="o">.</span><span class="mi">196</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2017</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
+
+<span class="c1"># ATLAS - EDR</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">EasyBuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.5</span><span class="o">.</span><span class="mi">1804</span><span class="o">/</span><span class="n">Skylake</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2018.3</span><span class="o">.</span><span class="mi">222</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2018</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
 </pre></div>
 </div>
 <p>To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from:</p>
