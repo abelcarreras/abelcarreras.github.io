@@ -29,24 +29,24 @@ To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify F
 
     set(MKL_VERSION “10.1")
 
-to::
+to ::
 
 	set(MKL_VERSION "11.0")
 
 also in the recent version of Q-Chem there is a problem in *libham/libham/CMakeLists.txt* file using an *old version* of intel compiler (2017).
-This can be solved (https://gitlab.kitware.com/cmake/cmake/-/issues/17829) by changing::
+This can be solved (https://gitlab.kitware.com/cmake/cmake/-/issues/17829) by changing ::
 
     cxx_generalized_initializers
 
-by::
+by ::
 
     cxx_std_14
 
-To compile MPI version in IQTC it is necessary to modify file /bin/qchem to force activation of **-np** flag::
+To compile MPI version in IQTC it is necessary to modify file /bin/qchem to force activation of **-np** flag ::
 
     set WITH_MPI = 1  
 
-Also it is necessary to modify /bin/parallel.csh file to manually define the environment variable $QCMACHINEFILE to properly set “machines” file location by commenting the following lines::
+Also it is necessary to modify /bin/parallel.csh file to manually define the environment variable $QCMACHINEFILE to properly set “machines” file location by commenting the following lines ::
 
 	if ( $?QCGMAKE ) then
 	   set QCMACHINEFILE=$QCBIN/machines
@@ -60,7 +60,7 @@ specified!!
 
 Example script
 --------------
-::
+ATLAS - FDR ::
 
     #!/bin/bash
     #cores=8
@@ -88,5 +88,34 @@ Example script
 
     cd $QC/build
     make -j 8 > compile.log 2> compile.err
+    make install > install.log
+
+
+ATLAS - EDR ::
+
+    #!/bin/bash
+    #SBATCH --partition=regular
+    #SBATCH --job-name=comp_qchem
+    #SBATCH --cpus-per-task=8
+    #SBATCH --mem=32gb
+    #SBATCH --nodes=1
+    #SBATCH --ntasks-per-node=1
+
+    module load Boost/1.71.0-iimpi-2019b
+    module load imkl/2019.5.281-iimpi-2019b
+    module load iccifort/2019.5.281
+    module load CMake/3.15.3-GCCcore-8.3.0
+
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+    source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
+
+    export QC=/scratch/abel/SOFTWARE/qchem/
+
+    cd $QC
+    ./configure intel mkl openmp > ../configure_g.log
+
+    cd $QC/build
+    make -j 8  > compile.log 2> compile.err
     make install > install.log
 
