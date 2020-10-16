@@ -25,7 +25,7 @@ To use MKL library the following line should be executed in order to load the pr
     # ATLAS - EDR
     source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
 
-To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from::
+To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from ::
 
 	set(MKL_VERSION “10.1")
 
