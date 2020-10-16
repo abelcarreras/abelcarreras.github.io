@@ -3,8 +3,21 @@ Qchem compilation notes
 
 To compile Q-Chem in atlas using intel compilers the following modules are necessary: ::
 
+    # ATLAS - FDR
     module load CMake/3.9.1-intel-2017a
     module load Boost/.1.64.0-intel-2017a
+
+    source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
+
+    # ATLAS - EDR
+    module load Boost/1.71.0-iimpi-2019b
+    module load imkl/2019.5.281-iimpi-2019b
+    module load iccifort/2019.5.281
+    module load CMake/3.15.3-GCCcore-8.3.0
+
+    source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
 
 To use MKL library the following line should be executed in order to load the proper environment ::
 
