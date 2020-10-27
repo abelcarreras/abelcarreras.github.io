@@ -25,7 +25,8 @@ To use MKL library the following line should be executed in order to load the pr
     # ATLAS - EDR
     source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
 
-To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from ::
+To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in
+order to set the correct library paths and environment variables. A convenient  way is to modify line 213 from ::
 
     set(MKL_VERSION “10.1")
 
@@ -33,8 +34,8 @@ to ::
 
 	set(MKL_VERSION "11.0")
 
-also in the recent version of Q-Chem there is a problem in *libham/libham/CMakeLists.txt* file using an *old version* of intel compiler (2017).
-This can be solved (https://gitlab.kitware.com/cmake/cmake/-/issues/17829) by changing ::
+also in the recent version of Q-Chem there is a problem in *libham/libham/CMakeLists.txt* file using an *old version* of
+intel compiler (2017). This can be solved (https://gitlab.kitware.com/cmake/cmake/-/issues/17829) by changing ::
 
     cxx_generalized_initializers
 
@@ -46,7 +47,8 @@ To compile MPI version in IQTC it is necessary to modify file /bin/qchem to forc
 
     set WITH_MPI = 1  
 
-Also it is necessary to modify /bin/parallel.csh file to manually define the environment variable $QCMACHINEFILE to properly set “machines” file location by commenting the following lines ::
+Also it is necessary to modify /bin/parallel.csh file to manually define the environment variable $QCMACHINEFILE to
+properly set “machines” file location by commenting the following lines ::
 
 	if ( $?QCGMAKE ) then
 	   set QCMACHINEFILE=$QCBIN/machines
@@ -55,8 +57,22 @@ Also it is necessary to modify /bin/parallel.csh file to manually define the env
 	fi
 
 
-Note: The amount of RAM memory by default in ATLAS queue system is insufficient to compile Q-Chem, at least 16GB should be explicitly
-specified!!
+.. note::
+    The amount of RAM memory by default in ATLAS queue system is insufficient to compile Q-Chem, at least 16GB should
+    be explicitly specified!!
+
+
+MAC compilation
+---------------
+Compilation in MAC using Intel Compiler 19.x and MKL has some issues finding iomp5 library. A temporary
+workaround is to manually edit *FindMKL.cmake* file by adding ::
+
+    set(INTEL_IOMP5_PATH /opt/intel/compilers_and_libraries_2020/mac/lib/libiomp5.a)
+
+just after this line ::
+
+    find_library(INTEL_IOMP5_PATH iomp5 PATHS ENV ${LD_LIBRARY_PATH_NAME})
+
 
 Example script
 --------------
