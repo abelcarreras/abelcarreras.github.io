@@ -46,6 +46,18 @@ should be divided by :math:`10^n` ::
    myrealvariable = rem_read(NAME_OF_VARIABLE) / 10000
 
 
+How to add new scratch FILE
+---------------------------
+scratch files are store momory that can be used globally along q-chem code. These files
+are intended to be used to store large matrices (avoiding to have them in RAM) but are
+also useful to access data from different parts of the code.
+
+This files are defined in ::
+
+   include/fileman.h
+
+where a positive integer number must be assigned to each file. Be careful to not set a
+number already in use.
 
 Manage scratch files
 --------------------

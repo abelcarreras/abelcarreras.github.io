@@ -82,6 +82,18 @@ should be divided by <span class="math notranslate nohighlight">\(10^n\)</span><
 </pre></div>
 </div>
 </div>
+<div class="section" id="how-to-add-new-scratch-file">
+<h2>How to add new scratch FILE<a class="headerlink" href="#how-to-add-new-scratch-file" title="Permalink to this headline">¶</a></h2>
+<p>scratch files are store momory that can be used globally along q-chem code. These files
+are intended to be used to store large matrices (avoiding to have them in RAM) but are
+also useful to access data from different parts of the code.</p>
+<p>This files are defined in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="o">/</span><span class="n">fileman</span><span class="o">.</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>where a positive integer number must be assigned to each file. Be careful to not set a
+number already in use.</p>
+</div>
 <div class="section" id="manage-scratch-files">
 <h2>Manage scratch files<a class="headerlink" href="#manage-scratch-files" title="Permalink to this headline">¶</a></h2>
 <p><strong>FileMan</strong> function manages the scratch data stored in files. They are useful to store large

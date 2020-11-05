@@ -68,6 +68,48 @@ You can check that everything is Ok by::
 
     svn status
 
+In case conficts appear ::
+
+    C    gvbman/ccvb/ccvb.C
+    C    gvbman/ccvb/ccvb.h
+    C    gvbman/ccvb/ccvbAmpConstTsoIter.C
+
+They may be one of two types (Text conflicts or Tree conflicts) ::
+
+    Summary of conflicts:
+      Text conflicts: 1
+      Tree conflicts: 229
+
+Text conflicts are related to incompatible modifications of the same file
+between original and incoming merge. Those can be solved by editing the file
+and searching for '<<<<<' which indicates the conflict block ::
+
+    <<<<<<< .working
+    LOGICAL   Hole, Part, RasNato, RASPT2, RasDFT, srDFT
+    =======
+    LOGICAL   Hole, Part, RasNato, RASPT2, RasDFT, srDFT, DoFED
+    >>>>>>> .merge-right.r32150
+
+In this block it is shown the two incompatible modifications separated by a '===='.
+'>>>>>>' indicates the end of the block.
+There is different options of how to proceed. The easiest way is to decide which one of the
+versions to keep. In case of wanting to keep the original local file you can use ::
+
+    svn resolve —accept=mine-full  file_in_conflict
+
+in case of wanting to keep the incoming merge file ::
+
+    svn resolve —accept=theirs-full  file_in_conflict
+
+Using these comands, SVN will remove the merge marks ('>>>', '===' & '<<<<') and keep
+the chosen version.
+
+In case of wanting to combine the changes, edit the file (by removing '<<<<', '===', '>>>>' marks)
+and once the file is clean and acceptable ::
+
+    svn resolve —accept=working  file_in_conflict
+
+
 
 Merging dcc_group -> trunk
 --------------------------
@@ -90,6 +132,20 @@ User branches should merge changes from recreated dcc_group!!! If troubles appea
 
     svn resolve —accept=working  file_in_conflict
 
+
+Tree conflicts can be more tricky and thei are produced due a removal or movement of files
+and directories that are not properly understood by SVN. A simple way to resolve them is by
+checking the end result of the conflict.
+If the files are in the state it should be (the files/directories that should be removed are removed,
+and the files/directories that should be created are created) then simply mark them as correct::
+
+    svn resolve —accept=working  file_or_dir_in_conflict
+
+
+if not, edit the file/directory structure using the svn commands (svn rm, svn mv, svn cp)
+and finaly mark them as correct::
+
+    svn resolve —accept=working  file_or_dir_in_conflict
 
 
 Troubleshooting

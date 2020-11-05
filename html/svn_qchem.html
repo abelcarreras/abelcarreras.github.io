@@ -115,6 +115,46 @@ Any conflict that may appear is better handled from the qchem_usr branch</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">status</span>
 </pre></div>
 </div>
+<p>In case conficts appear</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span>    <span class="n">gvbman</span><span class="o">/</span><span class="n">ccvb</span><span class="o">/</span><span class="n">ccvb</span><span class="o">.</span><span class="n">C</span>
+<span class="n">C</span>    <span class="n">gvbman</span><span class="o">/</span><span class="n">ccvb</span><span class="o">/</span><span class="n">ccvb</span><span class="o">.</span><span class="n">h</span>
+<span class="n">C</span>    <span class="n">gvbman</span><span class="o">/</span><span class="n">ccvb</span><span class="o">/</span><span class="n">ccvbAmpConstTsoIter</span><span class="o">.</span><span class="n">C</span>
+</pre></div>
+</div>
+<p>They may be one of two types (Text conflicts or Tree conflicts)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Summary</span> <span class="n">of</span> <span class="n">conflicts</span><span class="p">:</span>
+  <span class="n">Text</span> <span class="n">conflicts</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">Tree</span> <span class="n">conflicts</span><span class="p">:</span> <span class="mi">229</span>
+</pre></div>
+</div>
+<p>Text conflicts are related to incompatible modifications of the same file
+between original and incoming merge. Those can be solved by editing the file
+and searching for ‘&lt;&lt;&lt;&lt;&lt;’ which indicates the conflict block</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="o">.</span><span class="n">working</span>
+<span class="n">LOGICAL</span>   <span class="n">Hole</span><span class="p">,</span> <span class="n">Part</span><span class="p">,</span> <span class="n">RasNato</span><span class="p">,</span> <span class="n">RASPT2</span><span class="p">,</span> <span class="n">RasDFT</span><span class="p">,</span> <span class="n">srDFT</span>
+<span class="o">=======</span>
+<span class="n">LOGICAL</span>   <span class="n">Hole</span><span class="p">,</span> <span class="n">Part</span><span class="p">,</span> <span class="n">RasNato</span><span class="p">,</span> <span class="n">RASPT2</span><span class="p">,</span> <span class="n">RasDFT</span><span class="p">,</span> <span class="n">srDFT</span><span class="p">,</span> <span class="n">DoFED</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="o">.</span><span class="n">merge</span><span class="o">-</span><span class="n">right</span><span class="o">.</span><span class="n">r32150</span>
+</pre></div>
+</div>
+<p>In this block it is shown the two incompatible modifications separated by a ‘====’.
+‘&gt;&gt;&gt;&gt;&gt;&gt;’ indicates the end of the block.
+There is different options of how to proceed. The easiest way is to decide which one of the
+versions to keep. In case of wanting to keep the original local file you can use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>svn resolve —accept=mine-full  file_in_conflict
+</pre></div>
+</div>
+<p>in case of wanting to keep the incoming merge file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>svn resolve —accept=theirs-full  file_in_conflict
+</pre></div>
+</div>
+<p>Using these comands, SVN will remove the merge marks (‘&gt;&gt;&gt;’, ‘===’ &amp; ‘&lt;&lt;&lt;&lt;’) and keep
+the chosen version.</p>
+<p>In case of wanting to combine the changes, edit the file (by removing ‘&lt;&lt;&lt;&lt;’, ‘===’, ‘&gt;&gt;&gt;&gt;’ marks)
+and once the file is clean and acceptable</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>svn resolve —accept=working  file_in_conflict
+</pre></div>
+</div>
 </div>
 <div class="section" id="merging-dcc-group-trunk">
 <h2>Merging dcc_group -&gt; trunk<a class="headerlink" href="#merging-dcc-group-trunk" title="Permalink to this headline">¶</a></h2>
@@ -133,6 +173,19 @@ Any conflict that may appear is better handled from the qchem_usr branch</p>
 </div>
 <p>User branches should merge changes from recreated dcc_group!!! If troubles appear with duplicated commited files appear, they can be resolved by using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>svn resolve —accept=working  file_in_conflict
+</pre></div>
+</div>
+<p>Tree conflicts can be more tricky and thei are produced due a removal or movement of files
+and directories that are not properly understood by SVN. A simple way to resolve them is by
+checking the end result of the conflict.
+If the files are in the state it should be (the files/directories that should be removed are removed,
+and the files/directories that should be created are created) then simply mark them as correct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>svn resolve —accept=working  file_or_dir_in_conflict
+</pre></div>
+</div>
+<p>if not, edit the file/directory structure using the svn commands (svn rm, svn mv, svn cp)
+and finaly mark them as correct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>svn resolve —accept=working  file_or_dir_in_conflict
 </pre></div>
 </div>
 </div>
