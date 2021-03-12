@@ -7,7 +7,7 @@ To contribute use the following instructions:
 
     git checkout https://github.com/abelcarreras/abelcarreras.github.io.git website
 
-- Edit/add the rst files
+- Edit/add(if needed) rst files
 
 
 - Compile website using sphinx ::
