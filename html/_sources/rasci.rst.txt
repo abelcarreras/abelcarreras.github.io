@@ -125,6 +125,34 @@ is ignored for this method). The second step uses the 4 highest energy diabatic 
 from the previous step and performs a diabatization using *method* **3** (DQ) with a *parameter* **1.0**
 (100% quadrupole).
 
+SOC Natural Transition Orbitals
+-------------------------------
+
+The Natural Transition Orbitals (NTO) calculation is requested using the following keywords: ::
+
+    STATE_ANALYSIS = True
+    GUI = 2
+
+These keywords will print the NTO’s in the *fchk* file with titles: ::
+
+    "Natural Transition Orbital occupancies”
+    "Natural Transition Orbital U coefficients”
+    "Natural Transition Orbital V coefficients”
+
+All NTO’s will be printed (one for each pair of states) in the same order as
+SOC's are printed in Q-Chem output in the *Interstate Transition Properties*
+section of RAS-CI method properties.
+
+Keep in mind that for some pairs of states when the Clebsh-Gordan coefficient  is 0
+and the SOC calculation is skipped showing the following message: ::
+
+    Skipping SOCs between states:   1   3
+
+for those particular pairs the NTO’s are not printed in the fchk file.
+
+The format of the NTO's is the same as for the Natural Orbitals (NO) so they can be
+visualized using any standard visualization software by changing the title names.
+
 Notes about diabatization in TDDFT method
 -----------------------------------------
 

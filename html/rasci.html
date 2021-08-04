@@ -154,6 +154,31 @@ is ignored for this method). The second step uses the 4 highest energy diabatic 
 from the previous step and performs a diabatization using <em>method</em> <strong>3</strong> (DQ) with a <em>parameter</em> <strong>1.0</strong>
 (100% quadrupole).</p>
 </div>
+<div class="section" id="soc-natural-transition-orbitals">
+<h2>SOC Natural Transition Orbitals<a class="headerlink" href="#soc-natural-transition-orbitals" title="Permalink to this headline">¶</a></h2>
+<p>The Natural Transition Orbitals (NTO) calculation is requested using the following keywords:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STATE_ANALYSIS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">GUI</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>These keywords will print the NTO’s in the <em>fchk</em> file with titles:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Natural Transition Orbital occupancies”</span>
+<span class="s2">&quot;Natural Transition Orbital U coefficients”</span>
+<span class="s2">&quot;Natural Transition Orbital V coefficients”</span>
+</pre></div>
+</div>
+<p>All NTO’s will be printed (one for each pair of states) in the same order as
+SOC’s are printed in Q-Chem output in the <em>Interstate Transition Properties</em>
+section of RAS-CI method properties.</p>
+<p>Keep in mind that for some pairs of states when the Clebsh-Gordan coefficient  is 0
+and the SOC calculation is skipped showing the following message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Skipping</span> <span class="n">SOCs</span> <span class="n">between</span> <span class="n">states</span><span class="p">:</span>   <span class="mi">1</span>   <span class="mi">3</span>
+</pre></div>
+</div>
+<p>for those particular pairs the NTO’s are not printed in the fchk file.</p>
+<p>The format of the NTO’s is the same as for the Natural Orbitals (NO) so they can be
+visualized using any standard visualization software by changing the title names.</p>
+</div>
 <div class="section" id="notes-about-diabatization-in-tddft-method">
 <h2>Notes about diabatization in TDDFT method<a class="headerlink" href="#notes-about-diabatization-in-tddft-method" title="Permalink to this headline">¶</a></h2>
 <p>Due to a possible bug in Q-Chem a change of behavior appeared in Qchem v5.x
