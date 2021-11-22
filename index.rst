@@ -19,6 +19,7 @@ Technical information and documentation
    rasci
    math
    qchem_internals
+   gromacs
    contribute
 
 
