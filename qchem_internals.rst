@@ -233,13 +233,6 @@ Calling angular momentum:
     ENDDO
 
 
-Links
------
-
-`libqints Q-Chem workshop  <https://www.youtube.com/watch?v=JYxipLZlWWU>`_
-
-
-
 Other
 -----
 
