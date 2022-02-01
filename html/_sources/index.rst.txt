@@ -21,6 +21,7 @@ Technical information and documentation
    qchem_internals
    gromacs
    contribute
+   logos
 
 
 Indices and tables
