@@ -11,13 +11,14 @@ Preliminar information
 
 **Available qchem compilations**
 
-* qchem_trunk: Current master version of qchem [openmp intel_compilers mkl boost]
-* qchem_group: Current in development version of qchem (includes new features developed in the group) [openmp intel_compilers mkl boost]
+* qchem_trunk: Current master version of Q-Chem [openmp intel_compilers mkl boost]
+* qchem_group: Current in development version of Q-Chem (includes new features developed in the group) [openmp intel_compilers mkl boost]
 
 Load custom modules
 -------------------
 
-The access to qchem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules. To do this you may modify the MODULEPATH environment variable as follows::
+The access to Q-Chem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules.
+To do this you may modify the MODULEPATH environment variable as follows::
 
     export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
 
@@ -33,7 +34,22 @@ or::
 
     module qchem_group
 
-*Note: QCSCRATCH environment variable defines the directory where the scratch files will be generated during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.*
+
+Define scratch dir
+------------------
+Q-Chem requires to define a scratch directory to store temporal files during execution.
+It is recommended to create this directory somewhere under your /scratch/user/ folder.
+In principle Q-chem temp files will be deleted after a successful run, however if you
+calculation ends with error some (maybe useful) data may remain in this folder. Take care
+to clean up this folder from time to time to avoid reaching the max storage quota for your user.
+
+To define your scratch directory in your submit script write the following line ::
+
+    export QCSCRATCH=/scratch/user/myscratchfolder        # set scratch folder for qchem
+
+*Note: QCSCRATCH environment variable defines the directory where the scratch files will be
+generated during qchem execution. If this variable is not defined it will be set
+to current directory but it is strongly recommended to define it for batch jobs.*
 
 Run interactive qchem
 ---------------------
@@ -48,102 +64,29 @@ For this purpose you should write a batch script.
 Batch job example
 -----------------
 
-All commands discussed previously can be gathered in a simple script to run in batch. This is a simple example::
+All commands discussed previously can be gathered in a simple script to run in batch.
+Check http://dipc.ehu.es/cc/computing_resources/ for more detailed technical info.
+This is a simple example::
 
-	#!/bin/bash
-
-	#PBS -q parallel       #  “parallel" o “qchem” depending on the queue you have access to
-	#PBS -l ncpus=8        # number of CPI
-    #PBS -l mem=4000mb     # maximum RAM assigned to calcuation
-	#PBS -l cput=80:00:00  # CPU time (WallTime * Ncpus) maximum running time (hh:mm:ss)
-	#PBS -N qchem_calc     # job name
-	#PBS -e error.log      # queue system error output file
-	#PBS -o output.log     # queue system standard output file
-
-	export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
-
-	module load qchem_group
-
-	cd $PBS_O_WORKDIR     # set workdir to submission directory 
-	qchem -nt 8 inputfile.inp  outputfile.out
-
-Batch job example 2
--------------------
-
-This is a more elaborated example showing how to retrieve additional data from qchem using **"-save"** flag
-in the qchem call. Also how to use previous qchem data (ex. converged electronic structure data) in new
-calculation (requires additional keywords in qchem input, check qchem manual for more info.) ::
 
     #!/bin/bash
+    #SBATCH --partition=long    # (chose according to your needs: regular, long, xlong, large, ..)
+    #SBATCH --job-name=jobname  # job name
+    #SBATCH --cpus-per-task=24  # number of CPU's to use
+    #SBATCH --mem=10gb          # RAM memory to use (this has to be coherent with Qchem input script)
+    #SBATCH --nodes=1           # run on a single node (for Q-Chem always 1)
+    #SBATCH --ntasks-per-node=1 # tasks per node (for Q-Chem always 1)
+    #SBATCH -e error.log        # queue system custom error output file (optional)
+    #SBATCH -o output.log       # queue system custom standard output file (optional)
 
-    #PBS -q qchem
-    #PBS -l ncpus=4
-    #PBS -l mem=4000mb
-    #PBS -l cput=800:00:00
-    #PBS -N test
-    #PBS -e error.log
-    #PBS -o output.log
+    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH  # load custom modules
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK                          # define OMP_NUM_THREADS variable
+    export QCSCRATCH=/scratch/user/myscratchfolder        # set scratch folder for qchem
 
-    NProc=4       # Should be tha same as "-l ncpus="
-    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+    module load qchem_group     # load q-qchem module (this can be either qchem_group or qchem_trunk)
 
-    #------------------------------------#
-    # QChem and job variables
-    #------------------------------------#
-    module load qchem_group   # load qchem module
-    export QCSCRATCH=.        # set scratch folder for qchem
+    qchem -nt 24 input_qchem.in output_qchem.out  # Run Q-chem (this has to be coherent with cpus-per-task)
 
-    #------------------------------------#
-    # Job set up
-    #------------------------------------#
-    folder=                 # path to the input file
-    name=                   # input file without .in extension
-    writetype=0             # 1: save additional data / 0: Do not save additional data
-    readtype=0              # 1: read data from previous calculation / 0: Do not read additional data
-    savename=name.in.save   # Path to the directory that contains previous calculation data (relative to workdir)
-    cleansrc=1              # Cleanup scratch dir after calculation
-
-    #------------------------------------#
-    # Set read and write folders
-    #------------------------------------#
-    cd $folder
-
-    mkdir -p $QCSCRATCH/qchem$$
-    if [ $readtype = 1 ]; then
-      cp $savename/* $QCSCRATCH/qchem$$/.
-      if [ $writetype = 1 ]; then
-         cd $folder
-         rm -r $savename
-      fi
-    fi
-
-    #------------------------------------#
-    # Run QChem
-    #------------------------------------#
-    if [ $writetype = 1 -o $readtype = 1 ]; then
-     qchem -save -nt $NProc $name.in $name.out qchem$$
-
-    else
-     qchem -nt $NProc $name.in $name.out
-    fi
-
-    #------------------------------------#
-    # Select what you want to save (comment/uncomment)
-    #------------------------------------#
-    if [ $writetype = 1 ]; then
-       mkdir $QCSCRATCH/$savename
-       mv $QCSCRATCH/qchem$$/53.0  $QCSCRATCH/$savename/.    # MO coeff
-       mv $QCSCRATCH/qchem$$/58.0  $QCSCRATCH/$savename/.    # Fock
-       mv $QCSCRATCH/qchem$$/99.0  $QCSCRATCH/$savename/.    # MO energies
-       # mv $QCSCRATCH/qchem$$/NTOs  $QCSCRATCH/$savename/.  # NTOs files
-       # mv $QCSCRATCH/qchem$$/plots $QCSCRATCH/$savename/.  # plot files
-       # mv $QCSCRATCH/qchem$$/*     $QCSCRATCH/$savename/.  # Everything
-       # mv $QCSCRATCH/$savename $folder/.
-    fi
-
-    #------------------------------------#
-    # Clean up
-    #------------------------------------#
-    if [$cleansrc = 1 ]; then
-       rm -r $QCSCRATCH/qchem$$
-    fi
+For some calculations you may want to use *-save* option in qchem. (https://manual.q-chem.com/5.0/sect-running.html)
+If you use this option remember that the generated data folder will be stored in the $QCSCRATCH folder you have defined
+(and not removed)
