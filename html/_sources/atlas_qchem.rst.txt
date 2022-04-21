@@ -72,7 +72,7 @@ This is a simple example::
     #!/bin/bash
     #SBATCH --partition=long    # (chose according to your needs: regular, long, xlong, large, ..)
     #SBATCH --job-name=jobname  # job name
-    #SBATCH --cpus-per-task=24  # number of CPU's to use
+    #SBATCH --cpus-per-task=8  # number of CPU's to use
     #SBATCH --mem=10gb          # RAM memory to use (this has to be coherent with Qchem input script)
     #SBATCH --nodes=1           # run on a single node (for Q-Chem always 1)
     #SBATCH --ntasks-per-node=1 # tasks per node (for Q-Chem always 1)
@@ -85,7 +85,7 @@ This is a simple example::
 
     module load qchem_group     # load q-qchem module (this can be either qchem_group or qchem_trunk)
 
-    qchem -nt 24 input_qchem.in output_qchem.out  # Run Q-chem (this has to be coherent with cpus-per-task)
+    qchem -nt 8 input_qchem.in output_qchem.out  # Run Q-chem (this has to be coherent with cpus-per-task)
 
 For some calculations you may want to use *-save* option in qchem. (https://manual.q-chem.com/5.0/sect-running.html)
 If you use this option remember that the generated data folder will be stored in the $QCSCRATCH folder you have defined

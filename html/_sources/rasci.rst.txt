@@ -33,6 +33,16 @@ example::
 	RAS_FRAG_ST      1        ! 0: Boys   1: Sequential
 	ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
 
+
+Fractional Orbital Density (FOD)
+--------------------------------
+
+Generate the fraction orbital density of a RAS-CI excited state.
+
+* *gui 2* : Request generation of *.fchk* file
+* *ras_natorb_state* i : Select *i* excited state for FOD calculation
+* *ras_fod*: Activate FOD (False: Deactivate(default), True: Activate)
+
 Spin polarization
 -----------------
 Perform spin polarization treatment for srDFT using the method described in: Coulsonm C. A. Fisher, I. Notes on the molecular Orbital Tratment of the Hydrogen Molecule. Philos. Mag. 1949, 40, 386-393. 
@@ -135,21 +145,11 @@ The Natural Transition Orbitals (NTO) calculation is requested using the followi
 
 These keywords will print the NTO’s in the *fchk* file with titles: ::
 
-    "Natural Transition Orbital occupancies”
-    "Natural Transition Orbital U coefficients”
-    "Natural Transition Orbital V coefficients”
+    "NTOs occupancies (x,y)”
+    "NTOs U coefficients (x,y)”
+    "NTOs V coefficients (x,y)”
 
-All NTO’s will be printed (one for each pair of states) in the same order as
-SOC's are printed in Q-Chem output in the *Interstate Transition Properties*
-section of RAS-CI method properties.
-
-Keep in mind that for some pairs of states when the Clebsh-Gordan coefficient  is 0
-and the SOC calculation is skipped showing the following message: ::
-
-    Skipping SOCs between states:   1   3
-
-for those particular pairs the NTO’s are not printed in the fchk file.
-
+Where x and y denote the two states involved in the transition.
 The format of the NTO's is the same as for the Natural Orbitals (NO) so they can be
 visualized using any standard visualization software by changing the title names.
 

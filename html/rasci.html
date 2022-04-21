@@ -70,6 +70,15 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
 </pre></div>
 </div>
 </div>
+<div class="section" id="fractional-orbital-density-fod">
+<h2>Fractional Orbital Density (FOD)<a class="headerlink" href="#fractional-orbital-density-fod" title="Permalink to this headline">¶</a></h2>
+<p>Generate the fraction orbital density of a RAS-CI excited state.</p>
+<ul class="simple">
+<li><p><em>gui 2</em> : Request generation of <em>.fchk</em> file</p></li>
+<li><p><em>ras_natorb_state</em> i : Select <em>i</em> excited state for FOD calculation</p></li>
+<li><p><em>ras_fod</em>: Activate FOD (False: Deactivate(default), True: Activate)</p></li>
+</ul>
+</div>
 <div class="section" id="spin-polarization">
 <h2>Spin polarization<a class="headerlink" href="#spin-polarization" title="Permalink to this headline">¶</a></h2>
 <p>Perform spin polarization treatment for srDFT using the method described in: Coulsonm C. A. Fisher, I. Notes on the molecular Orbital Tratment of the Hydrogen Molecule. Philos. Mag. 1949, 40, 386-393.</p>
@@ -162,21 +171,13 @@ from the previous step and performs a diabatization using <em>method</em> <stron
 </pre></div>
 </div>
 <p>These keywords will print the NTO’s in the <em>fchk</em> file with titles:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Natural Transition Orbital occupancies”</span>
-<span class="s2">&quot;Natural Transition Orbital U coefficients”</span>
-<span class="s2">&quot;Natural Transition Orbital V coefficients”</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;NTOs occupancies (x,y)”</span>
+<span class="s2">&quot;NTOs U coefficients (x,y)”</span>
+<span class="s2">&quot;NTOs V coefficients (x,y)”</span>
 </pre></div>
 </div>
-<p>All NTO’s will be printed (one for each pair of states) in the same order as
-SOC’s are printed in Q-Chem output in the <em>Interstate Transition Properties</em>
-section of RAS-CI method properties.</p>
-<p>Keep in mind that for some pairs of states when the Clebsh-Gordan coefficient  is 0
-and the SOC calculation is skipped showing the following message:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Skipping</span> <span class="n">SOCs</span> <span class="n">between</span> <span class="n">states</span><span class="p">:</span>   <span class="mi">1</span>   <span class="mi">3</span>
-</pre></div>
-</div>
-<p>for those particular pairs the NTO’s are not printed in the fchk file.</p>
-<p>The format of the NTO’s is the same as for the Natural Orbitals (NO) so they can be
+<p>Where x and y denote the two states involved in the transition.
+The format of the NTO’s is the same as for the Natural Orbitals (NO) so they can be
 visualized using any standard visualization software by changing the title names.</p>
 </div>
 <div class="section" id="notes-about-diabatization-in-tddft-method">
