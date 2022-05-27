@@ -144,6 +144,26 @@ is read only, so it is safer than *.begin()* if the data have only to be read fr
     FileMan(FM_WRITE,FILE_NAME,FM_DP,N,0,FM_BEG,data_array.begin());
     FileMan(FM_READ,FILE_NAME,FM_DP,N,0,FM_BEG,data_array.memptr);
 
+static memory check (Mega-Array)
+--------------------------------
+To obtain the amount of (static) memory available in mega-array use function: ::
+
+    available_mem = MegLen()
+
+this returns the memory in words. To transform to more human-friendly units use
+something like: ::
+
+    available_mem = float(MegLen())/(1024*128)
+
+to get the memory in megabytes. Also the total used memory can be obtained
+using the keyowrd: ::
+
+    total_mem = MegTot()
+    total_mem = float(MegTot())/(1024*128)
+
+and the total requested memory for the calculation is found in the REM variable: ::
+
+    rem_read(REM_MEM_TOTAL)
 
 
 Adding new DFT functionals
