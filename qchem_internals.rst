@@ -164,8 +164,9 @@ The total static memory of the mega-array in the same units can be obtained usin
     total_mem = MegTot()
     total_mem = float(MegTot())/(125*1000)
 
-which corresponds tot the requested static memory in the Q-Chem input contained in the REM variable
-REM_MEM_STATIC (in MB).
+which corresponds to the requested static memory in the Q-Chem input contained in the REM variable (in MB): ::
+
+    rem_read(REM_MEM_STATIC)
 
 The total requested memory (static + dynamic) for the calculation in MB is found in the REM variable: ::
 

@@ -196,8 +196,10 @@ is read only, so it is safer than <em>.begin()</em> if the data have only to be 
 <span class="n">total_mem</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">MegTot</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="mi">125</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>which corresponds tot the requested static memory in the Q-Chem input contained in the REM variable
-REM_MEM_STATIC (in MB).</p>
+<p>which corresponds to the requested static memory in the Q-Chem input contained in the REM variable (in MB):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rem_read</span><span class="p">(</span><span class="n">REM_MEM_STATIC</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>The total requested memory (static + dynamic) for the calculation in MB is found in the REM variable:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rem_read</span><span class="p">(</span><span class="n">REM_MEM_TOTAL</span><span class="p">)</span>
 </pre></div>
