@@ -150,16 +150,19 @@ To obtain the amount of (static) memory available in mega-array use function: ::
 
     available_mem = MegLen()
 
-this returns the memory in words. To transform to more human-friendly units use
-something like: ::
+this returns the memory in Qwords (blocks of 8 bytes). To transform to megabytes (MB)
+(like in Q-Chem the input) units you can use something like: ::
 
-    available_mem = float(MegLen())/(1024*128)
+    available_mem = float(MegLen())/(125*1000)
 
-to get the memory in megabytes. Also the total used memory can be obtained
-using the keyowrd: ::
+or to transform it to mebibytes (MiB) which is common in UNIX based systems use ::
+
+    available_mem = float(MegLen())/(128*1024)
+
+Also the total used memory in the same units can be obtained using the keyowrd: ::
 
     total_mem = MegTot()
-    total_mem = float(MegTot())/(1024*128)
+    total_mem = float(MegTot())/(125*1000)
 
 and the total requested memory for the calculation is found in the REM variable: ::
 

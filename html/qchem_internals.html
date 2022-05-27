@@ -182,15 +182,18 @@ is read only, so it is safer than <em>.begin()</em> if the data have only to be 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">available_mem</span> <span class="o">=</span> <span class="n">MegLen</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>this returns the memory in words. To transform to more human-friendly units use
-something like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">available_mem</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">MegLen</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">128</span><span class="p">)</span>
+<p>this returns the memory in Qwords (blocks of 8 bytes). To transform to megabytes (MB)
+(like in Q-Chem the input) units you can use something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">available_mem</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">MegLen</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="mi">125</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>to get the memory in megabytes. Also the total used memory can be obtained
-using the keyowrd:</p>
+<p>or to transform it to mebibytes (MiB) which is common in UNIX based systems use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">available_mem</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">MegLen</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="mi">1024</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Also the total used memory in the same units can be obtained using the keyowrd:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total_mem</span> <span class="o">=</span> <span class="n">MegTot</span><span class="p">()</span>
-<span class="n">total_mem</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">MegTot</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">128</span><span class="p">)</span>
+<span class="n">total_mem</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">MegTot</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="mi">125</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and the total requested memory for the calculation is found in the REM variable:</p>
