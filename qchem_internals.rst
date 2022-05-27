@@ -155,16 +155,19 @@ this returns the memory in Qwords (blocks of 8 bytes). To transform to megabytes
 
     available_mem = float(MegLen())/(125*1000)
 
-or to transform it to mebibytes (MiB) which is common in UNIX based systems use ::
+or alternatively to transform it to mebibytes (MiB) which is common in UNIX based systems use ::
 
     available_mem = float(MegLen())/(128*1024)
 
-Also the total used memory in the same units can be obtained using the keyowrd: ::
+The total static memory of the mega-array in the same units can be obtained using the keyword: ::
 
     total_mem = MegTot()
     total_mem = float(MegTot())/(125*1000)
 
-and the total requested memory for the calculation is found in the REM variable: ::
+which corresponds tot the requested static memory in the Q-Chem input contained in the REM variable
+REM_MEM_STATIC (in MB).
+
+The total requested memory (static + dynamic) for the calculation in MB is found in the REM variable: ::
 
     rem_read(REM_MEM_TOTAL)
 
