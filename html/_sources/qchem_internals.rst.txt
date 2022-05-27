@@ -144,8 +144,8 @@ is read only, so it is safer than *.begin()* if the data have only to be read fr
     FileMan(FM_WRITE,FILE_NAME,FM_DP,N,0,FM_BEG,data_array.begin());
     FileMan(FM_READ,FILE_NAME,FM_DP,N,0,FM_BEG,data_array.memptr);
 
-static memory check (Mega-Array)
---------------------------------
+Memory info inquisition
+-----------------------
 To obtain the amount of (static) memory available in mega-array use function: ::
 
     available_mem = MegLen()
