@@ -90,3 +90,7 @@ This is a simple example::
 For some calculations you may want to use *-save* option in qchem. (https://manual.q-chem.com/5.0/sect-running.html)
 If you use this option remember that the generated data folder will be stored in the $QCSCRATCH folder you have defined
 (and not removed)
+
+.. Note::
+    Warning! to run jobs on batch your data must be copied under the directory **/scratch/username**.
+    It is recommended to also run your jobs from the same directory.

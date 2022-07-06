@@ -128,6 +128,11 @@ qchem -nt 8 input_qchem.in output_qchem.out  # Run Q-chem (this has to be cohere
 <p>For some calculations you may want to use <em>-save</em> option in qchem. (<a class="reference external" href="https://manual.q-chem.com/5.0/sect-running.html">https://manual.q-chem.com/5.0/sect-running.html</a>)
 If you use this option remember that the generated data folder will be stored in the $QCSCRATCH folder you have defined
 (and not removed)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Warning! to run jobs on batch your data must be copied under the directory <strong>/scratch/username</strong>.
+It is recommended to also run your jobs from the same directory.</p>
+</div>
 </div>
 </div>
 
