@@ -72,7 +72,7 @@ This is a simple example::
     #!/bin/bash
     #SBATCH --partition=long    # (chose according to your needs: regular, long, xlong, large, ..)
     #SBATCH --job-name=jobname  # job name
-    #SBATCH --cpus-per-task=8  # number of CPU's to use
+    #SBATCH --cpus-per-task=8   # number of CPU's to use
     #SBATCH --mem=10gb          # RAM memory to use (this has to be coherent with Qchem input script)
     #SBATCH --nodes=1           # run on a single node (for Q-Chem always 1)
     #SBATCH --ntasks-per-node=1 # tasks per node (for Q-Chem always 1)
@@ -80,12 +80,12 @@ This is a simple example::
     #SBATCH -o output.log       # queue system custom standard output file (optional)
 
     export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH  # load custom modules
-    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK                          # define OMP_NUM_THREADS variable
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK                          # define OMP_NUM_THREADS
     export QCSCRATCH=/scratch/user/myscratchfolder        # set scratch folder for qchem
 
     module load qchem_group     # load q-qchem module (this can be either qchem_group or qchem_trunk)
 
-    qchem -nt 8 input_qchem.in output_qchem.out  # Run Q-chem (this has to be coherent with cpus-per-task)
+    qchem -nt ${SLURM_CPUS_PER_TASK} input_qchem.in output_qchem.out  # Run Q-chem
 
 For some calculations you may want to use *-save* option in qchem. (https://manual.q-chem.com/5.0/sect-running.html)
 If you use this option remember that the generated data folder will be stored in the $QCSCRATCH folder you have defined
@@ -94,3 +94,40 @@ If you use this option remember that the generated data folder will be stored in
 .. Note::
     Warning! to run jobs on batch your data must be copied under the directory **/scratch/username**.
     It is recommended to also run your jobs from the same directory.
+
+Local scratch
+-------------
+According to the documentation in ATLAS cluster users can make use of local storage of the calculation nodes to
+put (for example) Q-Chem scratch files. Using local scratch can improve the performance of Q-Chem calculations
+up to 4 times. Local scratch is mounted for all nodes in /lscratch directory. This directory has w/r permission
+for all users. **Local scratch should be used with care since the users are responsible of cleaning the remaining
+data after the calculation is finished.** This cleaning can be written in the submitting script. Here an example: ::
+
+    #!/bin/bash
+    #SBATCH --partition=regular
+    #SBATCH --job-name=complete
+    #SBATCH --cpus-per-task=4
+    #SBATCH --mem=16gb
+    #SBATCH --nodes=1
+    #SBATCH --ntasks-per-node=1
+
+    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+    # load Q-Chem module
+    module load qchem_group
+
+    # Define Local scratch
+    mkdir -p /lscratch/${USER}_${SLURM_JOB_ID}/
+    export QCSCRATCH=/lscratch/${USER}_${SLURM_JOB_ID}
+
+    # run Q-Chem
+    qchem -nt ${SLURM_CPUS_PER_TASK} input_qchem.in output_qchem.out
+
+    # Clean local scratch
+    rm -r /lscratch/${USER}_${SLURM_JOB_ID}/
+
+.. Note::
+    Keep in mind that if the calculation crashes or it is cancelled by the user before finishing the cleaning part of the script
+    will not be executed. In this case the user should manually enter the node (by ssh *nodename*) and remove the scratch
+    data.
