@@ -163,9 +163,9 @@ is ignored for this method). The second step uses the 4 highest energy diabatic 
 from the previous step and performs a diabatization using <em>method</em> <strong>3</strong> (DQ) with a <em>parameter</em> <strong>1.0</strong>
 (100% quadrupole).</p>
 </div>
-<div class="section" id="soc-natural-transition-orbitals">
-<h2>SOC Natural Transition Orbitals<a class="headerlink" href="#soc-natural-transition-orbitals" title="Permalink to this headline">¶</a></h2>
-<p>The Natural Transition Orbitals (NTO) calculation is requested using the following keywords:</p>
+<div class="section" id="soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos">
+<h2>SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)<a class="headerlink" href="#soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos" title="Permalink to this headline">¶</a></h2>
+<p>The calculation of Natural Transition Orbitals (NTO) is requested using the following keywords:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STATE_ANALYSIS</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">GUI</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
@@ -179,6 +179,62 @@ from the previous step and performs a diabatization using <em>method</em> <stron
 <p>Where x and y denote the two states involved in the transition.
 The format of the NTO’s is the same as for the Natural Orbitals (NO) so they can be
 visualized using any standard visualization software by changing the title names.</p>
+</div>
+<div class="section" id="wave-function-analysis-of-ras-ci-states">
+<h2>Wave function analysis of RAS-CI states<a class="headerlink" href="#wave-function-analysis-of-ras-ci-states" title="Permalink to this headline">¶</a></h2>
+<p>Analysis of RAS-CI states is requested using <strong>STATE_ANALYSIS</strong> keyword. This analysis include
+a calculation of the Natural Orbitals (NO), Transition Natural Orbitals (NTO), Spinless triplet
+density matrix NTOs (SOC-NTO), Fractional Occupation Density (FOD), Electronic Density and Transition Density.
+These properties can be plotted in Cube format or Molden format for each RAS-CI state,
+this is controlled by <strong>PLOTS</strong> keyword.</p>
+<p>Molden format (NO, NTO and SOC-NTO only):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>STATE_ANALYSIS = True
+PLOTS = 0     ! Note: This can be omitted, default is 0
+NTO_PAIRS = 2 ! Note: This can be omitted, default is 2
+</pre></div>
+</div>
+<p>Cube format</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>STATE_ANALYSIS = True
+NTO_PAIRS = 2 ! Note: This can be omitted, default is 2
+PLOTS = 1
+
+$plots
+   grid_points                    50 50 50
+   grid_range  (-8,8) (-8,8) (-8,8)
+$end
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>PLOTS = 1</strong> requires <strong>$plots</strong> section to be written in Q-Chem input using new plot format.
+(<a class="reference external" href="https://manual.q-chem.com/5.1/sect-plots.html">https://manual.q-chem.com/5.1/sect-plots.html</a>). <strong>grid_range</strong> can be omitted to use automatic
+range adjusted to the molecular size.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The number of NTO pairs written is controlled by <strong>NTO_PAIRS</strong> keyword. If not specified the value is set to 2.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>To plot data in both Cube and Molden files <strong>GUI</strong> should be set to 0. If not a <strong>fchk</strong> will be generated
+instead. At this moment is not possible to plot Molden/Cubes/fchk at the same time.</p>
+</div>
+<p>Using <strong>STATE_ANALYSIS = 2</strong>  will compute and plot interstate properties for all pairs of states.
+This is required to compute and plot SOC-NTO.</p>
+<p>Molden format (NO and NTO only):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>STATE_ANALYSIS = 2
+PLOTS = 0  ! Note: This can be omitted, default is 0
+</pre></div>
+</div>
+<p>Cube format</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>STATE_ANALYSIS = 2
+PLOTS = 1
+
+$plots
+   grid_points                    50 50 50
+$end
+</pre></div>
+</div>
 </div>
 <div class="section" id="notes-about-diabatization-in-tddft-method">
 <h2>Notes about diabatization in TDDFT method<a class="headerlink" href="#notes-about-diabatization-in-tddft-method" title="Permalink to this headline">¶</a></h2>

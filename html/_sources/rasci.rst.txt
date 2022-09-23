@@ -135,10 +135,10 @@ is ignored for this method). The second step uses the 4 highest energy diabatic 
 from the previous step and performs a diabatization using *method* **3** (DQ) with a *parameter* **1.0**
 (100% quadrupole).
 
-SOC Natural Transition Orbitals
--------------------------------
+SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)
+----------------------------------------------------------------------
 
-The Natural Transition Orbitals (NTO) calculation is requested using the following keywords: ::
+The calculation of Natural Transition Orbitals (NTO) is requested using the following keywords: ::
 
     STATE_ANALYSIS = True
     GUI = 2
@@ -152,6 +152,64 @@ These keywords will print the NTO’s in the *fchk* file with titles: ::
 Where x and y denote the two states involved in the transition.
 The format of the NTO's is the same as for the Natural Orbitals (NO) so they can be
 visualized using any standard visualization software by changing the title names.
+
+
+Wave function analysis of RAS-CI states
+---------------------------------------
+
+Analysis of RAS-CI states is requested using **STATE_ANALYSIS** keyword. This analysis include
+a calculation of the Natural Orbitals (NO), Transition Natural Orbitals (NTO), Spinless triplet
+density matrix NTOs (SOC-NTO), Fractional Occupation Density (FOD), Electronic Density and Transition Density.
+These properties can be plotted in Cube format or Molden format for each RAS-CI state,
+this is controlled by **PLOTS** keyword.
+
+Molden format (NO, NTO and SOC-NTO only)::
+
+    STATE_ANALYSIS = True
+    PLOTS = 0     ! Note: This can be omitted, default is 0
+    NTO_PAIRS = 2 ! Note: This can be omitted, default is 2
+
+Cube format ::
+
+    STATE_ANALYSIS = True
+    NTO_PAIRS = 2 ! Note: This can be omitted, default is 2
+    PLOTS = 1
+
+    $plots
+       grid_points                    50 50 50
+       grid_range  (-8,8) (-8,8) (-8,8)
+    $end
+
+.. note::
+   **PLOTS = 1** requires **$plots** section to be written in Q-Chem input using new plot format.
+   (https://manual.q-chem.com/5.1/sect-plots.html). **grid_range** can be omitted to use automatic
+   range adjusted to the molecular size.
+
+.. warning::
+    The number of NTO pairs written is controlled by **NTO_PAIRS** keyword. If not specified the value is set to 2.
+
+.. warning::
+    To plot data in both Cube and Molden files **GUI** should be set to 0. If not a **fchk** will be generated
+    instead. At this moment is not possible to plot Molden/Cubes/fchk at the same time.
+
+Using **STATE_ANALYSIS = 2**  will compute and plot interstate properties for all pairs of states.
+This is required to compute and plot SOC-NTO.
+
+Molden format (NO and NTO only)::
+
+    STATE_ANALYSIS = 2
+    PLOTS = 0  ! Note: This can be omitted, default is 0
+
+
+Cube format ::
+
+    STATE_ANALYSIS = 2
+    PLOTS = 1
+
+    $plots
+       grid_points                    50 50 50
+    $end
+
 
 Notes about diabatization in TDDFT method
 -----------------------------------------
