@@ -168,12 +168,14 @@ Molden format (NO, NTO and SOC-NTO only)::
     STATE_ANALYSIS = True
     PLOTS = 0     ! Note: This can be omitted, default is 0
     NTO_PAIRS = 2 ! Note: This can be omitted, default is 2
+    GUI 0
 
 Cube format ::
 
     STATE_ANALYSIS = True
     NTO_PAIRS = 2 ! Note: This can be omitted, default is 2
     PLOTS = 1
+    GUI 0
 
     $plots
        grid_points                    50 50 50
@@ -199,12 +201,14 @@ Molden format (NO and NTO only)::
 
     STATE_ANALYSIS = 2
     PLOTS = 0  ! Note: This can be omitted, default is 0
+    GUI 0
 
 
 Cube format ::
 
     STATE_ANALYSIS = 2
     PLOTS = 1
+    GUI 0
 
     $plots
        grid_points                    50 50 50
