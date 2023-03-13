@@ -20,6 +20,7 @@ Technical information and documentation
    math
    qchem_internals
    gromacs
+   other_stuff
    contribute
    logos
 
