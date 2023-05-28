@@ -1,19 +1,19 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>How to write in reStructuredText &#8212; wiki  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,10 +42,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="how-to-write-in-restructuredtext">
-<h1>How to write in reStructuredText<a class="headerlink" href="#how-to-write-in-restructuredtext" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="math-equations">
-<h2>Math equations<a class="headerlink" href="#math-equations" title="Permalink to this headline">¶</a></h2>
+  <section id="how-to-write-in-restructuredtext">
+<h1>How to write in reStructuredText<a class="headerlink" href="#how-to-write-in-restructuredtext" title="Permalink to this heading">¶</a></h1>
+<section id="math-equations">
+<h2>Math equations<a class="headerlink" href="#math-equations" title="Permalink to this heading">¶</a></h2>
 <p>This is a text with the equation <span class="math notranslate nohighlight">\(3 · 3^2 + \Omega_2\)</span> in the middle.
 Just start with “(:)math(:)” clausule and write the equation in LateX format between “`”.</p>
 <p>This another text with an equation in the next paragraph.</p>
@@ -57,28 +57,30 @@ Just start with “(:)math(:)” clausule and write the equation in LateX format
 <p>The equation get a number and you can it cite as <a class="reference internal" href="#equation-euler">(1)</a>, and continue writting. Also you get an atomatic link to the equation.</p>
 <p>read the docs for for information:</p>
 <p><a class="reference external" href="http://www.sphinx-doc.org/es/stable/ext/math.html">http://www.sphinx-doc.org/es/stable/ext/math.html</a></p>
-</div>
-<div class="section" id="include-files">
-<h2>Include files<a class="headerlink" href="#include-files" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="include-files">
+<h2>Include files<a class="headerlink" href="#include-files" title="Permalink to this heading">¶</a></h2>
 <p>To include the content of <em>file1</em>.rst into <em>file0</em>.rst you can add the following
 line in <em>file0</em>.rst:</p>
 <p>“.. include:: file1.rst”</p>
-</div>
-<div class="section" id="cites">
-<h2>Cites<a class="headerlink" href="#cites" title="Permalink to this headline">¶</a></h2>
-<p>It is also possible to write simple cites as this one <a class="footnote-reference brackets" href="#id3" id="id1">1</a> or this other <a class="footnote-reference brackets" href="#id4" id="id2">2</a>:
+</section>
+<section id="cites">
+<h2>Cites<a class="headerlink" href="#cites" title="Permalink to this heading">¶</a></h2>
+<p>It is also possible to write simple cites as this one <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> or this other <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:
 This makes a link to the reference in the botom.</p>
 <p>Just write the citation list wherever you want</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Book or article reference, URL or whatever.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Other Book or article reference.</p>
-</dd>
-</dl>
-</div>
-</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Book or article reference, URL or whatever.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Other Book or article reference.</p>
+</aside>
+</aside>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -87,22 +89,26 @@ This makes a link to the reference in the botom.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="rasci.html"
-                        title="previous chapter">On development features</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="qchem_internals.html"
-                        title="next chapter">Development Q-Chem</a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="rasci.html"
+                          title="previous chapter">On development features</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="qchem_internals.html"
+                          title="next chapter">Development Q-Chem</a></p>
+  </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -125,7 +131,7 @@ This makes a link to the reference in the botom.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
     </div>
   </body>
 </html>

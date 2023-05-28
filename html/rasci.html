@@ -1,19 +1,18 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>On development features &#8212; wiki  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,20 +41,20 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="on-development-features">
-<h1>On development features<a class="headerlink" href="#on-development-features" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="ras-ci-implementation-scheme">
-<h2>RAS-CI implementation scheme<a class="headerlink" href="#ras-ci-implementation-scheme" title="Permalink to this headline">¶</a></h2>
+  <section id="on-development-features">
+<h1>On development features<a class="headerlink" href="#on-development-features" title="Permalink to this heading">¶</a></h1>
+<section id="ras-ci-implementation-scheme">
+<h2>RAS-CI implementation scheme<a class="headerlink" href="#ras-ci-implementation-scheme" title="Permalink to this heading">¶</a></h2>
 <p>Fortran functions only</p>
 <a class="reference external image-reference" href="../images/rasci_scheme.pdf"><img alt="_images/rasci_scheme.pdf" class="align-center" src="_images/rasci_scheme.pdf" /></a>
-</div>
-<div class="section" id="ras-ci-contraction-scheme">
-<h2>RAS-CI Contraction scheme<a class="headerlink" href="#ras-ci-contraction-scheme" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ras-ci-contraction-scheme">
+<h2>RAS-CI Contraction scheme<a class="headerlink" href="#ras-ci-contraction-scheme" title="Permalink to this heading">¶</a></h2>
 <a class="reference external image-reference" href="../images/rasci_contract_even.pdf"><img alt="_images/rasci_contract_even.pdf" src="_images/rasci_contract_even.pdf" /></a>
 <a class="reference external image-reference" href="../images/rasci_contract_odd.pdf"><img alt="_images/rasci_contract_odd.pdf" src="_images/rasci_contract_odd.pdf" /></a>
-</div>
-<div class="section" id="fragment-localization">
-<h2>Fragment localization<a class="headerlink" href="#fragment-localization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fragment-localization">
+<h2>Fragment localization<a class="headerlink" href="#fragment-localization" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><em>ras_nfrag</em>: Number of fragments</p></li>
 <li><p><em>ras_nfrag_atoms</em>: Number of atoms in each fragment (atoms should be correlative in input file)</p></li>
@@ -69,25 +68,25 @@ RAS_FRAG_ST      1        ! 0: Boys   1: Sequential
 ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
 </pre></div>
 </div>
-</div>
-<div class="section" id="fractional-orbital-density-fod">
-<h2>Fractional Orbital Density (FOD)<a class="headerlink" href="#fractional-orbital-density-fod" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fractional-orbital-density-fod">
+<h2>Fractional Orbital Density (FOD)<a class="headerlink" href="#fractional-orbital-density-fod" title="Permalink to this heading">¶</a></h2>
 <p>Generate the fraction orbital density of a RAS-CI excited state.</p>
 <ul class="simple">
 <li><p><em>gui 2</em> : Request generation of <em>.fchk</em> file</p></li>
 <li><p><em>ras_natorb_state</em> i : Select <em>i</em> excited state for FOD calculation</p></li>
 <li><p><em>ras_fod</em>: Activate FOD (False: Deactivate(default), True: Activate)</p></li>
 </ul>
-</div>
-<div class="section" id="spin-polarization">
-<h2>Spin polarization<a class="headerlink" href="#spin-polarization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="spin-polarization">
+<h2>Spin polarization<a class="headerlink" href="#spin-polarization" title="Permalink to this heading">¶</a></h2>
 <p>Perform spin polarization treatment for srDFT using the method described in: Coulsonm C. A. Fisher, I. Notes on the molecular Orbital Tratment of the Hydrogen Molecule. Philos. Mag. 1949, 40, 386-393.</p>
 <ul class="simple">
 <li><p><em>ras_srdft_spinpol</em>: Activate spin polarization (False: Deactivate(default), True: Activate)</p></li>
 </ul>
-</div>
-<div class="section" id="sequential-diabatization">
-<h2>Sequential Diabatization<a class="headerlink" href="#sequential-diabatization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="sequential-diabatization">
+<h2>Sequential Diabatization<a class="headerlink" href="#sequential-diabatization" title="Permalink to this heading">¶</a></h2>
 <p>To activate the  diabatization analysis of excited states in ras-ci method it is necessary to define
 a section block and 3 <strong>REM</strong> keywords in the qchem input. The section block defines the excited states
 number to be included in the diabatization (by increasing order). This is equivalent to the one used
@@ -162,9 +161,9 @@ in the <strong>$localized_diabatization</strong> block (1-7) using <em>method</e
 is ignored for this method). The second step uses the 4 highest energy diabatic states (4-7) obtained
 from the previous step and performs a diabatization using <em>method</em> <strong>3</strong> (DQ) with a <em>parameter</em> <strong>1.0</strong>
 (100% quadrupole).</p>
-</div>
-<div class="section" id="soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos">
-<h2>SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)<a class="headerlink" href="#soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos">
+<h2>SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)<a class="headerlink" href="#soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos" title="Permalink to this heading">¶</a></h2>
 <p>The calculation of Natural Transition Orbitals (NTO) is requested using the following keywords:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STATE_ANALYSIS</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">GUI</span> <span class="o">=</span> <span class="mi">2</span>
@@ -179,9 +178,9 @@ from the previous step and performs a diabatization using <em>method</em> <stron
 <p>Where x and y denote the two states involved in the transition.
 The format of the NTO’s is the same as for the Natural Orbitals (NO) so they can be
 visualized using any standard visualization software by changing the title names.</p>
-</div>
-<div class="section" id="wave-function-analysis-of-ras-ci-states">
-<h2>Wave function analysis of RAS-CI states<a class="headerlink" href="#wave-function-analysis-of-ras-ci-states" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="wave-function-analysis-of-ras-ci-states">
+<h2>Wave function analysis of RAS-CI states<a class="headerlink" href="#wave-function-analysis-of-ras-ci-states" title="Permalink to this heading">¶</a></h2>
 <p>Analysis of RAS-CI states is requested using <strong>STATE_ANALYSIS</strong> keyword. This analysis include
 a calculation of the Natural Orbitals (NO), Transition Natural Orbitals (NTO), Spinless triplet
 density matrix NTOs (SOC-NTO), Fractional Occupation Density (FOD), Electronic Density and Transition Density.
@@ -239,9 +238,9 @@ $plots
 $end
 </pre></div>
 </div>
-</div>
-<div class="section" id="notes-about-diabatization-in-tddft-method">
-<h2>Notes about diabatization in TDDFT method<a class="headerlink" href="#notes-about-diabatization-in-tddft-method" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="notes-about-diabatization-in-tddft-method">
+<h2>Notes about diabatization in TDDFT method<a class="headerlink" href="#notes-about-diabatization-in-tddft-method" title="Permalink to this heading">¶</a></h2>
 <p>Due to a possible bug in Q-Chem a change of behavior appeared in Qchem v5.x
 respect to Mulliken analysis of diabatic states. Now in addition to <em>cis_ampl_anal</em> the keyword:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAMD_NSURFACES</span> <span class="mi">0</span>
@@ -288,8 +287,8 @@ On the next line, list which excited adiabatic states we want to mix.
 $end
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -298,22 +297,26 @@ $end
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="avogadro.html"
-                        title="previous chapter">Custom version of Avogadro visualization software</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="math.html"
-                        title="next chapter">How to write in reStructuredText</a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="avogadro.html"
+                          title="previous chapter">Custom version of Avogadro visualization software</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="math.html"
+                          title="next chapter">How to write in reStructuredText</a></p>
+  </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -336,7 +339,7 @@ $end
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
     </div>
   </body>
 </html>

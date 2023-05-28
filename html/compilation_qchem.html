@@ -1,19 +1,18 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Qchem compilation notes &#8212; wiki  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,28 +41,32 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="qchem-compilation-notes">
-<h1>Qchem compilation notes<a class="headerlink" href="#qchem-compilation-notes" title="Permalink to this headline">¶</a></h1>
+  <section id="qchem-compilation-notes">
+<h1>Qchem compilation notes<a class="headerlink" href="#qchem-compilation-notes" title="Permalink to this heading">¶</a></h1>
 <p>To compile Q-Chem in atlas using intel compilers the following modules are necessary:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ATLAS - FDR</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">CMake</span><span class="o">/</span><span class="mf">3.9</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">intel</span><span class="o">-</span><span class="mi">2017</span><span class="n">a</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">Boost</span><span class="o">/.</span><span class="mf">1.64</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">intel</span><span class="o">-</span><span class="mi">2017</span><span class="n">a</span>
-
-<span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">easybuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.3</span><span class="o">.</span><span class="mi">1611</span><span class="o">/</span><span class="n">Haswell</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2017.3</span><span class="o">.</span><span class="mi">196</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2017</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Boost</span><span class="o">/</span><span class="mf">1.71.0</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">imkl</span><span class="o">/</span><span class="mf">2019.5.281</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">iccifort</span><span class="o">/</span><span class="mf">2019.5.281</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">CMake</span><span class="o">/</span><span class="mf">3.15.3</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">8.3.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">HDF5</span><span class="o">/</span><span class="mf">1.10.5</span><span class="o">-</span><span class="n">intel</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span><span class="o">-</span><span class="n">serial</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Python</span><span class="o">/</span><span class="mf">3.7.4</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">8.3.0</span>
 
 <span class="c1"># ATLAS - EDR</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">Boost</span><span class="o">/</span><span class="mf">1.71</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">imkl</span><span class="o">/</span><span class="mf">2019.5</span><span class="o">.</span><span class="mi">281</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">iccifort</span><span class="o">/</span><span class="mf">2019.5</span><span class="o">.</span><span class="mi">281</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">CMake</span><span class="o">/</span><span class="mf">3.15</span><span class="o">.</span><span class="mi">3</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">8.3</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Boost</span><span class="o">/</span><span class="mf">1.71.0</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">imkl</span><span class="o">/</span><span class="mf">2019.5.281</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">iccifort</span><span class="o">/</span><span class="mf">2019.5.281</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">CMake</span><span class="o">/</span><span class="mf">.3.15.3</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">8.3.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">HDF5</span><span class="o">/</span><span class="mf">1.10.5</span><span class="o">-</span><span class="n">intel</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span><span class="o">-</span><span class="n">serial</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Python</span><span class="o">/</span><span class="mf">3.7.6</span><span class="o">-</span><span class="n">Anaconda3</span><span class="o">-</span><span class="mf">2020.02</span>
 </pre></div>
 </div>
 <p>To use MKL library the following line should be executed in order to load the proper environment</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ATLAS - FDR</span>
-<span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">easybuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.3</span><span class="o">.</span><span class="mi">1611</span><span class="o">/</span><span class="n">Haswell</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2017.3</span><span class="o">.</span><span class="mi">196</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2017</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">easybuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.3.1611</span><span class="o">/</span><span class="n">Haswell</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2019.5.281</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
 
 <span class="c1"># ATLAS - EDR</span>
-<span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">EasyBuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.5</span><span class="o">.</span><span class="mi">1804</span><span class="o">/</span><span class="n">Skylake</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2018.3</span><span class="o">.</span><span class="mi">222</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2018</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">scicomp</span><span class="o">/</span><span class="n">EasyBuild</span><span class="o">/</span><span class="n">CentOS</span><span class="o">/</span><span class="mf">7.4.1708</span><span class="o">/</span><span class="n">Skylake</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">imkl</span><span class="o">/</span><span class="mf">2019.5.281</span><span class="o">-</span><span class="n">iimpi</span><span class="o">-</span><span class="mi">2019</span><span class="n">b</span><span class="o">/</span><span class="n">mkl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mklvars</span><span class="o">.</span><span class="n">sh</span> <span class="n">intel64</span>
 </pre></div>
 </div>
 <p>To compile Q-Chem in ATLAS cluster in DIPC using MKL it is necessary to modify FinMKL.cmake placed in cmake directory in
@@ -103,8 +106,15 @@ fi
 <p>The amount of RAM memory by default in ATLAS queue system is insufficient to compile Q-Chem, at least 16GB should
 be explicitly specified!!</p>
 </div>
-<div class="section" id="mac-compilation">
-<h2>MAC compilation<a class="headerlink" href="#mac-compilation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The locale variable may produce some issues. If that is the case define:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LC_ALL</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+<section id="mac-compilation">
+<h2>MAC compilation<a class="headerlink" href="#mac-compilation" title="Permalink to this heading">¶</a></h2>
 <p>Compilation in MAC using Intel Compiler 19.x and MKL has some issues finding iomp5 library. A temporary
 workaround is to manually edit <em>FindMKL.cmake</em> file by adding</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">INTEL_IOMP5_PATH</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">compilers_and_libraries_2020</span><span class="o">/</span><span class="n">mac</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libiomp5</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
@@ -114,27 +124,26 @@ workaround is to manually edit <em>FindMKL.cmake</em> file by adding</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>find_library(INTEL_IOMP5_PATH iomp5 PATHS ENV ${LD_LIBRARY_PATH_NAME})
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-script">
-<h2>Example script<a class="headerlink" href="#example-script" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-script">
+<h2>Example script<a class="headerlink" href="#example-script" title="Permalink to this heading">¶</a></h2>
 <p>ATLAS - FDR</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
-#cores=8
-#wallt=5
-#cput=$(($cores * $wallt))
+#SBATCH --partition=regular
+#SBATCH --job-name=comp_G_fdr_qchem
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=16gb
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
 
-#PBS -q parallel
-#PBS -l ncpus=8
-#PBS -l cput=120:00:00
-#PBS -l mem=16gb
-#PBS -N comp_qchem
-#PBS -e error.log
-#PBS -o output.log
+module load Boost/1.71.0-iimpi-2019b
+module load imkl/2019.5.281-iimpi-2019b
+module load iccifort/2019.5.281
+module load CMake/3.15.3-GCCcore-8.3.0
+module load HDF5/1.10.5-intel-2019b-serial
+module load Python/3.7.4-GCCcore-8.3.0
 
-module load CMake/3.9.1-intel-2017a
-module load Boost/.1.64.0-intel-2017a
-
-source /scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2017.3.196-iimpi-2017b/mkl/bin/mklvars.sh intel64
+source /scratch/scicomp/easybuild/CentOS/7.3.1611/Haswell/software/imkl/2019.5.281-iimpi-2019b/mkl/bin/mklvars.sh intel64
 
 export QC=/scratch/abel/SOFTWARE/qchem/
 
@@ -159,11 +168,13 @@ make install &gt; install.log
 module load Boost/1.71.0-iimpi-2019b
 module load imkl/2019.5.281-iimpi-2019b
 module load iccifort/2019.5.281
-module load CMake/3.15.3-GCCcore-8.3.0
+module load CMake/.3.15.3-GCCcore-8.3.0
+module load HDF5/1.10.5-intel-2019b-serial
+module load Python/3.7.6-Anaconda3-2020.02
 
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
-source /scicomp/EasyBuild/CentOS/7.5.1804/Skylake/software/imkl/2018.3.222-iimpi-2018b/mkl/bin/mklvars.sh intel64
+source /scicomp/EasyBuild/CentOS/7.4.1708/Skylake/software/imkl/2019.5.281-iimpi-2019b/mkl/bin/mklvars.sh intel64
 
 export QC=/scratch/abel/SOFTWARE/qchem/
 
@@ -175,8 +186,8 @@ make -j 8  &gt; compile.log 2&gt; compile.err
 make install &gt; install.log
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -185,22 +196,26 @@ make install &gt; install.log
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="svn_qchem.html"
-                        title="previous chapter">SVN working notes</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="atlas_qchem.html"
-                        title="next chapter">How to use qchem in ATLAS cluster (DIPC)</a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="svn_qchem.html"
+                          title="previous chapter">SVN working notes</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="atlas_qchem.html"
+                          title="next chapter">How to use qchem in ATLAS cluster (DIPC)</a></p>
+  </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -223,7 +238,7 @@ make install &gt; install.log
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
     </div>
   </body>
 </html>

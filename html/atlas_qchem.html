@@ -1,19 +1,18 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>How to use qchem in ATLAS cluster (DIPC) &#8212; wiki  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,10 +41,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="how-to-use-qchem-in-atlas-cluster-dipc">
-<h1>How to use qchem in ATLAS cluster (DIPC)<a class="headerlink" href="#how-to-use-qchem-in-atlas-cluster-dipc" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="preliminar-information">
-<h2>Preliminar information<a class="headerlink" href="#preliminar-information" title="Permalink to this headline">¶</a></h2>
+  <section id="how-to-use-qchem-in-atlas-cluster-dipc">
+<h1>How to use qchem in ATLAS cluster (DIPC)<a class="headerlink" href="#how-to-use-qchem-in-atlas-cluster-dipc" title="Permalink to this heading">¶</a></h1>
+<section id="preliminar-information">
+<h2>Preliminar information<a class="headerlink" href="#preliminar-information" title="Permalink to this heading">¶</a></h2>
 <p><strong>Requirements to acces to qchem</strong></p>
 <ul class="simple">
 <li><p>Have an atlas account (atlas.sw.ehu.es)</p></li>
@@ -56,9 +55,9 @@
 <li><p>qchem_trunk: Current master version of Q-Chem [openmp intel_compilers mkl boost]</p></li>
 <li><p>qchem_group: Current in development version of Q-Chem (includes new features developed in the group) [openmp intel_compilers mkl boost]</p></li>
 </ul>
-</div>
-<div class="section" id="load-custom-modules">
-<h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="load-custom-modules">
+<h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this heading">¶</a></h2>
 <p>The access to Q-Chem you should be able to load custom modules located in /scratch/abel/SOFTWARE/privatemodules.
 To do this you may modify the MODULEPATH environment variable as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules:$MODULEPATH
@@ -76,9 +75,9 @@ To do this you may modify the MODULEPATH environment variable as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">qchem_group</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="define-scratch-dir">
-<h2>Define scratch dir<a class="headerlink" href="#define-scratch-dir" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="define-scratch-dir">
+<h2>Define scratch dir<a class="headerlink" href="#define-scratch-dir" title="Permalink to this heading">¶</a></h2>
 <p>Q-Chem requires to define a scratch directory to store temporal files during execution.
 It is recommended to create this directory somewhere under your /scratch/user/ folder.
 In principle Q-chem temp files will be deleted after a successful run, however if you
@@ -91,18 +90,18 @@ to clean up this folder from time to time to avoid reaching the max storage quot
 <p><em>Note: QCSCRATCH environment variable defines the directory where the scratch files will be
 generated during qchem execution. If this variable is not defined it will be set
 to current directory but it is strongly recommended to define it for batch jobs.</em></p>
-</div>
-<div class="section" id="run-interactive-qchem">
-<h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="run-interactive-qchem">
+<h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Permalink to this heading">¶</a></h2>
 <p>In order to run simple SHORT (&lt; 1min) tests you may execute them directly in shell environment (once everything is loaded properly):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qchem</span> <span class="n">input_file</span><span class="o">.</span><span class="n">inp</span> <span class="n">output_file</span><span class="o">.</span><span class="n">out</span>
 </pre></div>
 </div>
 <p>For proper run long calculations you should use the queue system to submit batch calculations.
 For this purpose you should write a batch script.</p>
-</div>
-<div class="section" id="batch-job-example">
-<h2>Batch job example<a class="headerlink" href="#batch-job-example" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="batch-job-example">
+<h2>Batch job example<a class="headerlink" href="#batch-job-example" title="Permalink to this heading">¶</a></h2>
 <p>All commands discussed previously can be gathered in a simple script to run in batch.
 Check <a class="reference external" href="http://dipc.ehu.es/cc/computing_resources/">http://dipc.ehu.es/cc/computing_resources/</a> for more detailed technical info.
 This is a simple example:</p>
@@ -133,9 +132,9 @@ If you use this option remember that the generated data folder will be stored in
 <p>Warning! to run jobs on batch your data must be copied under the directory <strong>/scratch/username</strong>.
 It is recommended to also run your jobs from the same directory.</p>
 </div>
-</div>
-<div class="section" id="local-scratch">
-<h2>Local scratch<a class="headerlink" href="#local-scratch" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="local-scratch">
+<h2>Local scratch<a class="headerlink" href="#local-scratch" title="Permalink to this heading">¶</a></h2>
 <p>According to the documentation in ATLAS cluster users can make use of local storage of the calculation nodes to
 put (for example) Q-Chem scratch files. Using local scratch can improve the performance of Q-Chem calculations
 up to 4 times. Local scratch is mounted for all nodes in /lscratch directory. This directory has w/r permission
@@ -172,8 +171,8 @@ rm -r /lscratch/${USER}_${SLURM_JOB_ID}/
 will not be executed. In this case the user should manually enter the node (by ssh <em>nodename</em>) and remove the scratch
 data.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -182,22 +181,26 @@ data.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="compilation_qchem.html"
-                        title="previous chapter">Qchem compilation notes</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="iqtc_qchem.html"
-                        title="next chapter">How to use qchem in IQTC cluster (UB)</a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="compilation_qchem.html"
+                          title="previous chapter">Qchem compilation notes</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="iqtc_qchem.html"
+                          title="next chapter">How to use qchem in IQTC cluster (UB)</a></p>
+  </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -220,7 +223,7 @@ data.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
     </div>
   </body>
 </html>
