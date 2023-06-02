@@ -159,9 +159,9 @@ Wave function analysis of RAS-CI states
 
 Analysis of RAS-CI states is requested using **STATE_ANALYSIS** keyword. This analysis include
 a calculation of the Natural Orbitals (NO), Transition Natural Orbitals (NTO), Spinless triplet
-density matrix NTOs (SOC-NTO), Fractional Occupation Density (FOD), Electronic Density and Transition Density.
-These properties can be plotted in Cube format or Molden format for each RAS-CI state,
-this is controlled by **PLOTS** keyword.
+density matrix NTOs (SOC-NTO), Fractional Occupation Density (FOD), Electronic Density, Spin Density
+and Transition Density. These properties can be plotted in Cube format or Molden format for each
+RAS-CI state, this is controlled by **PLOTS** keyword.
 
 Molden format (NO, NTO and SOC-NTO only)::
 
