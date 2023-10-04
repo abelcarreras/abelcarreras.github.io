@@ -172,6 +172,127 @@ will not be executed. In this case the user should manually enter the node (by s
 data.</p>
 </div>
 </section>
+<section id="launcher-script">
+<h2>Launcher script<a class="headerlink" href="#launcher-script" title="Permalink to this heading">¶</a></h2>
+<p>Creating a batch script can be tedious, especially if many similar calculation have to submitted. Here I prepared a
+simple bash command-line app (script) to automate this process. This script creates a batch script from simple data
+provided from command line flags and submits the job. This script is particularly designed to submit PyQchem python
+scripts but can be easily modified to meet your particular needs</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+
+# Conf varibles
+TEMP_FILE_NAME=&quot;temp_launch_script_98263&quot;
+
+# Set default values for optional arguments
+PARTITION_ARG=&quot;regular&quot;
+NAME_ARG=&quot;no_name&quot;
+PROC_ARG=&quot;8&quot;
+RAM_ARG=&quot;10Gb&quot;
+
+# Function to display usage information
+function usage() {
+  echo &quot;Usage: $0 &lt;script_to_run&gt; [--name &lt;no_name&gt;] [--partition &lt;regular&gt;] [--n_proc &lt;8&gt;] [--ram &lt;1Gb&gt;]&quot;
+}
+
+# Parse command-line arguments using getopts
+while [[ $# -gt 0 ]]; do
+  key=&quot;$1&quot;
+
+  case &quot;$key&quot; in
+    --partition)
+      PARTITION_ARG=&quot;$2&quot;
+      shift # past argument
+      shift # past value
+      ;;
+    --name)
+      NAME_ARG=&quot;$2&quot;
+      shift # past argument
+      shift # past value
+      ;;
+    --n_proc)
+      PROC_ARG=&quot;$2&quot;
+      shift # past argument
+      shift # past value
+      ;;
+    --ram)
+      RAM_ARG=&quot;$2&quot;
+      shift # past argument
+      shift # past value
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      POSITIONAL_ARG=&quot;$1&quot;
+      shift
+      ;;
+  esac
+done
+
+# Check if the positional argument is provided
+if [ -z &quot;$POSITIONAL_ARG&quot; ]; then
+  echo &quot;Error: A positional argument is required.&quot;
+  usage
+  exit 1
+fi
+
+# Display the values of all arguments
+RED=&quot;\e[31m&quot;
+GREEN=&quot;\e[32m&quot;
+BLUE=&quot;\e[34m&quot;
+ENDCOLOR=&quot;\e[0m&quot;
+
+echo
+echo -e &quot; Job name: ${GREEN}   $NAME_ARG ${ENDCOLOR}&quot;
+echo -e &quot; Run script: ${BLUE} $POSITIONAL_ARG ${ENDCOLOR}&quot;
+echo -e &quot; Partition: ${GREEN}  $PARTITION_ARG ${ENDCOLOR}&quot;
+echo -e &quot; Num procs: ${GREEN}  $PROC_ARG ${ENDCOLOR}&quot;
+echo -e &quot; RAM Memory: ${GREEN} $RAM_ARG ${ENDCOLOR}&quot;
+echo
+
+read -p &quot;Submit? &quot; -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    exit
+fi
+
+# Generate launch script
+echo &quot;#!/bin/bash
+#SBATCH --partition=${PARTITION_ARG}
+#SBATCH --job-name=${NAME_ARG}
+#SBATCH --cpus-per-task=${PROC_ARG}
+#SBATCH --mem=${RAM_ARG}
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+
+export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules/:$MODULEPATH
+export OMP_NUM_THREADS=${PROC_ARG}
+#export PYQCHEM_CACHE=1
+
+module load qchem_group
+
+python ${POSITIONAL_ARG}
+&quot; &gt; $TEMP_FILE_NAME
+
+# Submit launch script to queue system
+sbatch $TEMP_FILE_NAME
+
+# Delete launch script
+rm $TEMP_FILE_NAME
+</pre></div>
+</div>
+<p>A basic usage is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ launcher script.py --partition regular --n_procs 10 --ram 50Gb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It may be convenient to place this script in some folder included in your $PATH environment variable such that it can be called from
+anywhere in the system.</p>
+</div>
+</section>
 </section>
 
 

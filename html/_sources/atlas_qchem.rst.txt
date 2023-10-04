@@ -131,3 +131,122 @@ data after the calculation is finished.** This cleaning can be written in the su
     Keep in mind that if the calculation crashes or it is cancelled by the user before finishing the cleaning part of the script
     will not be executed. In this case the user should manually enter the node (by ssh *nodename*) and remove the scratch
     data.
+
+Launcher script
+---------------
+Creating a batch script can be tedious, especially if many similar calculation have to submitted. Here I prepared a
+simple bash command-line app (script) to automate this process. This script creates a batch script from simple data
+provided from command line flags and submits the job. This script is particularly designed to submit PyQchem python
+scripts but can be easily modified to meet your particular needs ::
+
+    #!/bin/bash
+
+    # Conf varibles
+    TEMP_FILE_NAME="temp_launch_script_98263"
+
+    # Set default values for optional arguments
+    PARTITION_ARG="regular"
+    NAME_ARG="no_name"
+    PROC_ARG="8"
+    RAM_ARG="10Gb"
+
+    # Function to display usage information
+    function usage() {
+      echo "Usage: $0 <script_to_run> [--name <no_name>] [--partition <regular>] [--n_proc <8>] [--ram <1Gb>]"
+    }
+
+    # Parse command-line arguments using getopts
+    while [[ $# -gt 0 ]]; do
+      key="$1"
+
+      case "$key" in
+        --partition)
+          PARTITION_ARG="$2"
+          shift # past argument
+          shift # past value
+          ;;
+        --name)
+          NAME_ARG="$2"
+          shift # past argument
+          shift # past value
+          ;;
+        --n_proc)
+          PROC_ARG="$2"
+          shift # past argument
+          shift # past value
+          ;;
+        --ram)
+          RAM_ARG="$2"
+          shift # past argument
+          shift # past value
+          ;;
+        -h|--help)
+          usage
+          exit 0
+          ;;
+        *)
+          POSITIONAL_ARG="$1"
+          shift
+          ;;
+      esac
+    done
+
+    # Check if the positional argument is provided
+    if [ -z "$POSITIONAL_ARG" ]; then
+      echo "Error: A positional argument is required."
+      usage
+      exit 1
+    fi
+
+    # Display the values of all arguments
+    RED="\e[31m"
+    GREEN="\e[32m"
+    BLUE="\e[34m"
+    ENDCOLOR="\e[0m"
+
+    echo
+    echo -e " Job name: ${GREEN}   $NAME_ARG ${ENDCOLOR}"
+    echo -e " Run script: ${BLUE} $POSITIONAL_ARG ${ENDCOLOR}"
+    echo -e " Partition: ${GREEN}  $PARTITION_ARG ${ENDCOLOR}"
+    echo -e " Num procs: ${GREEN}  $PROC_ARG ${ENDCOLOR}"
+    echo -e " RAM Memory: ${GREEN} $RAM_ARG ${ENDCOLOR}"
+    echo
+
+    read -p "Submit? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ ! $REPLY =~ ^[Yy]$ ]]
+    then
+        exit
+    fi
+
+    # Generate launch script
+    echo "#!/bin/bash
+    #SBATCH --partition=${PARTITION_ARG}
+    #SBATCH --job-name=${NAME_ARG}
+    #SBATCH --cpus-per-task=${PROC_ARG}
+    #SBATCH --mem=${RAM_ARG}
+    #SBATCH --nodes=1
+    #SBATCH --ntasks-per-node=1
+
+    export MODULEPATH=/scratch/abel/SOFTWARE/privatemodules/:$MODULEPATH
+    export OMP_NUM_THREADS=${PROC_ARG}
+    #export PYQCHEM_CACHE=1
+
+    module load qchem_group
+
+    python ${POSITIONAL_ARG}
+    " > $TEMP_FILE_NAME
+
+    # Submit launch script to queue system
+    sbatch $TEMP_FILE_NAME
+
+    # Delete launch script
+    rm $TEMP_FILE_NAME
+
+A basic usage is as follows: ::
+
+   $ launcher script.py --partition regular --n_procs 10 --ram 50Gb
+
+.. Note::
+    It may be convenient to place this script in some folder included in your $PATH environment variable such that it can be called from
+    anywhere in the system.
