@@ -215,6 +215,16 @@ Cube format ::
     $end
 
 
+The NTO information will be written in the output as ::
+
+   e-/hole pair  1 alpha:  ampl =  0.450353 ( 20.3%)   [3 : 4]
+   e-/hole pair  2 alpha:  ampl =  0.203136 (  4.1%)   [2 : 5]
+   e-/hole pair  1 beta :  ampl =  0.311186 (  9.7%)   [3 : 4]
+   e-/hole pair  2 beta :  ampl =  0.279777 (  7.8%)   [2 : 5]
+
+where the last two numbers "[3: 4]" indicate the cubefile numbers that corresponds of the NTO pair (electron/hole).
+
+
 Notes about diabatization in TDDFT method
 -----------------------------------------
 
