@@ -161,6 +161,12 @@ in the <strong>$localized_diabatization</strong> block (1-7) using <em>method</e
 is ignored for this method). The second step uses the 4 highest energy diabatic states (4-7) obtained
 from the previous step and performs a diabatization using <em>method</em> <strong>3</strong> (DQ) with a <em>parameter</em> <strong>1.0</strong>
 (100% quadrupole).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the recent versions of Q-Chem, Mulliken analysis of the diabatic/adiabatic states is not calculated by default
+(including Attachment/Detachment). To do this analysis use:
+<strong>STATE_ANALYSIS=TRUE</strong></p>
+</div>
 </section>
 <section id="soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos">
 <h2>SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)<a class="headerlink" href="#soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos" title="Permalink to this heading">¶</a></h2>

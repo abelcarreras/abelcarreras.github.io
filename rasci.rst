@@ -135,6 +135,11 @@ is ignored for this method). The second step uses the 4 highest energy diabatic 
 from the previous step and performs a diabatization using *method* **3** (DQ) with a *parameter* **1.0**
 (100% quadrupole).
 
+.. note:: In the recent versions of Q-Chem, Mulliken analysis of the diabatic/adiabatic states is not calculated by default
+          (including Attachment/Detachment). To do this analysis use:
+          **STATE_ANALYSIS=TRUE**
+
+
 SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)
 ----------------------------------------------------------------------
 
