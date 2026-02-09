@@ -70,7 +70,7 @@ This is a simple example::
 
 
     #!/bin/bash
-    #SBATCH --partition=long    # (chose according to your needs: regular, long, xlong, large, ..)
+    #SBATCH --qos=long    # (chose according to your needs: regular, long, xlong, large, ..)
     #SBATCH --job-name=jobname  # job name
     #SBATCH --cpus-per-task=8   # number of CPU's to use
     #SBATCH --mem=10gb          # RAM memory to use (this has to be coherent with Qchem input script)
@@ -104,7 +104,7 @@ for all users. **Local scratch should be used with care since the users are resp
 data after the calculation is finished.** This cleaning can be written in the submitting script. Here an example: ::
 
     #!/bin/bash
-    #SBATCH --partition=regular
+    #SBATCH --qos=regular
     #SBATCH --job-name=complete
     #SBATCH --cpus-per-task=4
     #SBATCH --mem=16gb
@@ -221,7 +221,7 @@ scripts but can be easily modified to meet your particular needs ::
 
     # Generate launch script
     echo "#!/bin/bash
-    #SBATCH --partition=${PARTITION_ARG}
+    #SBATCH --qos=${PARTITION_ARG}
     #SBATCH --job-name=${NAME_ARG}
     #SBATCH --cpus-per-task=${PROC_ARG}
     #SBATCH --mem=${RAM_ARG}

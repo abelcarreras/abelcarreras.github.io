@@ -1,25 +1,24 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>How to use qchem in IQTC cluster (UB) &#8212; wiki  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to use qchem in Mare Nostrum (BSC) [Currently not available!]" href="marenostrum_qchem.html" />
     <link rel="prev" title="How to use qchem in ATLAS cluster (DIPC)" href="atlas_qchem.html" /> 
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -42,9 +41,9 @@
           <div class="body" role="main">
             
   <section id="how-to-use-qchem-in-iqtc-cluster-ub">
-<h1>How to use qchem in IQTC cluster (UB)<a class="headerlink" href="#how-to-use-qchem-in-iqtc-cluster-ub" title="Permalink to this heading">¶</a></h1>
+<h1>How to use qchem in IQTC cluster (UB)<a class="headerlink" href="#how-to-use-qchem-in-iqtc-cluster-ub" title="Link to this heading">¶</a></h1>
 <section id="preliminar-information">
-<h2>Preliminar information<a class="headerlink" href="#preliminar-information" title="Permalink to this heading">¶</a></h2>
+<h2>Preliminar information<a class="headerlink" href="#preliminar-information" title="Link to this heading">¶</a></h2>
 <p><strong>Requirements to acces to qchem</strong></p>
 <ul class="simple">
 <li><p>Have an iqtc account (portal.qt.ub.edu)</p></li>
@@ -57,7 +56,7 @@
 </ul>
 </section>
 <section id="load-custom-modules">
-<h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Permalink to this heading">¶</a></h2>
+<h2>Load custom modules<a class="headerlink" href="#load-custom-modules" title="Link to this heading">¶</a></h2>
 <p>o acces to qchem you should be able to load custom modules located in /home/g8abel/privatemodules. To do this you may modify the MODULEPATH environment variable as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export MODULEPATH=/home/g8abel/privatemodules:$MODULEPATH
 </pre></div>
@@ -77,7 +76,7 @@
 <p><em>Note: *$QCSCRATCH</em> environment variable defines the directory where the scratch files will be generated  during qchem execution. In batch jobs ideally this should be under the scratch directory tree. If this variable is not defined it will be set to current directory.*</p>
 </section>
 <section id="define-hostfile-mpi-parallel-version-only">
-<h2>Define hostfile (MPI parallel version only)<a class="headerlink" href="#define-hostfile-mpi-parallel-version-only" title="Permalink to this heading">¶</a></h2>
+<h2>Define hostfile (MPI parallel version only)<a class="headerlink" href="#define-hostfile-mpi-parallel-version-only" title="Link to this heading">¶</a></h2>
 <p>In order to run MPI version of qchem the location of hostfile must be defined. The complete path (including the filename) should be defined in the environment variable <strong>$QCMACHINEFILE</strong></p>
 <p>Under queue system environemnt (SGE) this file is generated automatically and placed in a temporal directory under the node /scratch directory. This directory is written in <strong>$TMPDIR</strong> environtment variable.
 Therefore, in batch calcultions, a convenient way is to define <strong>$QCMACHINEFILE</strong> as:</p>
@@ -86,7 +85,7 @@ Therefore, in batch calcultions, a convenient way is to define <strong>$QCMACHIN
 </div>
 </section>
 <section id="run-interactive-qchem">
-<h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Permalink to this heading">¶</a></h2>
+<h2>Run interactive qchem<a class="headerlink" href="#run-interactive-qchem" title="Link to this heading">¶</a></h2>
 <p>SGE queue system allows to run calculation interactivelly using special queues designed for this purpose.
 To enter to them use the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qrsh</span> <span class="o">-</span><span class="n">q</span> <span class="n">interactive04</span><span class="o">.</span><span class="n">q</span>
@@ -98,13 +97,13 @@ To enter to them use the command:</p>
 </div>
 </section>
 <section id="run-interactive-qchem-in-batch-queue">
-<h2>Run interactive qchem in batch queue<a class="headerlink" href="#run-interactive-qchem-in-batch-queue" title="Permalink to this heading">¶</a></h2>
+<h2>Run interactive qchem in batch queue<a class="headerlink" href="#run-interactive-qchem-in-batch-queue" title="Link to this heading">¶</a></h2>
 <p>All commands described previously can be gathered in a simple script to run in batch.
 In the following section you can find some example scripts for both qchem compilations
 available in IQTC.</p>
 </section>
 <section id="batch-job-example-parallel-openmp-single-node-pe-smp-iqtc08">
-<h2>Batch job example parallel OpenMP (single node) [pe SMP] IQTC08<a class="headerlink" href="#batch-job-example-parallel-openmp-single-node-pe-smp-iqtc08" title="Permalink to this heading">¶</a></h2>
+<h2>Batch job example parallel OpenMP (single node) [pe SMP] IQTC08<a class="headerlink" href="#batch-job-example-parallel-openmp-single-node-pe-smp-iqtc08" title="Link to this heading">¶</a></h2>
 <p>This is the recommended version for single node calculations. This version should be run in IQTC08. Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    #!/bin/bash
     #$ -N test_openmp  # job name
@@ -126,7 +125,7 @@ available in IQTC.</p>
 </div>
 </section>
 <section id="batch-job-example-parallel-mpi-multiple-nodes-pe-mpi-iqtc04">
-<h2>Batch job example parallel MPI (multiple nodes) [pe MPI] IQTC04<a class="headerlink" href="#batch-job-example-parallel-mpi-multiple-nodes-pe-mpi-iqtc04" title="Permalink to this heading">¶</a></h2>
+<h2>Batch job example parallel MPI (multiple nodes) [pe MPI] IQTC04<a class="headerlink" href="#batch-job-example-parallel-mpi-multiple-nodes-pe-mpi-iqtc04" title="Link to this heading">¶</a></h2>
 <p>This version is used to run on multiple nodes. Use it ony if you plan to
 use more processors than available in a single node (&gt;12 in IQTC04).
 This version is compiled in IQTC04 and should work best in this cluster.
@@ -153,7 +152,7 @@ Here a simple example:</p>
 </div>
 </section>
 <section id="batch-job-example-parallel-mpi-single-node-pe-smp-iqtc04">
-<h2>Batch job example parallel MPI (single node) [pe SMP] IQTC04<a class="headerlink" href="#batch-job-example-parallel-mpi-single-node-pe-smp-iqtc04" title="Permalink to this heading">¶</a></h2>
+<h2>Batch job example parallel MPI (single node) [pe SMP] IQTC04<a class="headerlink" href="#batch-job-example-parallel-mpi-single-node-pe-smp-iqtc04" title="Link to this heading">¶</a></h2>
 <p>For calculations using less than the number of processors available in one node it is strongly
 recommended to use the OpenMP version. Still some features of qchem may run faster in MPI compilation.
 For this you still can run qchem_mpi version in SMP environment but this requires to setup a “machines”
@@ -194,7 +193,7 @@ create a new “machines” file for each one.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
@@ -206,7 +205,7 @@ create a new “machines” file for each one.</p>
     <p class="topless"><a href="marenostrum_qchem.html"
                           title="next chapter">How to use qchem in Mare Nostrum (BSC) [Currently not available!]</a></p>
   </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -214,13 +213,13 @@ create a new “machines” file for each one.</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -237,8 +236,8 @@ create a new “machines” file for each one.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    &#169; Copyright 2019, Abel Carreras.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     </div>
   </body>
 </html>

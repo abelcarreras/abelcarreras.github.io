@@ -1,26 +1,25 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Development Q-Chem &#8212; wiki  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="GROMACS" href="gromacs.html" />
     <link rel="prev" title="How to write in reStructuredText" href="math.html" /> 
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -43,9 +42,9 @@
           <div class="body" role="main">
             
   <section id="development-q-chem">
-<h1>Development Q-Chem<a class="headerlink" href="#development-q-chem" title="Permalink to this heading">¶</a></h1>
+<h1>Development Q-Chem<a class="headerlink" href="#development-q-chem" title="Link to this heading">¶</a></h1>
 <section id="how-to-add-new-rem-variable">
-<h2>How to add new REM variable<a class="headerlink" href="#how-to-add-new-rem-variable" title="Permalink to this heading">¶</a></h2>
+<h2>How to add new REM variable<a class="headerlink" href="#how-to-add-new-rem-variable" title="Link to this heading">¶</a></h2>
 <p>REM variables are, in principle, integer only variables. However some
 tricks can be done to use them as real.</p>
 <p>New REM variables should be defined in file:</p>
@@ -86,7 +85,7 @@ should be divided by <span class="math notranslate nohighlight">\(10^n\)</span><
 </div>
 </section>
 <section id="how-to-add-new-scratch-file">
-<h2>How to add new scratch FILE<a class="headerlink" href="#how-to-add-new-scratch-file" title="Permalink to this heading">¶</a></h2>
+<h2>How to add new scratch FILE<a class="headerlink" href="#how-to-add-new-scratch-file" title="Link to this heading">¶</a></h2>
 <p>scratch files are store momory that can be used globally along q-chem code. These files
 are intended to be used to store large matrices (avoiding to have them in RAM) but are
 also useful to access data from different parts of the code.</p>
@@ -98,7 +97,7 @@ also useful to access data from different parts of the code.</p>
 number already in use.</p>
 </section>
 <section id="manage-scratch-files">
-<h2>Manage scratch files<a class="headerlink" href="#manage-scratch-files" title="Permalink to this heading">¶</a></h2>
+<h2>Manage scratch files<a class="headerlink" href="#manage-scratch-files" title="Link to this heading">¶</a></h2>
 <p><strong>FileMan</strong> function manages the scratch data stored in files. They are useful to store large
 arrays in one section of the code to be used in another part.</p>
 <p>Before using a file it has to be defined in <em>include/fileman.h</em>. This file contains a list of
@@ -107,7 +106,7 @@ unique and is more or less taken in a first come first served basis. In order to
 a little, developers usually reserve some range of numbers for themselves by writing a short
 comment.</p>
 <section id="opening-file">
-<h3>Opening file<a class="headerlink" href="#opening-file" title="Permalink to this heading">¶</a></h3>
+<h3>Opening file<a class="headerlink" href="#opening-file" title="Link to this heading">¶</a></h3>
 <p>To read/store data the file first should be opened</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open to write data</span>
 <span class="n">FileMan</span><span class="p">(</span><span class="n">FM_OPEN_W</span><span class="p">,</span> <span class="n">FILE_NAME</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
@@ -125,7 +124,7 @@ defined in the internals of Q-Chem. Its probably done this way for interoperabil
 </div>
 </section>
 <section id="writing-data">
-<h3>Writing data<a class="headerlink" href="#writing-data" title="Permalink to this heading">¶</a></h3>
+<h3>Writing data<a class="headerlink" href="#writing-data" title="Link to this heading">¶</a></h3>
 <p>To store data in the file</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">data</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
 <span class="n">FileMan</span><span class="p">(</span><span class="n">FM_WRITE</span><span class="p">,</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="n">FM_DP</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">FM_BEG</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
@@ -140,7 +139,7 @@ the array of data to be stored.</p>
 </div>
 </section>
 <section id="reading-data">
-<h3>Reading data<a class="headerlink" href="#reading-data" title="Permalink to this heading">¶</a></h3>
+<h3>Reading data<a class="headerlink" href="#reading-data" title="Link to this heading">¶</a></h3>
 <p>To determine the length of the array</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">N</span><span class="p">;</span>
 <span class="n">FileMan</span><span class="p">(</span><span class="n">FM_GET_LEN</span><span class="p">,</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="n">FM_INT</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
@@ -156,14 +155,14 @@ the array of data to be stored.</p>
 <p>where <strong>FM_READ</strong> indicated reading mode, and <strong>N</strong> is the length of the array.</p>
 </section>
 <section id="closing-file">
-<h3>Closing file<a class="headerlink" href="#closing-file" title="Permalink to this heading">¶</a></h3>
+<h3>Closing file<a class="headerlink" href="#closing-file" title="Link to this heading">¶</a></h3>
 <p>Once the data is read/written the file should be close by</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FileMan</span><span class="p">(</span><span class="n">FM_CLOSE</span><span class="p">,</span> <span class="n">FILE_NAME</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
 <section id="final-notes">
-<h3>Final notes<a class="headerlink" href="#final-notes" title="Permalink to this heading">¶</a></h3>
+<h3>Final notes<a class="headerlink" href="#final-notes" title="Link to this heading">¶</a></h3>
 <p>When working with armadillo objects (matrices &amp; vectors) the raw data can be accessed
 by the methods <em>.begin()</em> &amp; <em>.memptr</em>. This exposes the memory address which allows
 to use FileMan directly on these arrays. The difference between this methods is that <em>.memptr</em>
@@ -177,7 +176,7 @@ is read only, so it is safer than <em>.begin()</em> if the data have only to be 
 </section>
 </section>
 <section id="memory-info-inquisition">
-<h2>Memory info inquisition<a class="headerlink" href="#memory-info-inquisition" title="Permalink to this heading">¶</a></h2>
+<h2>Memory info inquisition<a class="headerlink" href="#memory-info-inquisition" title="Link to this heading">¶</a></h2>
 <p>To obtain the amount of (static) memory available in mega-array use function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">available_mem</span> <span class="o">=</span> <span class="n">MegLen</span><span class="p">()</span>
 </pre></div>
@@ -206,7 +205,7 @@ is read only, so it is safer than <em>.begin()</em> if the data have only to be 
 </div>
 </section>
 <section id="adding-new-dft-functionals">
-<h2>Adding new DFT functionals<a class="headerlink" href="#adding-new-dft-functionals" title="Permalink to this heading">¶</a></h2>
+<h2>Adding new DFT functionals<a class="headerlink" href="#adding-new-dft-functionals" title="Link to this heading">¶</a></h2>
 <p>The files containing the main functions of the functional are placed in either:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">libfunc</span><span class="o">*</span> <span class="ow">or</span> <span class="o">*</span><span class="n">libdft</span><span class="o">/</span><span class="n">libfunc</span><span class="o">*</span>
 </pre></div>
@@ -231,7 +230,7 @@ are writen here</p>
 </div>
 </section>
 <section id="basis-in-tests">
-<h2>Basis in tests<a class="headerlink" href="#basis-in-tests" title="Permalink to this heading">¶</a></h2>
+<h2>Basis in tests<a class="headerlink" href="#basis-in-tests" title="Link to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span>  <span class="c1"># number of atoms, lines in block 1, lines in block 2, number of function blocks</span>
 
   <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>   <span class="c1"># coordinates x y z of atom 1</span>
@@ -262,7 +261,7 @@ are writen here</p>
 </div>
 </section>
 <section id="angular-momentum">
-<h2>Angular Momentum<a class="headerlink" href="#angular-momentum" title="Permalink to this heading">¶</a></h2>
+<h2>Angular Momentum<a class="headerlink" href="#angular-momentum" title="Link to this heading">¶</a></h2>
 <p>Calling angular momentum:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">REAL</span><span class="o">*</span><span class="mi">8</span><span class="w">  </span><span class="n">Lx</span><span class="p">(</span><span class="n">NBas</span><span class="p">,</span><span class="w"> </span><span class="n">NBas</span><span class="p">),</span><span class="w"> </span><span class="n">Ly</span><span class="p">(</span><span class="n">NBas</span><span class="p">,</span><span class="w"> </span><span class="n">NBas</span><span class="p">),</span><span class="w"> </span><span class="n">Lz</span><span class="p">(</span><span class="n">NBas</span><span class="p">,</span><span class="w"> </span><span class="n">NBas</span><span class="p">)</span><span class="w"> </span><span class="c">! Angmom matrices (output)</span>
 <span class="kt">REAL</span><span class="o">*</span><span class="mi">8</span><span class="w"> </span><span class="n">cx</span><span class="p">,</span><span class="w"> </span><span class="n">cy</span><span class="p">,</span><span class="w"> </span><span class="n">cz</span><span class="w">  </span><span class="c">! Center coordinates (input)</span>
@@ -287,7 +286,7 @@ are writen here</p>
 </div>
 </section>
 <section id="other">
-<h2>Other<a class="headerlink" href="#other" title="Permalink to this heading">¶</a></h2>
+<h2>Other<a class="headerlink" href="#other" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">ras_test_</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ----- STARTING TEST -----&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
@@ -562,7 +561,7 @@ are writen here</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
@@ -574,7 +573,7 @@ are writen here</p>
     <p class="topless"><a href="gromacs.html"
                           title="next chapter">GROMACS</a></p>
   </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -582,13 +581,13 @@ are writen here</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -605,8 +604,8 @@ are writen here</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    &#169; Copyright 2019, Abel Carreras.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     </div>
   </body>
 </html>

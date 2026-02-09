@@ -1,25 +1,24 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>On development features &#8212; wiki  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How to write in reStructuredText" href="math.html" />
     <link rel="prev" title="Custom version of Avogadro visualization software" href="avogadro.html" /> 
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -42,19 +41,22 @@
           <div class="body" role="main">
             
   <section id="on-development-features">
-<h1>On development features<a class="headerlink" href="#on-development-features" title="Permalink to this heading">¶</a></h1>
+<h1>On development features<a class="headerlink" href="#on-development-features" title="Link to this heading">¶</a></h1>
 <section id="ras-ci-implementation-scheme">
-<h2>RAS-CI implementation scheme<a class="headerlink" href="#ras-ci-implementation-scheme" title="Permalink to this heading">¶</a></h2>
+<h2>RAS-CI implementation scheme<a class="headerlink" href="#ras-ci-implementation-scheme" title="Link to this heading">¶</a></h2>
 <p>Fortran functions only</p>
-<a class="reference external image-reference" href="../images/rasci_scheme.pdf"><img alt="_images/rasci_scheme.pdf" class="align-center" src="_images/rasci_scheme.pdf" /></a>
+<a class="reference external image-reference" href="../images/rasci_scheme.pdf"><img alt="_images/rasci_scheme.pdf" class="align-center" src="_images/rasci_scheme.pdf" />
+</a>
 </section>
 <section id="ras-ci-contraction-scheme">
-<h2>RAS-CI Contraction scheme<a class="headerlink" href="#ras-ci-contraction-scheme" title="Permalink to this heading">¶</a></h2>
-<a class="reference external image-reference" href="../images/rasci_contract_even.pdf"><img alt="_images/rasci_contract_even.pdf" src="_images/rasci_contract_even.pdf" /></a>
-<a class="reference external image-reference" href="../images/rasci_contract_odd.pdf"><img alt="_images/rasci_contract_odd.pdf" src="_images/rasci_contract_odd.pdf" /></a>
+<h2>RAS-CI Contraction scheme<a class="headerlink" href="#ras-ci-contraction-scheme" title="Link to this heading">¶</a></h2>
+<a class="reference external image-reference" href="../images/rasci_contract_even.pdf"><img alt="_images/rasci_contract_even.pdf" src="_images/rasci_contract_even.pdf" />
+</a>
+<a class="reference external image-reference" href="../images/rasci_contract_odd.pdf"><img alt="_images/rasci_contract_odd.pdf" src="_images/rasci_contract_odd.pdf" />
+</a>
 </section>
 <section id="fragment-localization">
-<h2>Fragment localization<a class="headerlink" href="#fragment-localization" title="Permalink to this heading">¶</a></h2>
+<h2>Fragment localization<a class="headerlink" href="#fragment-localization" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><em>ras_nfrag</em>: Number of fragments</p></li>
 <li><p><em>ras_nfrag_atoms</em>: Number of atoms in each fragment (atoms should be correlative in input file)</p></li>
@@ -70,7 +72,7 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
 </div>
 </section>
 <section id="fractional-orbital-density-fod">
-<h2>Fractional Orbital Density (FOD)<a class="headerlink" href="#fractional-orbital-density-fod" title="Permalink to this heading">¶</a></h2>
+<h2>Fractional Orbital Density (FOD)<a class="headerlink" href="#fractional-orbital-density-fod" title="Link to this heading">¶</a></h2>
 <p>Generate the fraction orbital density of a RAS-CI excited state.</p>
 <ul class="simple">
 <li><p><em>gui 2</em> : Request generation of <em>.fchk</em> file</p></li>
@@ -79,14 +81,14 @@ ras_frag_sets    [86,191,4,4] ! sets of orbitals to localize
 </ul>
 </section>
 <section id="spin-polarization">
-<h2>Spin polarization<a class="headerlink" href="#spin-polarization" title="Permalink to this heading">¶</a></h2>
+<h2>Spin polarization<a class="headerlink" href="#spin-polarization" title="Link to this heading">¶</a></h2>
 <p>Perform spin polarization treatment for srDFT using the method described in: Coulsonm C. A. Fisher, I. Notes on the molecular Orbital Tratment of the Hydrogen Molecule. Philos. Mag. 1949, 40, 386-393.</p>
 <ul class="simple">
 <li><p><em>ras_srdft_spinpol</em>: Activate spin polarization (False: Deactivate(default), True: Activate)</p></li>
 </ul>
 </section>
 <section id="sequential-diabatization">
-<h2>Sequential Diabatization<a class="headerlink" href="#sequential-diabatization" title="Permalink to this heading">¶</a></h2>
+<h2>Sequential Diabatization<a class="headerlink" href="#sequential-diabatization" title="Link to this heading">¶</a></h2>
 <p>To activate the  diabatization analysis of excited states in ras-ci method it is necessary to define
 a section block and 3 <strong>REM</strong> keywords in the qchem input. The section block defines the excited states
 number to be included in the diabatization (by increasing order). This is equivalent to the one used
@@ -169,7 +171,7 @@ from the previous step and performs a diabatization using <em>method</em> <stron
 </div>
 </section>
 <section id="soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos">
-<h2>SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)<a class="headerlink" href="#soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos" title="Permalink to this heading">¶</a></h2>
+<h2>SOC Natural Transition Orbitals (Spinless triplet density matrix NTOs)<a class="headerlink" href="#soc-natural-transition-orbitals-spinless-triplet-density-matrix-ntos" title="Link to this heading">¶</a></h2>
 <p>The calculation of Natural Transition Orbitals (NTO) is requested using the following keywords:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STATE_ANALYSIS</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">GUI</span> <span class="o">=</span> <span class="mi">2</span>
@@ -186,7 +188,7 @@ The format of the NTO’s is the same as for the Natural Orbitals (NO) so they c
 visualized using any standard visualization software by changing the title names.</p>
 </section>
 <section id="wave-function-analysis-of-ras-ci-states">
-<h2>Wave function analysis of RAS-CI states<a class="headerlink" href="#wave-function-analysis-of-ras-ci-states" title="Permalink to this heading">¶</a></h2>
+<h2>Wave function analysis of RAS-CI states<a class="headerlink" href="#wave-function-analysis-of-ras-ci-states" title="Link to this heading">¶</a></h2>
 <p>Analysis of RAS-CI states is requested using <strong>STATE_ANALYSIS</strong> keyword. This analysis include
 a calculation of the Natural Orbitals (NO), Transition Natural Orbitals (NTO), Spinless triplet
 density matrix NTOs (SOC-NTO), Fractional Occupation Density (FOD), Electronic Density, Spin Density
@@ -254,7 +256,7 @@ $end
 <p>where the last two numbers “[3: 4]” indicate the cubefile numbers that corresponds of the NTO pair (electron/hole).</p>
 </section>
 <section id="notes-about-diabatization-in-tddft-method">
-<h2>Notes about diabatization in TDDFT method<a class="headerlink" href="#notes-about-diabatization-in-tddft-method" title="Permalink to this heading">¶</a></h2>
+<h2>Notes about diabatization in TDDFT method<a class="headerlink" href="#notes-about-diabatization-in-tddft-method" title="Link to this heading">¶</a></h2>
 <p>Due to a possible bug in Q-Chem a change of behavior appeared in Qchem v5.x
 respect to Mulliken analysis of diabatic states. Now in addition to <em>cis_ampl_anal</em> the keyword:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAMD_NSURFACES</span> <span class="mi">0</span>
@@ -309,7 +311,7 @@ $end
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
@@ -321,7 +323,7 @@ $end
     <p class="topless"><a href="math.html"
                           title="next chapter">How to write in reStructuredText</a></p>
   </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -329,13 +331,13 @@ $end
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -352,8 +354,8 @@ $end
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    &#169; Copyright 2019, Abel Carreras.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     </div>
   </body>
 </html>

@@ -1,25 +1,24 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>SVN working notes &#8212; wiki  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Qchem compilation notes" href="compilation_qchem.html" />
     <link rel="prev" title="Technical information and documentation" href="index.html" /> 
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -42,9 +41,9 @@
           <div class="body" role="main">
             
   <section id="svn-working-notes">
-<h1>SVN working notes<a class="headerlink" href="#svn-working-notes" title="Permalink to this heading">¶</a></h1>
+<h1>SVN working notes<a class="headerlink" href="#svn-working-notes" title="Link to this heading">¶</a></h1>
 <section id="merging-dcc-group-users">
-<h2>Merging dcc_group -&gt; users<a class="headerlink" href="#merging-dcc-group-users" title="Permalink to this heading">¶</a></h2>
+<h2>Merging dcc_group -&gt; users<a class="headerlink" href="#merging-dcc-group-users" title="Link to this heading">¶</a></h2>
 <p>Before merging make sure that all your work is commited to the server.
 Also make sure that all the changes in qchem_group are already merged in qchem_user.
 Any conflict that may appear is better handled from the qchem_usr branch</p>
@@ -58,7 +57,7 @@ Any conflict that may appear is better handled from the qchem_usr branch</p>
 <p>If any issues appear during this process check troubleshooting section.</p>
 </section>
 <section id="merging-users-dcc-group">
-<h2>Merging users -&gt; dcc_group<a class="headerlink" href="#merging-users-dcc-group" title="Permalink to this heading">¶</a></h2>
+<h2>Merging users -&gt; dcc_group<a class="headerlink" href="#merging-users-dcc-group" title="Link to this heading">¶</a></h2>
 <p>Changes from user branches to dcc_group, should be done using the following procedure in order to keep the branch alive and avoid future “duplicate commit” conflicts:</p>
 <ol class="arabic">
 <li><p>Merge to dcc_group using reintegrate option:</p>
@@ -91,7 +90,7 @@ Any conflict that may appear is better handled from the qchem_usr branch</p>
 <p>After this procedure dcc_group can be updated and modified and the changes can be merged into user branches as usual.</p>
 </section>
 <section id="merge-trunk-dcc-group">
-<h2>Merge trunk -&gt; dcc_group<a class="headerlink" href="#merge-trunk-dcc-group" title="Permalink to this heading">¶</a></h2>
+<h2>Merge trunk -&gt; dcc_group<a class="headerlink" href="#merge-trunk-dcc-group" title="Link to this heading">¶</a></h2>
 <p>To merg from trunk to group make sure that you are in dcc_group branch, then execute:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">merge</span> <span class="o">--</span><span class="n">accept</span><span class="o">=</span><span class="n">postpone</span> <span class="o">^/</span><span class="n">trunk</span>
 </pre></div>
@@ -155,7 +154,7 @@ and once the file is clean and acceptable</p>
 </div>
 </section>
 <section id="merging-dcc-group-trunk">
-<h2>Merging dcc_group -&gt; trunk<a class="headerlink" href="#merging-dcc-group-trunk" title="Permalink to this heading">¶</a></h2>
+<h2>Merging dcc_group -&gt; trunk<a class="headerlink" href="#merging-dcc-group-trunk" title="Link to this heading">¶</a></h2>
 <p>Merging from dcc_group to trunk branches should be done carefully using the queue system</p>
 <ol class="arabic simple">
 <li><p>Make sure that qcc_group branch contains all the changes from trunk (see Merge trunk -&gt; dcc_group section)</p></li>
@@ -188,7 +187,7 @@ and finaly mark them as correct:</p>
 </div>
 </section>
 <section id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">¶</a></h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
 <p>Deleting or renaming a file or directory in the repository should be handled carefully. Use SVN commands for this.
 When working with CLion, you can use the graphical interface to browse through the SVN menus to find the delete/rename option.</p>
 <p>Deleting a renaming files in your local copy may result in “tree conflicts” during the merge process
@@ -200,8 +199,9 @@ that you want to keep and type (from the command line from your work directory):
 <p>Then proceed to commit the changes and update.</p>
 </section>
 <section id="svn-scheme">
-<h2>SVN scheme<a class="headerlink" href="#svn-scheme" title="Permalink to this heading">¶</a></h2>
-<a class="reference external image-reference" href="../images/svn_scheme.pdf"><img alt="_images/svn_scheme.pdf" class="align-center" src="_images/svn_scheme.pdf" /></a>
+<h2>SVN scheme<a class="headerlink" href="#svn-scheme" title="Link to this heading">¶</a></h2>
+<a class="reference external image-reference" href="../images/svn_scheme.pdf"><img alt="_images/svn_scheme.pdf" class="align-center" src="_images/svn_scheme.pdf" />
+</a>
 </section>
 </section>
 
@@ -210,7 +210,7 @@ that you want to keep and type (from the command line from your work directory):
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
@@ -222,7 +222,7 @@ that you want to keep and type (from the command line from your work directory):
     <p class="topless"><a href="compilation_qchem.html"
                           title="next chapter">Qchem compilation notes</a></p>
   </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -230,13 +230,13 @@ that you want to keep and type (from the command line from your work directory):
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -253,8 +253,8 @@ that you want to keep and type (from the command line from your work directory):
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Abel Carreras.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    &#169; Copyright 2019, Abel Carreras.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     </div>
   </body>
 </html>
