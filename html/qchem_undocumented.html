@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Undocumented Q-chem features &#8212; wiki  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Undocumented Q-chem features</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="undocumented-q-chem-features">
+<h1>Undocumented Q-chem features<a class="headerlink" href="#undocumented-q-chem-features" title="Link to this heading">¶</a></h1>
+<section id="multi-state-fed">
+<h2>Multi-state FED<a class="headerlink" href="#multi-state-fed" title="Link to this heading">¶</a></h2>
+<p>FED can be calculated using more than 2 states. This is using diabatization
+interface so it is needed to create a <strong>$localized_diabatization</strong> section to
+define the states to be used. When using multi-state FED a standard FED is also calculated.</p>
+<p>Minimum set of keywords needed for multi-FED</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$rem
+...
+sts_fed True        ! activate FED calculation
+sts_multi_nroots 4  ! number of states to be included in the FED
+sts_multi_print  1  ! (or 2 for more information)
+sts_donor 1-18      ! range of atoms in donor fragment
+sts_acceptor 19-36  ! range of atoms in acceptor fragment
+$end
+
+$localized_diabatization
+  adiabatic states
+  1 2 3 4           ! state number of the sates to be included in the calculation
+$end
+</pre></div>
+</div>
+<p>full example for naphthalene dimer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$molecule
+0 1
+C           0.0000000000         0.7076000000         0.0001000000
+C           0.0000000000        -0.7076000000         0.0000000000
+C           1.2250000000         1.3944000000         0.0000000000
+C           1.2250000000        -1.3944000000         0.0001000000
+C          -1.2250000000         1.3943000000         0.0000000000
+C          -1.2250000000        -1.3943000000         0.0000000000
+C           2.4327000000         0.6959000000        -0.0001000000
+C           2.4327000000        -0.6958000000         0.0000000000
+C          -2.4327000000         0.6958000000         0.0000000000
+C          -2.4327000000        -0.6958000000        -0.0001000000
+H           1.2489000000         2.4821000000        -0.0001000000
+H           1.2489000000        -2.4822000000         0.0001000000
+H          -1.2490000000         2.4821000000         0.0001000000
+H          -1.2489000000        -2.4822000000        -0.0001000000
+H           3.3732000000         1.2391000000        -0.0001000000
+H           3.3733000000        -1.2390000000        -0.0001000000
+H          -3.3732000000         1.2390000000         0.0000000000
+H          -3.3733000000        -1.2390000000        -0.0001000000
+C           0.0000000000         0.7076000000         4.0001000000
+C           0.0000000000        -0.7076000000         4.0000000000
+C           1.2250000000         1.3944000000         4.0000000000
+C           1.2250000000        -1.3944000000         4.0001000000
+C          -1.2250000000         1.3943000000         4.0000000000
+C          -1.2250000000        -1.3943000000         4.0000000000
+C           2.4327000000         0.6959000000         3.9999000000
+C           2.4327000000        -0.6958000000         4.0000000000
+C          -2.4327000000         0.6958000000         4.0000000000
+C          -2.4327000000        -0.6958000000         3.9999000000
+H           1.2489000000         2.4821000000         3.9999000000
+H           1.2489000000        -2.4822000000         4.0001000000
+H          -1.2490000000         2.4821000000         4.0001000000
+H          -1.2489000000        -2.4822000000         3.9999000000
+H           3.3732000000         1.2391000000         3.9999000000
+H           3.3733000000        -1.2390000000         3.9999000000
+H          -3.3732000000         1.2390000000         4.0000000000
+H          -3.3733000000        -1.2390000000         3.9999000000
+$end
+
+$rem
+jobtype sp
+exchange b3lyp
+basis sto-3g
+cis_convergence 14
+cis_n_roots 6
+cis_singlets True
+cis_triplets False
+sts_fed True
+sts_multi_nroots 4
+sts_multi_print 1
+sts_donor 1-18
+sts_acceptor 19-36
+$end
+
+$localized_diabatization
+ adiabatic states
+ 1 2 3 4
+$end
+</pre></div>
+</div>
+<p>expected multi-FED output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                     <span class="n">FED</span> <span class="n">MULTISTATE</span> <span class="n">ANALYSIS</span>
+
+<span class="n">Within</span> <span class="n">CIS</span><span class="o">/</span><span class="n">TDA</span> <span class="n">Singlet</span> <span class="n">Excited</span> <span class="n">States</span><span class="p">:</span>
+
+<span class="n">Localized</span> <span class="n">diabatization</span> <span class="n">specification</span>
+  <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>
+
+<span class="o">------------------------------------------------------------------------------</span>
+<span class="mi">4</span> <span class="n">excited</span> <span class="n">states</span> <span class="n">are</span> <span class="n">requested</span> <span class="o">...</span>
+    <span class="mi">1</span> <span class="n">LE</span> <span class="p">(</span><span class="n">donor</span><span class="p">)</span>    <span class="n">state</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">found</span>
+    <span class="mi">2</span> <span class="n">CT</span>            <span class="n">state</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">found</span>
+    <span class="mi">1</span> <span class="n">LE</span> <span class="p">(</span><span class="n">acceptor</span><span class="p">)</span> <span class="n">state</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">found</span>
+<span class="o">------------------------------------------------------------------------------</span>
+<span class="n">Excitation</span> <span class="n">Energy</span> <span class="p">(</span><span class="n">eV</span><span class="p">)</span> <span class="ow">and</span> <span class="n">Fragment</span><span class="o">-</span><span class="n">X</span> <span class="n">Difference</span> <span class="n">of</span>   <span class="mi">4</span> <span class="n">Diabatic</span> <span class="n">States</span>
+<span class="o">------------------------------------------------------------------------------</span>
+  <span class="n">n</span>    <span class="n">Excitation</span>       <span class="n">dX</span>
+<span class="o">-----</span> <span class="o">------------</span> <span class="o">------------</span>
+   <span class="mi">1</span>   <span class="mf">4.52780500</span>  <span class="o">-</span><span class="mf">0.00000449</span>
+   <span class="mi">2</span>   <span class="mf">4.54916620</span>   <span class="mf">0.00000479</span>
+   <span class="mi">3</span>   <span class="mf">5.19733066</span>  <span class="o">-</span><span class="mf">1.93705111</span>
+   <span class="mi">4</span>   <span class="mf">5.19733075</span>   <span class="mf">1.93705270</span>
+<span class="o">------------------------------------------------------------------------------</span>
+<span class="n">Matrix</span> <span class="n">Elements</span> <span class="n">of</span> <span class="n">Diabatic</span> <span class="n">Hamiltonain</span>
+<span class="o">------------------------------------------------------------------------------</span>
+<span class="n">diabatH</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">2.672379E-17</span>
+<span class="n">diabatH</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">8.865129E-06</span>
+<span class="n">diabatH</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span>    <span class="mf">9.37914E-06</span>
+
+<span class="n">diabatH</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">4.560166E-07</span>
+<span class="n">diabatH</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">1.565519E-06</span>
+
+<span class="n">diabatH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span>     <span class="mf">0.01839572</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">wiki  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Undocumented Q-chem features</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2019, Abel Carreras.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    </div>
+  </body>
+</html>
