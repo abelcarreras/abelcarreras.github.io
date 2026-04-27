@@ -166,5 +166,4 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-
-
+html_baseurl = "https://abelcarreras.github.io/html/"
