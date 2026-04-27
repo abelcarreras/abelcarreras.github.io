@@ -19,7 +19,7 @@ Technical information and documentation
    rasci
    math
    qchem_internals
-   qchem_fed
+   qchem_undocumented
    gromacs
    other_stuff
    contribute
