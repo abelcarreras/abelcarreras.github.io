@@ -28,7 +28,7 @@ Then there are some environment variables that should be set: ::
     export gmxapi_DIR=/installation_path/
 
 
-In Gromacs 2025to install the API (at lest in MAC) it is necessary to modify these files:
+In Gromacs 2025 to install the API (at lest in MAC) it is necessary to modify these files:
 
 session.h
 
